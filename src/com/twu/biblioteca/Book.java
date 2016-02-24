@@ -11,8 +11,7 @@ public class Book {
         this.yearOfPublication = yearOfPublication;
     }
 
-    public void display(Writer inputOutputStream) {
-        String serialisedBook = name + " " + author + " " + yearOfPublication;
-        inputOutputStream.writeMessage(serialisedBook);
-    }
+    @Override
+    public String toString() {
+        return name + " " + author + " " + yearOfPublication;    }
 }
