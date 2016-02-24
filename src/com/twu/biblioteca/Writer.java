@@ -11,7 +11,9 @@ public class Writer {
         this.stream = stream;
     }
 
-    public void write(String message) {
+    public void writeMessage(String message) {
         this.stream.println(message);
     }
+
+
 }
