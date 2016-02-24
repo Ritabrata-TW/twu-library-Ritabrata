@@ -1,5 +1,5 @@
 package com.twu.biblioteca;
-
+//Dto for book
 public class Book {
     String name;
     String author;

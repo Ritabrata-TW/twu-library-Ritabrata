@@ -3,13 +3,14 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 import java.util.List;
 
+//Welcome User, Display Main menu
 public class Biblioteca {
-    Writer writer;
+    InputOutputHandler inputOutputHandler;
     String welcomeMessage;
     List<Book> books;
 
-    Biblioteca(Writer inputOutputStream) {
-        this.writer = inputOutputStream;
+    Biblioteca(InputOutputHandler inputOutputStream) {
+        this.inputOutputHandler = inputOutputStream;
         welcomeMessage = "**** Welcome Customer! We are glad to have you at Biblioteca! ****";
         books = new ArrayList<Book>();
     }
@@ -20,18 +21,23 @@ public class Biblioteca {
 
 
     public void welcome(){
-        writer.writeMessage(welcomeMessage);
+        inputOutputHandler.writeMessage(welcomeMessage);
     }
 
 
     public void displayBooks() {
         for(Book book : books) {
-            writer.writeMessage(book.toString());
+            inputOutputHandler.writeMessage(book.toString());
         }
     }
 
     public void mainMenu() {
-        writer.writeMessage("/n Main Menu");
-        writer.writeMessage("1. List Books");
+        inputOutputHandler.writeMessage("/n Main Menu");
+        inputOutputHandler.writeMessage("1. List Books");
+
+        Integer choice = inputOutputHandler.input("Enter your choice!");
+        if(choice == 1) {
+            displayBooks();
+        }
     }
 }
