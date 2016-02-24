@@ -5,16 +5,13 @@ import org.junit.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class BibliotecaTest {
+public class BookTest {
     @Test
-    public void WelcomeMessageMustBeDisplayedForTheUser() {
+    public void BookListMustBeDisplayedForTheUser() {
         Writer writer = mock(Writer.class);
         Biblioteca bibliotecaApp = new Biblioteca(writer);
 
-        bibliotecaApp.welcome();
-        verify(writer).writeMessage("**** Welcome Customer! We are glad to have you at Biblioteca! ****");
+        bibliotecaApp.displayBooks();
+        verify(writer).writeMessage("Head First Design Pattern! Martin Fowler 2007");
     }
-
-
 }
-

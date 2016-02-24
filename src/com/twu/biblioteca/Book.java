@@ -12,6 +12,7 @@ public class Book {
     }
 
     public void display(Writer inputOutputStream) {
-        inputOutputStream.writeMessage(name+" "+author+" "+yearOfPublication);
+        String serialisedBook = name + " " + author + " " + yearOfPublication;
+        inputOutputStream.writeMessage(serialisedBook);
     }
 }
