@@ -5,14 +5,17 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class BibliotecaApp {
+    InputOutputStream inputOutputStream;
+
+    BibliotecaApp(InputOutputStream inputOutputStream) {
+        this.inputOutputStream = inputOutputStream;
+    }
 
     public static void main(String[] args) {
-        System.out.println("Hello, world!");
+        //welcome("Welcome To Biblioteca!");
     }
 
-
-
-    public void printLine(String message){
-        out.print(message);
+    public void welcome(String message){
+        inputOutputStream.printLine(message);
     }
-}}
+}
