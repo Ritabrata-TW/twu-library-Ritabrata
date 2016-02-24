@@ -1,13 +1,10 @@
 package com.twu.biblioteca;
 
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
-
 public class BibliotecaApp {
-    InputOutputStream inputOutputStream;
+    Writer inputOutputStream;
+    String welcomeMessage = "**** Welcome Customer! We are glad to have you at Biblioteca! ****";
 
-    BibliotecaApp(InputOutputStream inputOutputStream) {
+    BibliotecaApp(Writer inputOutputStream) {
         this.inputOutputStream = inputOutputStream;
     }
 
@@ -15,7 +12,7 @@ public class BibliotecaApp {
         //welcome("Welcome To Biblioteca!");
     }
 
-    public void welcome(String message){
-        inputOutputStream.printLine(message);
+    public void welcome(){
+        inputOutputStream.write(welcomeMessage);
     }
 }
