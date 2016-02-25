@@ -12,10 +12,6 @@ public class LibraryModel {
         this.books = books;
     }
 
-    public void addBooks() {
-        books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
-    }
-
     public List<Book> getBooks() {
         return books;
     }

@@ -24,13 +24,31 @@ public class LibraryControllerTest {
 
     }
 
-
     @Test
-    public void shouldBeAbleToDisplayBookListForTheUserWhenHeChoosesOneOnMainMenu() {
+    public void shouldBeAbleToDisplayBookListForTheUserWhenHeChoosesOneOnMainMenu()  {
         when(libraryView.mainMenu()).thenReturn(1);
 
         libraryController.mainMenu();
 
         verify(libraryView).displayBooks(books);
+    }
+
+
+    @Test
+    public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNumericInvalidMenuOptionInMainMenuOption() {
+        when(libraryView.mainMenu()).thenReturn(2);
+
+        libraryController.mainMenu();
+
+        verify(libraryView).displayMessage("Select a valid option!");
+    }
+
+    @Test
+    public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNonNumericInvalidMenuOptionInMainMenuOption() {
+        when(libraryView.mainMenu()).thenReturn(0);
+
+        libraryController.mainMenu();
+
+        verify(libraryView).displayMessage("Select a valid option!");
     }
 }

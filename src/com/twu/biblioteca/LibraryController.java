@@ -11,7 +11,7 @@ public class LibraryController {
         this.libraryView = libraryView;
     }
 
-    public void startApp(){
+    public void startApp()  {
         this.welcome();
         this.mainMenu();
     }
@@ -20,9 +20,12 @@ public class LibraryController {
         libraryView.welcome();
     }
 
-    public void mainMenu() {
+    public void mainMenu()  {
         int choice = libraryView.mainMenu();
-        if(choice == 1)
+        if(choice == 1) {
             libraryView.displayBooks(libraryModel.getBooks());
+        }
+
+        libraryView.displayMessage("Select a valid option!");
     }
 }

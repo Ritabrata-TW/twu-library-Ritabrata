@@ -13,17 +13,28 @@ public class LibraryView {
         inputOutputHandler.writeMessage("**** Welcome Customer! We are glad to have you at LibraryModel! ****");
     }
 
+    public void displayMessage(String message) {
+        inputOutputHandler.writeMessage(message);
+    }
+
     public void displayBooks(List<Book> books) {
         for (Book book:books) {
             inputOutputHandler.writeMessage(book.toString());
         }
     }
 
-    public int mainMenu() {
+    public int mainMenu()  {
         inputOutputHandler.writeMessage("/n Main Menu");
         inputOutputHandler.writeMessage("1. List Books");
+        Integer choice;
 
-        Integer choice = inputOutputHandler.input("Enter your choice!");
+        try {
+            choice = inputOutputHandler.input("Enter your choice!");
+        }
+        catch (Exception e) {
+            return 0;
+        }
+
         return choice;
     }
 

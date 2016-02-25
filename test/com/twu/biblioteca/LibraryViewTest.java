@@ -6,9 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class LibraryViewTest {
     InputOutputHandler inputOutputHandler;
@@ -32,6 +30,13 @@ public class LibraryViewTest {
     }
 
     @Test
+    public void ShouldBeAbleToDisplayMessage() {
+        libraryView.displayMessage("Message");
+
+        verify(inputOutputHandler).writeMessage("Message");
+    }
+
+    @Test
     public void BookListMustBeDisplayedForTheUser() {
         doNothing().when(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
 
@@ -41,10 +46,18 @@ public class LibraryViewTest {
     }
 
     @Test
-    public void MainMenuMustBeDisplayed() {
+    public void MainMenuMustBeDisplayed()  {
         libraryView.mainMenu();
 
         verify(inputOutputHandler).writeMessage("/n Main Menu");
         verify(inputOutputHandler).writeMessage("1. List Books");
     }
+
+    @Test
+    public void MustBeAbleToHandleNonNumericEntryForMainMenuInput() {
+        when(inputOutputHandler.input("Enter your choice!")).thenReturn(Integer.valueOf("a"));
+
+
+    }
+
 }
