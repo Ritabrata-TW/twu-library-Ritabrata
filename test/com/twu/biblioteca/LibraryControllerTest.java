@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import static org.mockito.Mockito.*;
 
 public class LibraryControllerTest {
-    InputOutputHandler inputOutputHandler;
     ArrayList<Book> books;
     LibraryModel libraryModel;
     LibraryView libraryView;
@@ -17,11 +16,10 @@ public class LibraryControllerTest {
 
     @Before
     public void setup() {
-        inputOutputHandler = mock(InputOutputHandler.class);
         books = new ArrayList<Book>(5);
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
         libraryModel = new LibraryModel(books);
-        libraryView = new LibraryView(inputOutputHandler);
+        libraryView = mock(LibraryView.class);
         libraryController = new LibraryController(libraryModel, libraryView);
 
     }
@@ -29,12 +27,10 @@ public class LibraryControllerTest {
 
     @Test
     public void shouldBeAbleToDisplayBookListForTheUserWhenHeChoosesOneOnMainMenu() {
-        doNothing().when(inputOutputHandler).writeMessage("/n Main Menu");
-        doNothing().when(inputOutputHandler).writeMessage("1. List Books");
-        when(inputOutputHandler.input("Enter your choice!")).thenReturn(1);
+        when(libraryView.mainMenu()).thenReturn(1);
 
         libraryController.mainMenu();
 
-        verify(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
+        verify(libraryView).displayBooks(books);
     }
 }
