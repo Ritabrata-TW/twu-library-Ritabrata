@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 
 public class LibraryViewTest {
     InputOutputHandler inputOutputHandler;
-    BooksView libraryView;
+    BooksView booksView;
     List<Book> books;
 
     @Before
@@ -19,19 +19,19 @@ public class LibraryViewTest {
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
 
         inputOutputHandler = mock(InputOutputHandler.class);
-        libraryView = new BooksView(inputOutputHandler);
+        booksView = new BooksView(inputOutputHandler);
     }
 
     @Test
     public void WelcomeMessageMustBeDisplayedForTheUser() {
-        libraryView.welcome();
+        booksView.welcome();
 
-        verify(inputOutputHandler).writeMessage("**** Welcome Customer! We are glad to have you at LibraryModel! ****");
+        verify(inputOutputHandler).writeMessage("**** Welcome Customer! We are glad to have you at BooksModel! ****");
     }
 
     @Test
     public void ShouldBeAbleToDisplayMessage() {
-        libraryView.displayMessage("Message");
+        booksView.displayMessage("Message");
 
         verify(inputOutputHandler).writeMessage("Message");
     }
@@ -40,14 +40,14 @@ public class LibraryViewTest {
     public void BookListMustBeDisplayedForTheUser() {
         doNothing().when(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
 
-        libraryView.displayBooks(books);
+        booksView.displayBooks(books);
 
         verify(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
     }
 
     @Test
     public void MainMenuMustBeDisplayed()  {
-        libraryView.mainMenu();
+        booksView.mainMenu();
 
         verify(inputOutputHandler).writeMessage("/n Main Menu");
         verify(inputOutputHandler).writeMessage("1. List Books");

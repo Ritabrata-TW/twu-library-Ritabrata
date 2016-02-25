@@ -11,10 +11,10 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 
 
-//Test for LibraryModel App
-public class LibraryModelTest {
+//Test for BooksModel App
+public class BooksModelTest {
     InputOutputHandler inputOutputHandler;
-    LibraryModel libraryModel;
+    BooksModel booksModel;
     Book book;
 
     @Before
@@ -24,12 +24,12 @@ public class LibraryModelTest {
         books.add(book);
 
         inputOutputHandler = mock(InputOutputHandler.class);
-        libraryModel = new LibraryModel(books);
+        booksModel = new BooksModel(books);
     }
 
     @Test
     public void shouldBeAbleToAddBooksToTheLibrary() {
-        Assert.assertEquals(Arrays.asList(book),libraryModel.getBooks());
+        Assert.assertEquals(Arrays.asList(book), booksModel.getBooks());
     }
 }
 

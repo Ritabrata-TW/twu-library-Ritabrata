@@ -10,7 +10,7 @@ public class BooksView {
     }
 
     public void welcome(){
-        inputOutputHandler.writeMessage("**** Welcome Customer! We are glad to have you at LibraryModel! ****");
+        inputOutputHandler.writeMessage("**** Welcome Customer! We are glad to have you at BooksModel! ****");
     }
 
     public void displayMessage(String message) {

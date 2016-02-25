@@ -9,10 +9,10 @@ public class Application {
         List<Book> books = new ArrayList<Book>(5);
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
         books.add(new Book("Head First Java", "Someone!", 2009));
-        LibraryModel libraryModel = new LibraryModel(books);
-        BooksView libraryView = new BooksView(new InputOutputHandler(System.out, System.in));
+        BooksModel booksModel = new BooksModel(books);
+        BooksView booksView = new BooksView(new InputOutputHandler(System.out, System.in));
 
-        LibraryController libraryController = new LibraryController(libraryModel, libraryView);
-        libraryController.startApp();
+        BooksController booksController = new BooksController(booksModel, booksView);
+        booksController.startApp();
     }
 }
