@@ -1,12 +1,18 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // Run the biblioteca application
 public class Application {
     public static void main(String[] args) {
-        LibraryModel libraryModel = new LibraryModel();
-        LibraryView libraryView = new LibraryView(libraryModel,new InputOutputHandler(System.out, System.in));
-        libraryModel.addBooks();
-        libraryView.welcome();
-        libraryView.mainMenu();
+        List<Book> books = new ArrayList<Book>(5);
+        books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
+        books.add(new Book("Head First Java", "Someone!", 2009));
+        LibraryModel libraryModel = new LibraryModel(books);
+        LibraryView libraryView = new LibraryView(new InputOutputHandler(System.out, System.in));
+
+        LibraryController libraryController = new LibraryController(libraryModel, libraryView);
+        libraryController.startApp();
     }
 }

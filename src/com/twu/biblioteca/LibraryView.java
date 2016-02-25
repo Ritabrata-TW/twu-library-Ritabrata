@@ -1,13 +1,11 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class LibraryView {
-    private LibraryModel libraryModel;
     InputOutputHandler inputOutputHandler;
 
-    public LibraryView(LibraryModel libraryModel, InputOutputHandler inputOutputHandler ) {
-        this.libraryModel = libraryModel;
+    public LibraryView(InputOutputHandler inputOutputHandler) {
         this.inputOutputHandler = inputOutputHandler;
     }
 
@@ -15,25 +13,20 @@ public class LibraryView {
         inputOutputHandler.writeMessage("**** Welcome Customer! We are glad to have you at LibraryModel! ****");
     }
 
-
-    public void displayBooks() {
-        for (Book book : getBooks()) {
+    public void displayBooks(List<Book> books) {
+        for (Book book:books) {
             inputOutputHandler.writeMessage(book.toString());
         }
     }
 
-    public void mainMenu() {
+    public int mainMenu() {
         inputOutputHandler.writeMessage("/n Main Menu");
         inputOutputHandler.writeMessage("1. List Books");
 
         Integer choice = inputOutputHandler.input("Enter your choice!");
-        if(choice == 1) {
-            displayBooks();
-        }
+        return choice;
     }
 
-    public ArrayList<Book> getBooks() {
-        return new LibraryController(libraryModel,this,inputOutputHandler).getBooks();
-    }
+
 }
 

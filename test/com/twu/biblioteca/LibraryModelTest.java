@@ -1,72 +1,36 @@
 package com.twu.biblioteca;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.mockito.Mockito.mock;
 
 
 //Test for LibraryModel App
 public class LibraryModelTest {
     InputOutputHandler inputOutputHandler;
-    LibraryView libraryView;
     LibraryModel libraryModel;
-    LibraryController libraryController;
+    Book book;
 
     @Before
     public void setup () {
+        List<Book> books = new ArrayList<Book>(5);
+        book = new Book("Head First Design Pattern!", "Martin Fowler", 2007);
+        books.add(book);
+
         inputOutputHandler = mock(InputOutputHandler.class);
-        libraryModel = new LibraryModel();
-        libraryView = new LibraryView(libraryModel, inputOutputHandler);
-        libraryController = new LibraryController(libraryModel, libraryView, inputOutputHandler);
+        libraryModel = new LibraryModel(books);
     }
 
     @Test
-    public void WelcomeMessageMustBeDisplayedForTheUser() {
-        libraryView.welcome();
-
-        verify(inputOutputHandler).writeMessage("**** Welcome Customer! We are glad to have you at LibraryModel! ****");
+    public void shouldBeAbleToAddBooksToTheLibrary() {
+        Assert.assertEquals(Arrays.asList(book),libraryModel.getBooks());
     }
-
-    @Test
-    public void BookListMustBeDisplayedForTheUser() {
-        libraryModel.addBooks();
-        doNothing().when(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
-
-        libraryView.displayBooks();
-
-        verify(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
-    }
-
-    @Test
-    public void MainMenuMustBeDisplayed() {
-        libraryView.mainMenu();
-
-        verify(inputOutputHandler).writeMessage("/n Main Menu");
-        verify(inputOutputHandler).writeMessage("1. List Books");
-    }
-
-    @Test
-    public void shouldBeAbleToTakeInputFromAMainMenu() {
-        libraryView.mainMenu();
-
-        verify(inputOutputHandler).input("Enter your choice!");
-    }
-
-    @Test
-    public void shouldBeAbleToDisplayBookListForTheUserWhenHeChoosesOneOnMainMenu() {
-        libraryModel.addBooks();
-        doNothing().when(inputOutputHandler).writeMessage("/n Main Menu");
-        doNothing().when(inputOutputHandler).writeMessage("1. List Books");
-        when(inputOutputHandler.input("Enter your choice!")).thenReturn(1);
-
-        libraryView.mainMenu();
-
-
-        verify(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
-    }
-
-
 }
 
 

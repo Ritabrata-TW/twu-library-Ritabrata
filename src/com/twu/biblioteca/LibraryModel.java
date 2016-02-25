@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //Welcome User, Display Main menu
@@ -8,9 +7,9 @@ public class LibraryModel {
     String welcomeMessage;
     List<Book> books;
 
-    LibraryModel() {
+    LibraryModel(List<Book> books) {
         welcomeMessage = "**** Welcome Customer! We are glad to have you at LibraryModel! ****";
-        books = new ArrayList<Book>();
+        this.books = books;
     }
 
     public void addBooks() {
