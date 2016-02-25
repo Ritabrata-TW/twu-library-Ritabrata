@@ -3,27 +3,22 @@ package com.twu.biblioteca;
 public class BooksController {
     BooksModel booksModel;
     BooksView booksView;
+    MenuController menuController;
 
-    BooksController(BooksModel booksModel, BooksView booksView) {
+    BooksController(BooksModel booksModel, BooksView booksView, MenuController menuController) {
         this.booksModel = booksModel;
         this.booksView = booksView;
+        this.menuController = menuController;
     }
 
     public void startApp()  {
         this.welcome();
-        this.mainMenu();
+        menuController.mainMenu();
     }
 
     private void welcome() {
         booksView.welcome();
     }
 
-    public void mainMenu()  {
-        int choice = booksView.mainMenu();
-        if(choice == 1) {
-            booksView.displayBooks(booksModel.getBooks());
-        }
 
-        booksView.displayMessage("Select a valid option!");
-    }
 }

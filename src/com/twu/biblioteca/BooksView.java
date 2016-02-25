@@ -23,17 +23,6 @@ public class BooksView {
         }
     }
 
-    public int mainMenu()  {
-        inputOutputHandler.writeMessage("/n Main Menu");
-        inputOutputHandler.writeMessage("1. List Books");
-        try {
-            return inputOutputHandler.input("Enter your choice!");
-        }
-        catch (Exception e) {
-            return 0;
-        }
-    }
-
 
 }
 

@@ -10,9 +10,11 @@ public class Application {
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
         books.add(new Book("Head First Java", "Someone!", 2009));
         BooksModel booksModel = new BooksModel(books);
-        BooksView booksView = new BooksView(new InputOutputHandler(System.out, System.in));
-
-        BooksController booksController = new BooksController(booksModel, booksView);
+        InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
+        BooksView booksView = new BooksView(inputOutputHandler);
+        MenuView menuView = new MenuView(inputOutputHandler,booksView);
+        MenuController menuController = new MenuController(menuView,booksModel);
+        BooksController booksController = new BooksController(booksModel, booksView,menuController);
         booksController.startApp();
     }
 }

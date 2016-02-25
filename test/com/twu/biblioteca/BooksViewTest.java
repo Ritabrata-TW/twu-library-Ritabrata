@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-public class LibraryViewTest {
+public class BooksViewTest {
     InputOutputHandler inputOutputHandler;
     BooksView booksView;
     List<Book> books;
@@ -45,13 +45,7 @@ public class LibraryViewTest {
         verify(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
     }
 
-    @Test
-    public void MainMenuMustBeDisplayed()  {
-        booksView.mainMenu();
 
-        verify(inputOutputHandler).writeMessage("/n Main Menu");
-        verify(inputOutputHandler).writeMessage("1. List Books");
-    }
 
 
 }
