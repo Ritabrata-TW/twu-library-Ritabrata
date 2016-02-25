@@ -10,7 +10,7 @@ public class Application {
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
         books.add(new Book("Head First Java", "Someone!", 2009));
         LibraryModel libraryModel = new LibraryModel(books);
-        LibraryView libraryView = new LibraryView(new InputOutputHandler(System.out, System.in));
+        BooksView libraryView = new BooksView(new InputOutputHandler(System.out, System.in));
 
         LibraryController libraryController = new LibraryController(libraryModel, libraryView);
         libraryController.startApp();

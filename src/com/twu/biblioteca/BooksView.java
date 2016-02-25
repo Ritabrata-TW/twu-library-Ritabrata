@@ -2,10 +2,10 @@ package com.twu.biblioteca;
 
 import java.util.List;
 
-public class LibraryView {
+public class BooksView {
     InputOutputHandler inputOutputHandler;
 
-    public LibraryView(InputOutputHandler inputOutputHandler) {
+    public BooksView(InputOutputHandler inputOutputHandler) {
         this.inputOutputHandler = inputOutputHandler;
     }
 
@@ -26,16 +26,12 @@ public class LibraryView {
     public int mainMenu()  {
         inputOutputHandler.writeMessage("/n Main Menu");
         inputOutputHandler.writeMessage("1. List Books");
-        Integer choice;
-
         try {
-            choice = inputOutputHandler.input("Enter your choice!");
+            return inputOutputHandler.input("Enter your choice!");
         }
         catch (Exception e) {
             return 0;
         }
-
-        return choice;
     }
 
 

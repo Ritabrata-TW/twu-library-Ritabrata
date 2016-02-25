@@ -1,12 +1,10 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-
 public class LibraryController {
     LibraryModel libraryModel;
-    LibraryView libraryView;
+    BooksView libraryView;
 
-    LibraryController(LibraryModel libraryModel, LibraryView libraryView) {
+    LibraryController(LibraryModel libraryModel, BooksView libraryView) {
         this.libraryModel = libraryModel;
         this.libraryView = libraryView;
     }

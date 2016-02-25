@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 public class LibraryControllerTest {
     ArrayList<Book> books;
     LibraryModel libraryModel;
-    LibraryView libraryView;
+    BooksView libraryView;
     LibraryController libraryController;
 
 
@@ -19,7 +19,7 @@ public class LibraryControllerTest {
         books = new ArrayList<Book>(5);
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
         libraryModel = new LibraryModel(books);
-        libraryView = mock(LibraryView.class);
+        libraryView = mock(BooksView.class);
         libraryController = new LibraryController(libraryModel, libraryView);
 
     }

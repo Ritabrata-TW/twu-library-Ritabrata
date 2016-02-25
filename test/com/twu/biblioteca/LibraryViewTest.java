@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 
 public class LibraryViewTest {
     InputOutputHandler inputOutputHandler;
-    LibraryView libraryView;
+    BooksView libraryView;
     List<Book> books;
 
     @Before
@@ -19,7 +19,7 @@ public class LibraryViewTest {
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
 
         inputOutputHandler = mock(InputOutputHandler.class);
-        libraryView = new LibraryView(inputOutputHandler);
+        libraryView = new BooksView(inputOutputHandler);
     }
 
     @Test
@@ -53,11 +53,5 @@ public class LibraryViewTest {
         verify(inputOutputHandler).writeMessage("1. List Books");
     }
 
-    @Test
-    public void MustBeAbleToHandleNonNumericEntryForMainMenuInput() {
-        when(inputOutputHandler.input("Enter your choice!")).thenReturn(Integer.valueOf("a"));
-
-
-    }
 
 }
