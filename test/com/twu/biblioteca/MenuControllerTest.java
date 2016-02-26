@@ -1,5 +1,11 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.Controller.BooksController;
+import com.twu.biblioteca.Controller.MenuController;
+import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.BooksModel;
+import com.twu.biblioteca.View.InputOutputHandler;
+import com.twu.biblioteca.View.MenuView;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,28 +36,29 @@ public class MenuControllerTest {
     @Test
     public void shouldBeAbleToDisplayBookListForTheUserWhenHeChoosesOneOnMainMenu()  {
         when(menuView.mainMenu()).thenReturn(1);
+        when(booksModel.getBooks()).thenReturn(books);
 
         menuController.mainMenu();
 
         verify(menuView).displayBooks(books);
     }
 
-//
-//    @Test
-//    public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNumericInvalidMenuOptionInMainMenuOption() {
-//        when(booksView.mainMenu()).thenReturn(2);
-//
-//        booksController.mainMenu();
-//
-//        verify(booksView).displayMessage("Select a valid option!");
-//    }
-//
-//    @Test
-//    public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNonNumericInvalidMenuOptionInMainMenuOption() {
-//        when(booksView.mainMenu()).thenReturn(0);
-//
-//        booksController.mainMenu();
-//
-//        verify(booksView).displayMessage("Select a valid option!");
-//    }
+
+    @Test
+    public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNumericInvalidMenuOptionInMainMenuOption() {
+        when(menuView.mainMenu()).thenReturn(2);
+
+        menuController.mainMenu();
+
+        verify(menuView).displayMessage("Select a valid option!");
+    }
+
+    @Test
+    public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNonNumericInvalidMenuOptionInMainMenuOption() {
+        when(menuView.mainMenu()).thenReturn(0);
+
+        menuController.mainMenu();
+
+        verify(menuView).displayMessage("Select a valid option!");
+    }
 }

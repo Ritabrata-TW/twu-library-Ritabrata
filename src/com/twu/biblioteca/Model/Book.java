@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.Model;
 //Dto for book
 public class Book {
     String name;

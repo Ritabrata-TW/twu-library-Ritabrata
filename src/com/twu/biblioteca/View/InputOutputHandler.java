@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.View;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -11,7 +11,7 @@ public class InputOutputHandler {
     private final Scanner scanner;
 
 
-    InputOutputHandler(PrintStream printStream, InputStream inputStream) {
+    public InputOutputHandler(PrintStream printStream, InputStream inputStream) {
         this.printStream = printStream;
         scanner = new Scanner(inputStream);
     }

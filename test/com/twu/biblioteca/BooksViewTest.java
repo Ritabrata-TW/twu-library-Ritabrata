@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.View.BooksView;
+import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Before;
 import org.junit.Test;
 

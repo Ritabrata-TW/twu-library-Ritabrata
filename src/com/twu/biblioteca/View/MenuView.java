@@ -1,6 +1,9 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.View;
 
-import java.util.ArrayList;
+import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.View.BooksView;
+import com.twu.biblioteca.View.InputOutputHandler;
+
 import java.util.List;
 
 public class MenuView {

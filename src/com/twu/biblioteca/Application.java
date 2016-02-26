@@ -1,5 +1,13 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.Controller.BooksController;
+import com.twu.biblioteca.Controller.MenuController;
+import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.BooksModel;
+import com.twu.biblioteca.View.BooksView;
+import com.twu.biblioteca.View.InputOutputHandler;
+import com.twu.biblioteca.View.MenuView;
+
 import java.util.ArrayList;
 import java.util.List;
 
