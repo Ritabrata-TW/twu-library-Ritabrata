@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Controller.MenuController;
 import com.twu.biblioteca.Model.Book;
-import com.twu.biblioteca.Model.BooksModel;
+import com.twu.biblioteca.Model.MenuModel;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MenuView;
 import org.junit.Before;
@@ -17,22 +17,28 @@ public class MenuControllerTest {
     MenuView menuView;
     InputOutputHandler inputOutputHandler;
     ArrayList<Book> books;
+    MenuModel menuModel;
     MenuController menuController;
     BooksController booksController;
+    ArrayList<String> options;
 
     @Before
     public void setup() {
+        menuModel = mock(MenuModel.class);
         booksController = mock(BooksController.class);
         inputOutputHandler = mock(InputOutputHandler.class);
         menuView = mock(MenuView.class);
-        menuController = new MenuController(menuView, booksController);
         books = new ArrayList<Book>(5);
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
+        menuController = new MenuController(menuModel, menuView, booksController);
+        options = new ArrayList<String>();
+        options.add("1. List Books");
     }
 
     @Test
     public void shouldBeAbleToDisplayBookListForTheUserWhenHeChoosesOneOnMainMenu() {
-        when(menuView.mainMenu()).thenReturn(1);
+        when(menuModel.getOptions()).thenReturn(options);
+        when(menuView.displayMenuOptions(options)).thenReturn(1);
         doNothing().when(booksController).displayBooks();
 
         menuController.mainMenu();
@@ -43,7 +49,7 @@ public class MenuControllerTest {
 
     @Test
     public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNumericInvalidMenuOptionInMainMenuOption() {
-        when(menuView.mainMenu()).thenReturn(2);
+        when(menuView.displayMenuOptions(options)).thenReturn(2);
 
         menuController.mainMenu();
 
@@ -52,7 +58,7 @@ public class MenuControllerTest {
 
     @Test
     public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNonNumericInvalidMenuOptionInMainMenuOption() {
-        when(menuView.mainMenu()).thenReturn(0);
+        when(menuView.displayMenuOptions(options)).thenReturn(0);
 
         menuController.mainMenu();
 

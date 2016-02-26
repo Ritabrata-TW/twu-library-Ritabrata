@@ -1,10 +1,11 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.View.BooksView;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MenuView;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -12,20 +13,19 @@ import static org.mockito.Mockito.verify;
 public class MenuViewTest {
     InputOutputHandler inputOutputHandler;
     MenuView menuView;
-    BooksView booksView;
+    ArrayList<String> options;
 
     @Before
     public void setup() {
         inputOutputHandler = mock(InputOutputHandler.class);
-        BooksView booksView = mock(BooksView.class);
-        menuView = new MenuView(inputOutputHandler, booksView);
-
+        menuView = new MenuView(inputOutputHandler);
+        options = new ArrayList<String>();
+        options.add("1. List Books");
     }
     @Test
     public void MainMenuMustBeDisplayed()  {
-        menuView.mainMenu();
+        menuView.displayMenuOptions(options);
 
-        verify(inputOutputHandler).writeMessage("/n Main Menu");
         verify(inputOutputHandler).writeMessage("1. List Books");
     }
 }

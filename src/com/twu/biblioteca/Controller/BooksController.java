@@ -12,7 +12,7 @@ public class BooksController {
         this.booksView = booksView;
     }
 
-    private void welcome() {
+    public void welcome() {
         booksView.welcome();
     }
 

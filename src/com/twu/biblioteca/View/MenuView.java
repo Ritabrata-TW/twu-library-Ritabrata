@@ -1,36 +1,24 @@
 package com.twu.biblioteca.View;
 
-import com.twu.biblioteca.Model.Book;
-import com.twu.biblioteca.View.BooksView;
-import com.twu.biblioteca.View.InputOutputHandler;
 
 import java.util.List;
 
 public class MenuView {
     InputOutputHandler inputOutputHandler;
-    BooksView booksView;
 
-    public MenuView(InputOutputHandler inputOutputHandler, BooksView booksView){
+    public MenuView(InputOutputHandler inputOutputHandler){
         this.inputOutputHandler = inputOutputHandler;
-        this.booksView = booksView;
     }
 
-    public int mainMenu() {
-        inputOutputHandler.writeMessage("/n Main Menu");
-        inputOutputHandler.writeMessage("1. List Books");
-        try {
-            return inputOutputHandler.input("Enter your choice!");
-        }
-        catch (Exception e) {
-            return 0;
-        }
+
+    public int displayMenuOptions(List<String> options) {
+        for(String option : options)
+        inputOutputHandler.writeMessage(option);
+
+        return inputOutputHandler.input("Enter your choice");
     }
 
     public void displayMessage(String message) {
         inputOutputHandler.writeMessage(message);
-    }
-
-    public void displayBooks(List<Book> books) {
-        booksView.displayBooks(books);
     }
 }
