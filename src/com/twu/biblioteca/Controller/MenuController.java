@@ -1,15 +1,16 @@
 package com.twu.biblioteca.Controller;
 
 import com.twu.biblioteca.Model.BooksModel;
+import com.twu.biblioteca.Model.DisplayBooksCommand;
 import com.twu.biblioteca.View.MenuView;
 
 public class MenuController {
     private MenuView menuView;
-    BooksModel booksModel;
+    private BooksController booksController;
 
-    public MenuController(MenuView menuView, BooksModel booksModel) {
+    public MenuController(MenuView menuView, BooksController booksController) {
         this.menuView = menuView;
-        this.booksModel = booksModel;
+        this.booksController = booksController;
     }
 
     public void mainMenu() {
@@ -18,7 +19,9 @@ public class MenuController {
             menuView.displayMessage("Select a valid option!");
             return;
         }
-        menuView.displayBooks(booksModel.getBooks());
+
+//        booksController.displayBooks();
+        new DisplayBooksCommand().execute(booksController);
     }
 }
 

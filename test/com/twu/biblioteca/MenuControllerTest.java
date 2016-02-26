@@ -11,36 +11,33 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class MenuControllerTest {
     MenuView menuView;
     InputOutputHandler inputOutputHandler;
     ArrayList<Book> books;
     MenuController menuController;
-    BooksModel booksModel;
-
+    BooksController booksController;
 
     @Before
     public void setup() {
-        booksModel = mock(BooksModel.class);
+        booksController = mock(BooksController.class);
         inputOutputHandler = mock(InputOutputHandler.class);
         menuView = mock(MenuView.class);
-        menuController = new MenuController(menuView,booksModel);
+        menuController = new MenuController(menuView, booksController);
         books = new ArrayList<Book>(5);
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
     }
 
     @Test
-    public void shouldBeAbleToDisplayBookListForTheUserWhenHeChoosesOneOnMainMenu()  {
+    public void shouldBeAbleToDisplayBookListForTheUserWhenHeChoosesOneOnMainMenu() {
         when(menuView.mainMenu()).thenReturn(1);
-        when(booksModel.getBooks()).thenReturn(books);
+        doNothing().when(booksController).displayBooks();
 
         menuController.mainMenu();
 
-        verify(menuView).displayBooks(books);
+        verify(booksController).displayBooks();
     }
 
 

@@ -21,8 +21,11 @@ public class Application {
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
         BooksView booksView = new BooksView(inputOutputHandler);
         MenuView menuView = new MenuView(inputOutputHandler,booksView);
-        MenuController menuController = new MenuController(menuView,booksModel);
-        BooksController booksController = new BooksController(booksModel, booksView,menuController);
-        booksController.startApp();
+        BooksController booksController = new BooksController(booksModel, booksView);
+        MenuController menuController = new MenuController(menuView,booksController);
+        booksView.welcome();
+        menuController.mainMenu();
     }
+
+
 }
