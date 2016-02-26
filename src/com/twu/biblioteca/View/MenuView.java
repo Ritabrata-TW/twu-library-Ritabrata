@@ -15,7 +15,11 @@ public class MenuView {
         for(String option : options)
         inputOutputHandler.writeMessage(option);
 
-        return inputOutputHandler.input("Enter your choice");
+        try{
+            return inputOutputHandler.input("Enter your choice");
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
     public void displayMessage(String message) {

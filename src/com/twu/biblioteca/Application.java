@@ -26,7 +26,7 @@ public class Application {
         MenuModel menuModel = new MenuModel();
         MenuController menuController = new MenuController(menuModel,menuView,booksController);
         booksController.welcome();
-        menuController.displayMenu();
+        menuController.mainMenu();
     }
 
 

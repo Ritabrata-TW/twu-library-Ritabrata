@@ -17,12 +17,12 @@ public class MenuController {
 
     public void mainMenu() {
         int choice = menuView.displayMenuOptions(menuModel.getOptions());
-        if (choice != 1) {
-            menuView.displayMessage("Select a valid option!");
+        if (choice == 1) {
+            new DisplayBooksCommand().execute(booksController);
             return;
         }
+        menuView.displayMessage("Select a valid option!");
 
-        new DisplayBooksCommand().execute(booksController);
     }
 
     public void displayMenu() {
