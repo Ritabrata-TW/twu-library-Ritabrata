@@ -18,7 +18,7 @@ public class MenuView {
         try{
             return inputOutputHandler.input("Enter your choice");
         } catch (Exception e) {
-            return -1;
+            return 0;
         }
     }
 

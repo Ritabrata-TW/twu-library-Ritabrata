@@ -4,6 +4,7 @@ import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Controller.MenuController;
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.BooksModel;
+import com.twu.biblioteca.Model.CommandFactory;
 import com.twu.biblioteca.Model.MenuModel;
 import com.twu.biblioteca.View.BooksView;
 import com.twu.biblioteca.View.InputOutputHandler;
@@ -24,7 +25,7 @@ public class Application {
         MenuView menuView = new MenuView(inputOutputHandler);
         BooksController booksController = new BooksController(booksModel, booksView);
         MenuModel menuModel = new MenuModel();
-        MenuController menuController = new MenuController(menuModel,menuView,booksController);
+        MenuController menuController = new MenuController(menuModel,menuView,booksController, new CommandFactory());
         booksController.welcome();
         menuController.mainMenu();
     }

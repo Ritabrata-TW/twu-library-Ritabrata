@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Controller.MenuController;
 import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.CommandFactory;
 import com.twu.biblioteca.Model.MenuModel;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MenuView;
@@ -30,7 +31,7 @@ public class MenuControllerTest {
         menuView = mock(MenuView.class);
         books = new ArrayList<Book>(5);
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
-        menuController = new MenuController(menuModel, menuView, booksController);
+        menuController = new MenuController(menuModel, menuView, booksController, new CommandFactory());
         options = new ArrayList<String>();
         options.add("1. List Books");
     }
