@@ -9,8 +9,10 @@ public class CommandFactory {
     public CommandFactory()
     {
         choiceCommandMap = new HashMap<Integer, Command>();
-        choiceCommandMap.put(0,new InvalidInputCommand());
-        choiceCommandMap.put(1,new DisplayBooksCommand());
+    }
+
+    public void register(Integer choice, Command command){
+        choiceCommandMap.put(choice, command);
     }
 
     public Command commandFor(int choice){

@@ -1,33 +1,12 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.Controller.BooksController;
-import com.twu.biblioteca.Controller.MenuController;
-import com.twu.biblioteca.Model.Book;
-import com.twu.biblioteca.Model.BooksModel;
-import com.twu.biblioteca.Model.CommandFactory;
-import com.twu.biblioteca.Model.MenuModel;
-import com.twu.biblioteca.View.BooksView;
-import com.twu.biblioteca.View.InputOutputHandler;
-import com.twu.biblioteca.View.MenuView;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.twu.biblioteca.Model.Router;
 
 // Run the biblioteca application
 public class Application {
     public static void main(String[] args)  {
-        List<Book> books = new ArrayList<Book>(5);
-        books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
-        books.add(new Book("Head First Java", "Someone!", 2009));
-        BooksModel booksModel = new BooksModel(books);
-        InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
-        BooksView booksView = new BooksView(inputOutputHandler);
-        MenuView menuView = new MenuView(inputOutputHandler);
-        BooksController booksController = new BooksController(booksModel, booksView);
-        MenuModel menuModel = new MenuModel();
-        MenuController menuController = new MenuController(menuModel,menuView,booksController, new CommandFactory());
-        booksController.welcome();
-        menuController.mainMenu();
+        Router router = new Router();
+        router.startApp();
     }
 
 
