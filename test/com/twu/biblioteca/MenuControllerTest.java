@@ -64,4 +64,5 @@ public class MenuControllerTest {
 
         verify(menuView).displayMessage("Select a valid option!");
     }
+
 }

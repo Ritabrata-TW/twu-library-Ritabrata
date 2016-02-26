@@ -16,5 +16,9 @@ public class MenuController {
         int choice = menuView.displayMenuOptions(menuModel.getOptions());
         return choice;
     }
+
+    public void WarnInvalidInput() {
+        menuView.displayMessage("Select a valid option!");
+    }
 }
 
