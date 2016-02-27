@@ -35,34 +35,13 @@ public class MenuControllerTest {
         options.add("1. List Books");
     }
 
-    @Test
-    public void shouldBeAbleToDisplayBookListForTheUserWhenHeChoosesOneOnMainMenu() {
-        when(menuModel.getOptions()).thenReturn(options);
-        when(menuView.displayMenuOptions(options)).thenReturn(1);
-        doNothing().when(booksController).displayBooks();
-
-        menuController.mainMenu();
-
-        verify(booksController).displayBooks();
-    }
-
 
     @Test
-    public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNumericInvalidMenuOptionInMainMenuOption() {
-        when(menuView.displayMenuOptions(options)).thenReturn(2);
+    public void shouldBeAbleToWelcomeUser() {
+        doNothing().when(menuView).welcome();
 
-        menuController.mainMenu();
+        menuController.welcome();
 
-        verify(menuView).displayMessage("Select a valid option!");
+        verify(menuView).welcome();
     }
-
-    @Test
-    public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNonNumericInvalidMenuOptionInMainMenuOption() {
-        when(menuView.displayMenuOptions(options)).thenReturn(0);
-
-        menuController.mainMenu();
-
-        verify(menuView).displayMessage("Select a valid option!");
-    }
-
 }

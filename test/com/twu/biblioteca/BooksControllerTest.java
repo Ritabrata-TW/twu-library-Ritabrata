@@ -38,12 +38,4 @@ public class BooksControllerTest {
         verify(booksView).displayBooks(books);
     }
 
-    @Test
-    public void shouldBeAbleToWelcomeUser() {
-        doNothing().when(booksView).welcome();
-
-        booksController.welcome();
-
-        verify(booksView).welcome();
-    }
 }

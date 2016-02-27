@@ -48,10 +48,9 @@ public class Router {
         CommandFactory commandFactory = (CommandFactory) dependencies.get(CommandFactory.class);
         commandFactory.register(1, displayBooksCommand);
         commandFactory.register(0, invalidInputCommand);
-        BooksController booksController = (BooksController) dependencies.get(BooksController.class);
-        booksController.welcome();
-
         MenuController menuController = (MenuController) dependencies.get(MenuController.class);
+        menuController.welcome();
+
         int choice = menuController.mainMenu();
 
         Command command = commandFactory.commandFor(choice);

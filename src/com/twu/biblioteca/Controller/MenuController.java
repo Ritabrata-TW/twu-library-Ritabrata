@@ -20,5 +20,9 @@ public class MenuController {
     public void WarnInvalidInput() {
         menuView.displayMessage("Select a valid option!");
     }
+
+    public void welcome() {
+        menuView.welcome();
+    }
 }
 

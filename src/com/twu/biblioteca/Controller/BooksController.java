@@ -12,9 +12,7 @@ public class BooksController {
         this.booksView = booksView;
     }
 
-    public void welcome() {
-        booksView.welcome();
-    }
+
 
     public void displayBooks(){
         booksView.displayBooks(booksModel.getBooks());

@@ -6,16 +6,11 @@ import java.util.List;
 
 public class BooksView {
     InputOutputHandler inputOutputHandler;
-    String message;
 
     public BooksView(InputOutputHandler inputOutputHandler) {
         this.inputOutputHandler = inputOutputHandler;
-        message = "**** Welcome Customer! We are glad to have you at BooksModel! ****";
     }
 
-    public void welcome(){
-        inputOutputHandler.writeMessage(message);
-    }
 
     public void displayMessage(String message) {
         inputOutputHandler.writeMessage(message);

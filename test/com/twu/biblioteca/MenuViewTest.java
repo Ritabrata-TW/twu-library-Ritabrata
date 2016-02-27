@@ -22,6 +22,14 @@ public class MenuViewTest {
         options = new ArrayList<String>();
         options.add("1. List Books");
     }
+
+    @Test
+    public void WelcomeMessageMustBeDisplayedForTheUser() {
+        menuView.welcome();
+
+        verify(inputOutputHandler).writeMessage("**** Welcome Customer! We are glad to have you at BooksModel! ****");
+    }
+
     @Test
     public void MainMenuMustBeDisplayed()  {
         menuView.displayMenuOptions(options);

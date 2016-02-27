@@ -25,12 +25,7 @@ public class BooksViewTest {
         booksView = new BooksView(inputOutputHandler);
     }
 
-    @Test
-    public void WelcomeMessageMustBeDisplayedForTheUser() {
-        booksView.welcome();
 
-        verify(inputOutputHandler).writeMessage("**** Welcome Customer! We are glad to have you at BooksModel! ****");
-    }
 
     @Test
     public void ShouldBeAbleToDisplayMessage() {
