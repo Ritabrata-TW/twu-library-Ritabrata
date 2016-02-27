@@ -19,7 +19,6 @@ public class RouterTest {
 
     @Before
     public void setup() {
-        router = new Router();
         dependencies = mock(Dependencies.class);
         displayBooksCommand = mock(DisplayBooksCommand.class);
         booksController = mock(BooksController.class);
@@ -31,10 +30,19 @@ public class RouterTest {
         doNothing().when(commandFactory).register(1,displayBooksCommand);
         invalidInputCommand = mock(InvalidInputCommand.class);
         doNothing().when(commandFactory).register(0,invalidInputCommand);
+        doNothing().when(menuController).welcome();
+        router = new Router(dependencies);
+        doNothing().when(displayBooksCommand).execute();
+
     }
+
 
     @Test
     public void shouldBeAbleToWelcomeTheUser() {
+        when(menuController.mainMenu()).thenReturn(1);
+        when(commandFactory.commandFor(1)).thenReturn(displayBooksCommand);
+
+
         router.startApp();
 
         verify(menuController).welcome();
@@ -43,17 +51,23 @@ public class RouterTest {
 
     @Test
     public void shouldBeAbleToDisplayBookListForTheUserWhenHeChoosesOneOnMainMenu() {
+        when(menuController.mainMenu()).thenReturn(1);
+        when(commandFactory.commandFor(1)).thenReturn(displayBooksCommand);
 
+
+        router.startApp();
+
+        verify(displayBooksCommand).execute();
     }
 
 
-//    @Test
-//    public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNumericInvalidMenuOptionInMainMenuOption() {
-//
-//    }
-//
-//    @Test
-//    public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNonNumericInvalidMenuOptionInMainMenuOption() {
-//
-//    }
+    @Test
+    public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNumericInvalidMenuOptionInMainMenuOption() {
+        when(menuController.mainMenu()).thenReturn(0);
+        when(commandFactory.commandFor(0)).thenReturn(invalidInputCommand);
+
+        router.startApp();
+
+        verify(invalidInputCommand).execute();
+    }
 }
