@@ -16,6 +16,7 @@ public class RouterTest {
     MenuController menuController;
     CommandFactory commandFactory;
     InvalidInputCommand invalidInputCommand;
+    Command exitCommand;
 
     @Before
     public void setup() {
@@ -29,6 +30,8 @@ public class RouterTest {
         when(dependencies.get(CommandFactory.class)).thenReturn(commandFactory);
         doNothing().when(commandFactory).register(1,displayBooksCommand);
         invalidInputCommand = mock(InvalidInputCommand.class);
+        exitCommand = mock(ExitCommand.class);
+
         doNothing().when(commandFactory).register(0,invalidInputCommand);
         doNothing().when(menuController).welcome();
         router = new Router(dependencies);
@@ -69,5 +72,16 @@ public class RouterTest {
         router.startApp();
 
         verify(invalidInputCommand).execute();
+    }
+
+    @Test
+    public void ShouldBeAbleToQuitApplicationIfUserOptsTheQuitOption() {
+        when(menuController.mainMenu()).thenReturn(9);
+        when(commandFactory.commandFor(9)).thenReturn(exitCommand);
+
+        router.startApp();
+
+        verify(exitCommand).execute();
+
     }
 }

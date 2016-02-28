@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.Controller.MenuController;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MenuView;
 import org.junit.Before;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class MenuViewTest {
     InputOutputHandler inputOutputHandler;
@@ -21,6 +23,7 @@ public class MenuViewTest {
         menuView = new MenuView(inputOutputHandler);
         options = new ArrayList<String>();
         options.add("1. List Books");
+        options.add("2. Quit");
     }
 
     @Test
@@ -34,6 +37,8 @@ public class MenuViewTest {
     public void MainMenuMustBeDisplayed()  {
         menuView.displayMenuOptions(options);
 
+
         verify(inputOutputHandler).writeMessage("1. List Books");
+        verify(inputOutputHandler).writeMessage("2. Quit");
     }
 }

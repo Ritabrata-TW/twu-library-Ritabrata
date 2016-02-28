@@ -2,6 +2,7 @@ package com.twu.biblioteca.Model;
 
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Controller.MenuController;
+import com.twu.biblioteca.ExitCommand;
 import com.twu.biblioteca.View.BooksView;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MenuView;
@@ -34,8 +35,9 @@ public class Dependencies {
         MenuModel menuModel = new MenuModel();
         MenuController menuController = new MenuController(menuModel, menuView);
         CommandFactory commandFactory = new CommandFactory();
-        DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(booksController);
+        DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(booksController, menuController);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
+        ExitCommand exitCommand = new ExitCommand();
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(BooksModel.class, booksModel);
@@ -48,6 +50,7 @@ public class Dependencies {
         dependencies.register(MenuModel.class, menuModel);
         dependencies.register(DisplayBooksCommand.class,displayBooksCommand);
         dependencies.register(InvalidInputCommand.class,invalidInputCommand);
+        dependencies.register(ExitCommand.class,exitCommand);
 
         return dependencies;
     }

@@ -19,10 +19,10 @@ public class MenuView {
 
 
     public int displayMenuOptions(List<String> options) {
-        for(String option : options)
-        inputOutputHandler.writeMessage(option);
+        for (String option : options)
+            inputOutputHandler.writeMessage(option);
 
-        try{
+        try {
             return inputOutputHandler.input("Enter your choice");
         } catch (Exception e) {
             return 0;
