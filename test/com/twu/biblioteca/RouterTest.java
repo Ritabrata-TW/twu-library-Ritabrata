@@ -35,16 +35,22 @@ public class RouterTest {
         doNothing().when(commandFactory).register(0,invalidInputCommand);
         doNothing().when(menuController).welcome();
         router = new Router(dependencies);
-        doNothing().when(displayBooksCommand).execute();
+
+        when(displayBooksCommand.execute()).thenReturn(1);
+        when(invalidInputCommand.execute()).thenReturn(1);
+        when(exitCommand.execute()).thenReturn(0);
 
     }
 
 
     @Test
     public void shouldBeAbleToWelcomeTheUser() {
-        when(menuController.mainMenu()).thenReturn(1);
-        when(commandFactory.commandFor(1)).thenReturn(displayBooksCommand);
+        when(menuController.mainMenu())
+                .thenReturn(1)
+                .thenReturn(2);
 
+        when(commandFactory.commandFor(1)).thenReturn(displayBooksCommand);
+        when(commandFactory.commandFor(2)).thenReturn(exitCommand);
 
         router.startApp();
 
@@ -54,9 +60,12 @@ public class RouterTest {
 
     @Test
     public void shouldBeAbleToDisplayBookListForTheUserWhenHeChoosesOneOnMainMenu() {
-        when(menuController.mainMenu()).thenReturn(1);
-        when(commandFactory.commandFor(1)).thenReturn(displayBooksCommand);
+        when(menuController.mainMenu())
+                .thenReturn(1)
+                .thenReturn(2);
 
+        when(commandFactory.commandFor(1)).thenReturn(displayBooksCommand);
+        when(commandFactory.commandFor(2)).thenReturn(exitCommand);
 
         router.startApp();
 
@@ -66,8 +75,12 @@ public class RouterTest {
 
     @Test
     public void ShouldBeAbleToDisplayInvalidOptionWhenUserEntersNumericInvalidMenuOptionInMainMenuOption() {
-        when(menuController.mainMenu()).thenReturn(0);
+        when(menuController.mainMenu())
+                .thenReturn(0)
+                .thenReturn(2);
+
         when(commandFactory.commandFor(0)).thenReturn(invalidInputCommand);
+        when(commandFactory.commandFor(2)).thenReturn(exitCommand);
 
         router.startApp();
 
@@ -76,8 +89,10 @@ public class RouterTest {
 
     @Test
     public void ShouldBeAbleToQuitApplicationIfUserOptsTheQuitOption() {
-        when(menuController.mainMenu()).thenReturn(9);
-        when(commandFactory.commandFor(9)).thenReturn(exitCommand);
+        when(menuController.mainMenu())
+                .thenReturn(2);
+
+        when(commandFactory.commandFor(2)).thenReturn(exitCommand);
 
         router.startApp();
 
