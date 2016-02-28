@@ -12,10 +12,7 @@ public class BooksController {
         this.booksView = booksView;
     }
 
-
-
     public void displayBooks(){
         booksView.displayBooks(booksModel.getBooks());
     }
-
 }
