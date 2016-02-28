@@ -17,10 +17,6 @@ public class Dependencies {
         objects = new HashMap<Class<?>, Object>();
     }
 
-    public Dependencies(HashMap<Class<?>, Object> dependencies) {
-        objects = dependencies;
-    }
-
     public void register(Class clazz, Object dependency) {
         objects.put(clazz, dependency);
     }
@@ -34,7 +30,7 @@ public class Dependencies {
         MenuModel menuModel = new MenuModel();
         MenuController menuController = new MenuController(menuModel, menuView);
         CommandFactory commandFactory = new CommandFactory();
-        DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(booksController, menuController);
+        DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(booksController);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
         ExitCommand exitCommand = new ExitCommand();
 

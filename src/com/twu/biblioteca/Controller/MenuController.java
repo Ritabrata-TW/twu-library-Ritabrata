@@ -14,7 +14,11 @@ public class MenuController {
 
     public int mainMenu() {
         int choice = menuView.displayMenuOptions(menuModel.getOptions());
+
+        if(choice >=1 && choice <=2)
         return choice;
+
+        return 0;
     }
 
     public void WarnInvalidInput() {

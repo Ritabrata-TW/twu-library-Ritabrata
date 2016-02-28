@@ -1,15 +1,12 @@
 package com.twu.biblioteca.Model;
 
 import com.twu.biblioteca.Controller.BooksController;
-import com.twu.biblioteca.Controller.MenuController;
 
 public class DisplayBooksCommand implements Command {
     public BooksController booksController;
-    private MenuController menuController;
 
-    public DisplayBooksCommand(BooksController booksController, MenuController menuController) {
+    public DisplayBooksCommand(BooksController booksController) {
         this.booksController = booksController;
-        this.menuController = menuController;
     }
 
     @Override
