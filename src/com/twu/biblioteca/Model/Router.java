@@ -1,7 +1,6 @@
 package com.twu.biblioteca.Model;
 
 import com.twu.biblioteca.Controller.MenuController;
-import com.twu.biblioteca.ExitCommand;
 
 public class Router {
 
@@ -24,10 +23,15 @@ public class Router {
         MenuController menuController = (MenuController) dependencies.get(MenuController.class);
         menuController.welcome();
 
-        int choice = menuController.mainMenu();
+        int nextAction = 1;
 
-        Command command = commandFactory.commandFor(choice);
-        command.execute();
+        while(nextAction != 0) {
+            int choice = menuController.mainMenu();
+            Command command = commandFactory.commandFor(choice);
+            nextAction = command.execute();
+        }
+
+
     }
 
 

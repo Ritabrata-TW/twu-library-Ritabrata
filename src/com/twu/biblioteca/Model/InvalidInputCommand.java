@@ -10,8 +10,8 @@ public class InvalidInputCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public int execute() {
         menuController.WarnInvalidInput();
-        menuController.mainMenu();
+        return 1;
     }
 }

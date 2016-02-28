@@ -13,8 +13,8 @@ public class DisplayBooksCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public int execute() {
         booksController.displayBooks();
-        menuController.mainMenu();
+        return 1;
     }
 }
