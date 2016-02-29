@@ -9,5 +9,8 @@ public class AppView {
         this.inputOutputHandler = inputOutputHandler;
     }
 
+    public void displayMessage(String message) {
+        inputOutputHandler.writeMessage(message);
+    }
 
 }

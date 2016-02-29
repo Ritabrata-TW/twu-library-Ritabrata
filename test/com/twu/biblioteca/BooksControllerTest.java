@@ -3,7 +3,9 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.BooksModel;
+import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.BooksView;
+import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,7 +28,8 @@ public class BooksControllerTest {
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007, false));
         booksModel = new BooksModel(books);
         booksView = mock(BooksView.class);
-        booksController = new BooksController(booksModel, booksView);
+        AppView appView = new AppView(mock(InputOutputHandler.class));
+        booksController = new BooksController(booksModel, booksView, appView);
     }
 
     @Test

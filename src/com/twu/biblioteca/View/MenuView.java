@@ -32,12 +32,4 @@ public class MenuView {
             return 0;
         }
     }
-
-    public String getBookname() {
-        return inputOutputHandler.getString();
-    }
-
-    public void displayMessage(String message) {
-        inputOutputHandler.writeMessage(message);
-    }
 }

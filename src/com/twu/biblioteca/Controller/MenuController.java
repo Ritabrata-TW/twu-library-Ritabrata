@@ -1,15 +1,18 @@
 package com.twu.biblioteca.Controller;
 
 import com.twu.biblioteca.Model.MenuModel;
+import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.MenuView;
 
 public class MenuController {
     private MenuModel menuModel;
     private MenuView menuView;
+    private AppView appView;
 
-    public MenuController(MenuModel menuModel, MenuView menuView) {
+    public MenuController(MenuModel menuModel, MenuView menuView, AppView appView) {
         this.menuModel = menuModel;
         this.menuView = menuView;
+        this.appView = appView;
     }
 
     public int mainMenu() {
@@ -22,11 +25,7 @@ public class MenuController {
     }
 
     public void displayMessage(String message) {
-        menuView.displayMessage(message);
-    }
-
-    public String getBookName() {
-        return menuView.getBookname();
+        appView.displayMessage(message);
     }
 
     public void welcome() {

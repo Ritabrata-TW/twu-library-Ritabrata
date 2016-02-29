@@ -4,6 +4,7 @@ import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Controller.MenuController;
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.MenuModel;
+import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MenuView;
 import org.junit.Before;
@@ -27,10 +28,11 @@ public class MenuControllerTest {
         menuModel = mock(MenuModel.class);
         booksController = mock(BooksController.class);
         inputOutputHandler = mock(InputOutputHandler.class);
+
         menuView = mock(MenuView.class);
         books = new ArrayList<Book>(5);
         books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007, false));
-        menuController = new MenuController(menuModel, menuView);
+        menuController = new MenuController(menuModel, menuView, mock(AppView.class));
         options = new ArrayList<String>();
         options.add("1. List Books");
     }

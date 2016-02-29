@@ -12,15 +12,16 @@ public class BooksView {
     }
 
 
-    public void displayMessage(String message) {
-        inputOutputHandler.writeMessage(message);
-    }
 
     public void displayBooks(List<Book> books) {
         for (Book book:books) {
             if(!book.checkoutStatus())
             inputOutputHandler.writeMessage(book.toString());
         }
+    }
+
+    public String getBookname() {
+        return inputOutputHandler.getString();
     }
 
 

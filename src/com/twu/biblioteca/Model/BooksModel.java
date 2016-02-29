@@ -18,11 +18,9 @@ public class BooksModel {
 
     public Book checkoutBook(String bookName) throws BookNotFoundException {
         for (Book book : books) {
-            if (book.getName().equals(bookName)) {
-                if(!book.checkoutStatus()) {
-                    book.checkout();
-                    return book;
-                }
+            if (book.getName().equals(bookName) && !book.checkoutStatus()) {
+                book.checkout();
+                return book;
             }
 
         }

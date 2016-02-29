@@ -32,8 +32,6 @@ public class Router {
             Command command = commandFactory.commandFor(choice);
             nextAction = command.execute();
         }
-
-
     }
 
 

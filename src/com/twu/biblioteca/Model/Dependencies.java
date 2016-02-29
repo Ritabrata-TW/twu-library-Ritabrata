@@ -29,16 +29,16 @@ public class Dependencies {
 
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
         BooksView booksView = new BooksView(inputOutputHandler);
+        AppView appView = new AppView(inputOutputHandler);
         MenuView menuView = new MenuView(inputOutputHandler);
-        BooksController booksController = new BooksController(booksModel, booksView);
+        BooksController booksController = new BooksController(booksModel, booksView, appView);
         MenuModel menuModel = new MenuModel();
-        MenuController menuController = new MenuController(menuModel, menuView);
+        MenuController menuController = new MenuController(menuModel, menuView, appView);
         CommandFactory commandFactory = new CommandFactory();
         DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(booksController);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
         ExitCommand exitCommand = new ExitCommand();
-        CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(menuController,booksController);
-        AppView appView = new AppView(inputOutputHandler);
+        CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(booksController);
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(BooksModel.class, booksModel);
