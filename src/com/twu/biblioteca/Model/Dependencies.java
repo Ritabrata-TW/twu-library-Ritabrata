@@ -22,7 +22,10 @@ public class Dependencies {
     }
 
     public static Dependencies init() {
-        BooksModel booksModel = new BooksModel(Arrays.asList(new Book("Head First Design Pattern!", "Martin Fowler", 2007, false)));
+        BooksModel booksModel = new BooksModel(Arrays.asList(new Book("Head First Design Pattern", "Martin Fowler", 2007, false),
+                                                            new Book("Head First Java","Martin Fowler",2009,false),
+                                                            new Book("Imperial C","Dennis Ritchie",1948,false)));
+
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
         BooksView booksView = new BooksView(inputOutputHandler);
         MenuView menuView = new MenuView(inputOutputHandler);
@@ -33,6 +36,7 @@ public class Dependencies {
         DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(booksController);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
         ExitCommand exitCommand = new ExitCommand();
+        CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(menuController,booksController);
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(BooksModel.class, booksModel);
@@ -46,6 +50,7 @@ public class Dependencies {
         dependencies.register(DisplayBooksCommand.class,displayBooksCommand);
         dependencies.register(InvalidInputCommand.class,invalidInputCommand);
         dependencies.register(ExitCommand.class,exitCommand);
+        dependencies.register(CheckoutBookCommand.class,checkoutBookCommand);
 
         return dependencies;
     }

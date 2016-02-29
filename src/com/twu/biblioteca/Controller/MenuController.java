@@ -15,18 +15,24 @@ public class MenuController {
     public int mainMenu() {
         int choice = menuView.displayMenuOptions(menuModel.getOptions());
 
-        if(choice >=1 && choice <=2)
+        if(choice >=1 && choice <=3)
         return choice;
 
         return 0;
     }
 
-    public void WarnInvalidInput() {
-        menuView.displayMessage("Select a valid option!");
+    public void displayMessage(String message) {
+        menuView.displayMessage(message);
+    }
+
+    public String getBookName() {
+        return menuView.getBookname();
     }
 
     public void welcome() {
         menuView.welcome();
     }
+
+
 }
 

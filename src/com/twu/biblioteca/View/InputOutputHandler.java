@@ -26,4 +26,7 @@ public class InputOutputHandler {
     }
 
 
+    public String getString() {
+        return scanner.nextLine();
+    }
 }

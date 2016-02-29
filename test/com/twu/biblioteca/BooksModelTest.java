@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.BookNotFoundException;
 import com.twu.biblioteca.Model.BooksModel;
 import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Assert;
@@ -33,6 +34,14 @@ public class BooksModelTest {
     @Test
     public void shouldBeAbleToAddBooksToTheLibrary() {
         Assert.assertEquals(Collections.singletonList(book), booksModel.getBooks());
+    }
+
+    @Test
+    public void shouldBeAbleToCheckoutABook() throws BookNotFoundException {
+        booksModel.checkoutBook("Head First Design Pattern!");
+
+        Assert.assertTrue(book.CheckoutStatus());
+
     }
 }
 

@@ -24,6 +24,7 @@ public class MenuViewTest {
         options = new ArrayList<String>();
         options.add("1. List Books");
         options.add("2. Quit");
+        options.add("3. Checkout Books");
     }
 
     @Test
@@ -40,5 +41,6 @@ public class MenuViewTest {
 
         verify(inputOutputHandler).writeMessage("1. List Books");
         verify(inputOutputHandler).writeMessage("2. Quit");
+        verify(inputOutputHandler).writeMessage("3. Checkout Books");
     }
 }

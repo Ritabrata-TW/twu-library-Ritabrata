@@ -20,4 +20,12 @@ public class Book {
     public boolean CheckoutStatus() {
         return checkoutStatus;
     }
+
+    public void checkout(){
+        checkoutStatus = true;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

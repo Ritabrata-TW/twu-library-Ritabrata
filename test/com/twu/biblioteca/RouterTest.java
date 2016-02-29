@@ -17,6 +17,7 @@ public class RouterTest {
     CommandFactory commandFactory;
     InvalidInputCommand invalidInputCommand;
     Command exitCommand;
+    Command checkoutBookCommand;
 
     @Before
     public void setup() {
@@ -31,6 +32,7 @@ public class RouterTest {
         doNothing().when(commandFactory).register(1,displayBooksCommand);
         invalidInputCommand = mock(InvalidInputCommand.class);
         exitCommand = mock(ExitCommand.class);
+        checkoutBookCommand = mock(CheckoutBookCommand.class);
 
         doNothing().when(commandFactory).register(0,invalidInputCommand);
         doNothing().when(menuController).welcome();
@@ -38,6 +40,7 @@ public class RouterTest {
 
         when(displayBooksCommand.execute()).thenReturn(1);
         when(invalidInputCommand.execute()).thenReturn(1);
+        when(checkoutBookCommand.execute()).thenReturn(1);
         when(exitCommand.execute()).thenReturn(0);
 
     }
@@ -97,6 +100,20 @@ public class RouterTest {
         router.startApp();
 
         verify(exitCommand).execute();
+
+    }
+
+    @Test
+    public void shouldBeAbleToCheckoutABookWhenUserEntersOptionForCheckout() {
+        when(menuController.mainMenu())
+                .thenReturn(3)
+                .thenReturn(2);
+        when(commandFactory.commandFor(3)).thenReturn(checkoutBookCommand);
+        when(commandFactory.commandFor(2)).thenReturn(exitCommand);
+
+        router.startApp();
+
+        verify(checkoutBookCommand).execute();
 
     }
 }

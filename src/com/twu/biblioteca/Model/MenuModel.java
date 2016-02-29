@@ -10,6 +10,7 @@ public class MenuModel {
         options =new ArrayList<String>();
         options.add("1. List Books");
         options.add("2. Quit");
+        options.add("3. Checkout Books");
     }
 
     public List<String> getOptions(){

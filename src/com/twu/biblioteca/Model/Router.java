@@ -15,11 +15,13 @@ public class Router {
         DisplayBooksCommand displayBooksCommand = (DisplayBooksCommand) dependencies.get(DisplayBooksCommand.class);
         InvalidInputCommand invalidInputCommand = (InvalidInputCommand) dependencies.get(InvalidInputCommand.class);
         ExitCommand exitCommand = (ExitCommand) dependencies.get(ExitCommand.class);
+        CheckoutBookCommand checkoutBookCommand = (CheckoutBookCommand) dependencies.get(CheckoutBookCommand.class);
 
         CommandFactory commandFactory = (CommandFactory) dependencies.get(CommandFactory.class);
         commandFactory.register(1, displayBooksCommand);
         commandFactory.register(0, invalidInputCommand);
         commandFactory.register(2, exitCommand);
+        commandFactory.register(3, checkoutBookCommand);
         MenuController menuController = (MenuController) dependencies.get(MenuController.class);
         menuController.welcome();
 

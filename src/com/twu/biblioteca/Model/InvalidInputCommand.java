@@ -11,7 +11,7 @@ public class InvalidInputCommand implements Command {
 
     @Override
     public int execute() {
-        menuController.WarnInvalidInput();
+        menuController.displayMessage("Select a valid option!");
         return 1;
     }
 }

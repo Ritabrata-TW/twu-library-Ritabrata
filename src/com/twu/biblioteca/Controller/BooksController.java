@@ -1,5 +1,7 @@
 package com.twu.biblioteca.Controller;
 
+import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.BookNotFoundException;
 import com.twu.biblioteca.View.BooksView;
 import com.twu.biblioteca.Model.BooksModel;
 
@@ -14,5 +16,15 @@ public class BooksController {
 
     public void displayBooks(){
         booksView.displayBooks(booksModel.getBooks());
+    }
+
+    public Book checkoutBook(String bookName) throws BookNotFoundException {
+        try {
+            return booksModel.checkoutBook(bookName);
+        }
+        catch (BookNotFoundException bookNotfoundException) {
+            throw new BookNotFoundException("Book not found");
+        }
+
     }
 }

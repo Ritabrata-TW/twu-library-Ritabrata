@@ -22,11 +22,19 @@ public class MenuView {
         for (String option : options)
             inputOutputHandler.writeMessage(option);
 
+        return getInputFromUser();
+    }
+
+    public int getInputFromUser() {
         try {
             return inputOutputHandler.input("Enter your choice");
         } catch (Exception e) {
             return 0;
         }
+    }
+
+    public String getBookname() {
+        return inputOutputHandler.getString();
     }
 
     public void displayMessage(String message) {

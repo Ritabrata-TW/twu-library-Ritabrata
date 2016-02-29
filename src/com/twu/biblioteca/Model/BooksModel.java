@@ -15,4 +15,14 @@ public class BooksModel {
     public List<Book> getBooks() {
         return books;
     }
+
+    public Book checkoutBook(String bookName) throws BookNotFoundException {
+        for (Book book : books) {
+            if (book.getName().equals(bookName))
+                book.checkout();
+            return book;
+        }
+
+        throw new BookNotFoundException("This book doesn't exist in the records");
+    }
 }
