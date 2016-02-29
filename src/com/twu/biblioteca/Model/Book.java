@@ -17,7 +17,7 @@ public class Book {
     public String toString() {
         return name + " " + author + " " + yearOfPublication;    }
 
-    public boolean CheckoutStatus() {
+    public boolean checkoutStatus() {
         return checkoutStatus;
     }
 

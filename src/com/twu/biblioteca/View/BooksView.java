@@ -18,7 +18,7 @@ public class BooksView {
 
     public void displayBooks(List<Book> books) {
         for (Book book:books) {
-            if(!book.CheckoutStatus())
+            if(!book.checkoutStatus())
             inputOutputHandler.writeMessage(book.toString());
         }
     }

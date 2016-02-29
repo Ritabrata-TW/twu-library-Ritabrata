@@ -40,7 +40,7 @@ public class BooksModelTest {
     public void shouldBeAbleToCheckoutABook() throws BookNotFoundException {
         booksModel.checkoutBook("Head First Design Pattern!");
 
-        Assert.assertTrue(book.CheckoutStatus());
+        Assert.assertTrue(book.checkoutStatus());
 
     }
 }
