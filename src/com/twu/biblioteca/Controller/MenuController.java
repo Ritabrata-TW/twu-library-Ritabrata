@@ -18,7 +18,7 @@ public class MenuController {
     public int mainMenu() {
         int choice = menuView.displayMenuOptions(menuModel.getOptions());
 
-        if(choice >=1 && choice <=3)
+        if(choice >=1 && choice <=4)
         return choice;
 
         return 0;

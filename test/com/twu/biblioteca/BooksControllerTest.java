@@ -11,24 +11,25 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class BooksControllerTest {
     ArrayList<Book> books;
     BooksModel booksModel;
     BooksView booksView;
     BooksController booksController;
+    Book book;
+    AppView appView;
 
 
     @Before
     public void setup() {
+        book = new Book("Head First Design Pattern!", "Martin Fowler", 2007, false);
         books = new ArrayList<Book>(5);
-        books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007, false));
+        books.add(book);
         booksModel = new BooksModel(books);
         booksView = mock(BooksView.class);
-        AppView appView = new AppView(mock(InputOutputHandler.class));
+        appView = mock(AppView.class);
         booksController = new BooksController(booksModel, booksView, appView);
     }
 
@@ -39,6 +40,22 @@ public class BooksControllerTest {
         booksController.displayBooks();
 
         verify(booksView).displayBooks(books);
+    }
+
+    @Test
+    public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckout() {
+
+        booksController.checkoutBook("Head First Design Pattern!");
+
+        verify(appView).displayMessage("Thank you! Enjoy the book! Head First Design Pattern!");
+    }
+
+    @Test
+    public void shouldBeAbleToDisplaySuccessMessageToUserOnSuccessfulReturn() {
+        booksController.checkoutBook("Head First Design Pattern!");
+        booksController.returnBook("Head First Design Pattern!");
+
+        verify(appView).displayMessage("Thank you! Enjoy the book! Head First Design Pattern!");
     }
 
 }

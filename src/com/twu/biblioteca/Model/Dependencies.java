@@ -39,6 +39,7 @@ public class Dependencies {
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
         ExitCommand exitCommand = new ExitCommand();
         CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(booksController);
+        ReturnBookCommand returnBookCommand = new ReturnBookCommand(booksController);
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(BooksModel.class, booksModel);
@@ -54,6 +55,7 @@ public class Dependencies {
         dependencies.register(ExitCommand.class,exitCommand);
         dependencies.register(CheckoutBookCommand.class,checkoutBookCommand);
         dependencies.register(AppView.class,appView);
+        dependencies.register(ReturnBookCommand.class,returnBookCommand);
 
         return dependencies;
     }

@@ -16,8 +16,9 @@ public class RouterTest {
     MenuController menuController;
     CommandFactory commandFactory;
     InvalidInputCommand invalidInputCommand;
-    Command exitCommand;
-    Command checkoutBookCommand;
+    ExitCommand exitCommand;
+    CheckoutBookCommand checkoutBookCommand;
+    ReturnBookCommand returnBookCommand;
 
     @Before
     public void setup() {
@@ -33,6 +34,7 @@ public class RouterTest {
         invalidInputCommand = mock(InvalidInputCommand.class);
         exitCommand = mock(ExitCommand.class);
         checkoutBookCommand = mock(CheckoutBookCommand.class);
+        returnBookCommand = mock(ReturnBookCommand.class);
 
         doNothing().when(commandFactory).register(0,invalidInputCommand);
         doNothing().when(menuController).welcome();
@@ -114,6 +116,19 @@ public class RouterTest {
         router.startApp();
 
         verify(checkoutBookCommand).execute();
-
     }
+
+    @Test
+    public void shouldBeAbleToReturnABookWhenUserEntersOptionForReturn() {
+        when(menuController.mainMenu()).thenReturn(4).thenReturn(2);
+
+        when(commandFactory.commandFor(4)).thenReturn(returnBookCommand);
+        when(commandFactory.commandFor(2)).thenReturn(exitCommand);
+
+        router.startApp();
+
+        verify(returnBookCommand).execute();
+    }
+
+
 }

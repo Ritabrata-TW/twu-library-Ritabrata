@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.BookNotFoundException;
 import com.twu.biblioteca.Model.BooksModel;
 import com.twu.biblioteca.View.InputOutputHandler;
@@ -11,7 +12,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.mock;
@@ -21,13 +22,18 @@ import static org.mockito.Mockito.mock;
 public class BooksModelTest {
     InputOutputHandler inputOutputHandler;
     BooksModel booksModel;
-    Book book;
+    Book headFirstDesignPattern;
+    Book headFirstJava;
+
+    List<Book> books;
 
     @Before
     public void setup () {
-        List<Book> books = new ArrayList<Book>(5);
-        book = new Book("Head First Design Pattern!", "Martin Fowler", 2007, false);
-        books.add(book);
+        books = new ArrayList<Book>(5);
+        headFirstDesignPattern = new Book("Head First Design Pattern!", "Martin Fowler", 2007, false);
+        headFirstJava = new Book("Head First Java", "Martin Fowler", 2000, false);
+        books.add(headFirstDesignPattern);
+        books.add(headFirstJava);
 
         inputOutputHandler = mock(InputOutputHandler.class);
         booksModel = new BooksModel(books);
@@ -35,14 +41,14 @@ public class BooksModelTest {
 
     @Test
     public void shouldBeAbleToAddBooksToTheLibrary() {
-        Assert.assertEquals(Collections.singletonList(book), booksModel.getBooks());
+        Assert.assertEquals(Arrays.asList(headFirstDesignPattern,headFirstJava), booksModel.getBooks());
     }
 
     @Test
     public void shouldBeAbleToCheckoutABook() throws BookNotFoundException {
         booksModel.checkoutBook("Head First Design Pattern!");
 
-        Assert.assertTrue(book.checkoutStatus());
+        Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
 
     }
 
@@ -64,6 +70,25 @@ public class BooksModelTest {
         expectedException.expectMessage("This book doesn't exist in the records");
 
         booksModel.checkoutBook("The Pragmatic Programmer");
+    }
+
+    @Test
+    public void shouldBeAbleToReturnABookThatWasPreviouslyCheckedOut() throws BookNotFoundException, BookAlreadyPresentException {
+        booksModel.checkoutBook("Head First Design Pattern!");
+
+        Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
+
+        booksModel.returnBook("Head First Design Pattern!");
+
+        Assert.assertFalse(headFirstDesignPattern.checkoutStatus());
+    }
+
+    @Test
+    public void shouldNotBeAbleToReturnABookThatWasNotPreviouslyCheckedOut() throws BookAlreadyPresentException {
+        expectedException.expect(BookAlreadyPresentException.class);
+        expectedException.expectMessage("That is not a valid book to return.");
+
+        booksModel.returnBook("Head First Design Pattern!");
     }
 }
 

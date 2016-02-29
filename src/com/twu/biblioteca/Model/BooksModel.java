@@ -26,4 +26,15 @@ public class BooksModel {
         }
         throw new BookNotFoundException("This book doesn't exist in the records");
     }
+
+    public void returnBook(String bookName) throws BookAlreadyPresentException {
+        for (Book book : books) {
+            if (book.getName().equals(bookName) && book.checkoutStatus()) {
+                book.returnBook();
+                return;
+            }
+
+        }
+        throw new BookAlreadyPresentException("That is not a valid book to return.");
+    }
 }
