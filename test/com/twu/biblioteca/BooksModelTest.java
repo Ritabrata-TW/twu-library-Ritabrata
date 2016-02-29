@@ -30,8 +30,8 @@ public class BooksModelTest {
     @Before
     public void setup () {
         books = new ArrayList<Book>(5);
-        headFirstDesignPattern = new Book("Head First Design Pattern!", "Martin Fowler", 2007, false);
-        headFirstJava = new Book("Head First Java", "Martin Fowler", 2000, false);
+        headFirstDesignPattern = new Book(100, "Head First Design Pattern!", "Martin Fowler", 2007, false);
+        headFirstJava = new Book(101, "Head First Java", "Martin Fowler", 2000, false);
         books.add(headFirstDesignPattern);
         books.add(headFirstJava);
 
@@ -46,7 +46,7 @@ public class BooksModelTest {
 
     @Test
     public void shouldBeAbleToCheckoutABook() throws BookNotFoundException {
-        booksModel.checkoutBook("Head First Design Pattern!");
+        booksModel.checkoutBook(100);
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
 
@@ -60,8 +60,8 @@ public class BooksModelTest {
         expectedException.expect(BookNotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
 
-        booksModel.checkoutBook("Head First Design Pattern!");
-        booksModel.checkoutBook("Head First Design Pattern!");
+        booksModel.checkoutBook(100);
+        booksModel.checkoutBook(100);
     }
 
     @Test
@@ -69,16 +69,16 @@ public class BooksModelTest {
         expectedException.expect(BookNotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
 
-        booksModel.checkoutBook("The Pragmatic Programmer");
+        booksModel.checkoutBook(109);
     }
 
     @Test
     public void shouldBeAbleToReturnABookThatWasPreviouslyCheckedOut() throws BookNotFoundException, BookAlreadyPresentException {
-        booksModel.checkoutBook("Head First Design Pattern!");
+        booksModel.checkoutBook(100);
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
 
-        booksModel.returnBook("Head First Design Pattern!");
+        booksModel.returnBook(100);
 
         Assert.assertFalse(headFirstDesignPattern.checkoutStatus());
     }
@@ -88,7 +88,7 @@ public class BooksModelTest {
         expectedException.expect(BookAlreadyPresentException.class);
         expectedException.expectMessage("That is not a valid book to return.");
 
-        booksModel.returnBook("Head First Design Pattern!");
+        booksModel.returnBook(100);
     }
 }
 

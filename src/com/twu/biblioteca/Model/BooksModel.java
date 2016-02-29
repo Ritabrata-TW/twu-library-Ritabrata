@@ -16,9 +16,9 @@ public class BooksModel {
         return books;
     }
 
-    public Book checkoutBook(String bookName) throws BookNotFoundException {
+    public Book checkoutBook(int bookNumber) throws BookNotFoundException {
         for (Book book : books) {
-            if (book.getName().equals(bookName) && !book.checkoutStatus()) {
+            if (book.getNumber().equals(bookNumber) && !book.checkoutStatus()) {
                 book.checkout();
                 return book;
             }
@@ -27,9 +27,9 @@ public class BooksModel {
         throw new BookNotFoundException("This book doesn't exist in the records");
     }
 
-    public void returnBook(String bookName) throws BookAlreadyPresentException {
+    public void returnBook(Integer bookNumber) throws BookAlreadyPresentException {
         for (Book book : books) {
-            if (book.getName().equals(bookName) && book.checkoutStatus()) {
+            if (book.getNumber().equals(bookNumber) && book.checkoutStatus()) {
                 book.returnBook();
                 return;
             }

@@ -5,7 +5,6 @@ import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.BooksModel;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.BooksView;
-import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +23,7 @@ public class BooksControllerTest {
 
     @Before
     public void setup() {
-        book = new Book("Head First Design Pattern!", "Martin Fowler", 2007, false);
+        book = new Book(101, "Head First Design Pattern!", "Martin Fowler", 2007, false);
         books = new ArrayList<Book>(5);
         books.add(book);
         booksModel = new BooksModel(books);
@@ -45,15 +44,15 @@ public class BooksControllerTest {
     @Test
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckout() {
 
-        booksController.checkoutBook("Head First Design Pattern!");
+        booksController.checkoutBook(101);
 
         verify(appView).displayMessage("Thank you! Enjoy the book! Head First Design Pattern!");
     }
 
     @Test
     public void shouldBeAbleToDisplaySuccessMessageToUserOnSuccessfulReturn() {
-        booksController.checkoutBook("Head First Design Pattern!");
-        booksController.returnBook("Head First Design Pattern!");
+        booksController.checkoutBook(101);
+        booksController.returnBook(101);
 
         verify(appView).displayMessage("Thank you! Enjoy the book! Head First Design Pattern!");
     }

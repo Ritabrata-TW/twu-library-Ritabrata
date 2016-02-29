@@ -13,8 +13,8 @@ public class ReturnBookCommand implements Command{
 
     @Override
     public int execute() {
-        String bookName = booksController.getBookName("Enter the name of the book that you want to return");
-        booksController.returnBook(bookName);
+        Integer bookNumber = booksController.getBookNumber("Enter the name of the book that you want to return");
+        booksController.returnBook(bookNumber);
         return 1;
     }
 }

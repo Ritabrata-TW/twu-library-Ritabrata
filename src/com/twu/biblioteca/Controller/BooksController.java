@@ -21,23 +21,22 @@ public class BooksController {
         booksView.displayBooks(booksModel.getBooks());
     }
 
-    public void checkoutBook(String bookName) {
+    public void checkoutBook(int bookNumber) {
         try {
-            booksModel.checkoutBook(bookName);
-            appView.displayMessage("Thank you! Enjoy the book! " + bookName);
+            booksModel.checkoutBook(bookNumber);
+            appView.displayMessage("Thank you! Enjoy the book! ");
         } catch (BookNotFoundException bookNotfoundException) {
             appView.displayMessage("That book is not available.");
         }
     }
 
-    public String getBookName(String message) {
-        appView.displayMessage(message);
-        return booksView.getBookname();
+    public Integer getBookNumber(String message) {
+        return booksView.getBookNumber(message);
     }
 
-    public void returnBook(String bookName) {
+    public void returnBook(Integer bookNumber) {
         try {
-            booksModel.returnBook(bookName);
+            booksModel.returnBook(bookNumber);
             appView.displayMessage("Thank you for returning the book.");
         } catch(BookAlreadyPresentException bookAlreadyPresentException) {
             appView.displayMessage("That is not a valid book to return.");

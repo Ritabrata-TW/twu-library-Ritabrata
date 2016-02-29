@@ -23,9 +23,9 @@ public class Dependencies {
     }
 
     public static Dependencies init() {
-        BooksModel booksModel = new BooksModel(Arrays.asList(new Book("Head First Design Pattern", "Martin Fowler", 2007, false),
-                                                            new Book("Head First Java","Martin Fowler",2009,false),
-                                                            new Book("Imperial C","Dennis Ritchie",1948,false)));
+        BooksModel booksModel = new BooksModel(Arrays.asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007, false),
+                                                            new Book(101, "Head First Java","Martin Fowler",2009,false),
+                                                            new Book(102, "Imperial C","Dennis Ritchie",1948,false)));
 
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
         BooksView booksView = new BooksView(inputOutputHandler);

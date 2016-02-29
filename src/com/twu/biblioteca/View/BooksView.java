@@ -20,8 +20,8 @@ public class BooksView {
         }
     }
 
-    public String getBookname() {
-        return inputOutputHandler.getString();
+    public Integer getBookNumber(String message) {
+        return inputOutputHandler.input(message);
     }
 
 
