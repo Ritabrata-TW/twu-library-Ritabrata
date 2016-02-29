@@ -6,7 +6,9 @@ import com.twu.biblioteca.Model.BooksModel;
 import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,6 +44,26 @@ public class BooksModelTest {
 
         Assert.assertTrue(book.checkoutStatus());
 
+    }
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
+    @Test
+    public void shouldNotBeAbleToCheckoutSameBookTwice() throws BookNotFoundException {
+        expectedException.expect(BookNotFoundException.class);
+        expectedException.expectMessage("This book doesn't exist in the records");
+
+        booksModel.checkoutBook("Head First Design Pattern!");
+        booksModel.checkoutBook("Head First Design Pattern!");
+    }
+
+    @Test
+    public void shouldThrowExceptionIfBookNameEnteredIsNotPresentInLibrary() throws BookNotFoundException {
+        expectedException.expect(BookNotFoundException.class);
+        expectedException.expectMessage("This book doesn't exist in the records");
+
+        booksModel.checkoutBook("The Pragmatic Programmer");
     }
 }
 
