@@ -18,13 +18,13 @@ public class BooksController {
         booksView.displayBooks(booksModel.getBooks());
     }
 
-    public Book checkoutBook(String bookName) throws BookNotFoundException {
+    public void checkoutBook(String bookName) {
         try {
-            return booksModel.checkoutBook(bookName);
+            booksModel.checkoutBook(bookName);
+            booksView.displayMessage("You have Successfully checked out " + bookName);
         }
         catch (BookNotFoundException bookNotfoundException) {
-            throw new BookNotFoundException("Book not found");
+            booksView.displayMessage("This Book is not Present in the library now. ");
         }
-
     }
 }

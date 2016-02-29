@@ -18,11 +18,8 @@ public class CheckoutBookCommand implements Command{
         menuController.displayMessage("Enter the number of the book that you want to checkout");
         String bookName = menuController.getBookName();
 
-        try{
-            booksController.checkoutBook(bookName);
-        }catch (BookNotFoundException bookNotFoundException ){
-            return 0;
-        }
+        booksController.checkoutBook(bookName);
+
         return 1;
     }
 }
