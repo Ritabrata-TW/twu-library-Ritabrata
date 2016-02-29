@@ -15,12 +15,20 @@ public class BooksViewTest {
     InputOutputHandler inputOutputHandler;
     BooksView booksView;
     List<Book> books;
+    Book headFirstDesignPattern;
+    Book headFirstJava;
+    Book ImperialC;
+
 
     @Before
     public void setup() {
         books = new ArrayList<Book>(5);
-        books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
-
+        headFirstDesignPattern = new Book("Head First Design Pattern!", "Martin Fowler", 2007, false);
+        headFirstJava = new Book("Head First Java","Martin Fowler",2010, false);
+        ImperialC = new Book("Imperial C","Dennis Ritchie",1945, true);
+        books.add(headFirstDesignPattern);
+        books.add(headFirstJava);
+        books.add(ImperialC);
         inputOutputHandler = mock(InputOutputHandler.class);
         booksView = new BooksView(inputOutputHandler);
     }
@@ -35,7 +43,7 @@ public class BooksViewTest {
     }
 
     @Test
-    public void BookListMustBeDisplayedForTheUser() {
+    public void PresentBookListMustBeDisplayedForTheUser() {
         doNothing().when(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
 
         booksView.displayBooks(books);
@@ -43,7 +51,10 @@ public class BooksViewTest {
         verify(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
     }
 
+    @Test
+    public void checkedOutBooksShouldNotBeDisplayedToTheUser() {
+        booksView.displayBooks(books);
 
-
-
+        verify(inputOutputHandler,times(0)).writeMessage("Imperial C Dennis Ritchie 1945");
+    }
 }

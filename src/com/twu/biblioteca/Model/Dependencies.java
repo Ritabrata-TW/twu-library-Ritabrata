@@ -22,7 +22,7 @@ public class Dependencies {
     }
 
     public static Dependencies init() {
-        BooksModel booksModel = new BooksModel(Arrays.asList(new Book("Head First Design Pattern!", "Martin Fowler", 2007)));
+        BooksModel booksModel = new BooksModel(Arrays.asList(new Book("Head First Design Pattern!", "Martin Fowler", 2007, false)));
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
         BooksView booksView = new BooksView(inputOutputHandler);
         MenuView menuView = new MenuView(inputOutputHandler);

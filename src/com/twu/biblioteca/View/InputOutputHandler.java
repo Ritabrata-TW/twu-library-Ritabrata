@@ -24,4 +24,6 @@ public class InputOutputHandler {
         printStream.println(message);
         return Integer.parseInt(scanner.nextLine());
     }
+
+
 }

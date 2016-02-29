@@ -23,7 +23,7 @@ public class BooksModelTest {
     @Before
     public void setup () {
         List<Book> books = new ArrayList<Book>(5);
-        book = new Book("Head First Design Pattern!", "Martin Fowler", 2007);
+        book = new Book("Head First Design Pattern!", "Martin Fowler", 2007, false);
         books.add(book);
 
         inputOutputHandler = mock(InputOutputHandler.class);

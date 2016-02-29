@@ -23,7 +23,7 @@ public class BooksControllerTest {
     @Before
     public void setup() {
         books = new ArrayList<Book>(5);
-        books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007));
+        books.add(new Book("Head First Design Pattern!", "Martin Fowler", 2007, false));
         booksModel = new BooksModel(books);
         booksView = mock(BooksView.class);
         booksController = new BooksController(booksModel, booksView);
