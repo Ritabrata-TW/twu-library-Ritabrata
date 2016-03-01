@@ -46,7 +46,7 @@ public class BooksControllerTest {
 
         booksController.checkoutBook(101);
 
-        verify(appView).displayMessage("Thank you! Enjoy the book! Head First Design Pattern!");
+        verify(appView).displayMessage("Thank you! Enjoy the book! ");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class BooksControllerTest {
         booksController.checkoutBook(101);
         booksController.returnBook(101);
 
-        verify(appView).displayMessage("Thank you! Enjoy the book! Head First Design Pattern!");
+        verify(appView).displayMessage("Thank you! Enjoy the book! ");
     }
 
 }

@@ -12,7 +12,6 @@ public class CheckoutBookCommand implements Command {
 
     @Override
     public int execute() {
-
         int bookNumber = booksController.getBookNumber("Enter the number of the book that you want to checkout");
 
         booksController.checkoutBook(bookNumber);
