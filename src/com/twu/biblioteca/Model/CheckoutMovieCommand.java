@@ -6,7 +6,6 @@ public class CheckoutMovieCommand implements Command{
     private MoviesController moviesController;
 
     public CheckoutMovieCommand(MoviesController moviesController) {
-
         this.moviesController = moviesController;
     }
 

@@ -17,9 +17,7 @@ public class Books {
     }
 
     public Book checkoutBook(int bookNumber) throws NotFoundException, InvalidInputException {
-        if (bookNumber == -1) {
-            throw new InvalidInputException();
-        }
+        isInputValid(bookNumber);
 
         for (Book book : books) {
             if (book.getNumber().equals(bookNumber) && !book.checkoutStatus()) {
@@ -32,9 +30,7 @@ public class Books {
     }
 
     public void returnBook(Integer bookNumber) throws BookAlreadyPresentException, InvalidInputException {
-        if (bookNumber == -1) {
-            throw new InvalidInputException();
-        }
+        isInputValid(bookNumber);
 
 
         for (Book book : books) {
@@ -45,5 +41,11 @@ public class Books {
 
         }
         throw new BookAlreadyPresentException("That is not a valid book to return.");
+    }
+
+    private void isInputValid(Integer bookNumber) throws InvalidInputException {
+        if (bookNumber == -1) {
+            throw new InvalidInputException();
+        }
     }
 }

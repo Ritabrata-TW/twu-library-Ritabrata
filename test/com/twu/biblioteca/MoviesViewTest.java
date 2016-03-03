@@ -3,10 +3,12 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.Model.Movie;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MoviesView;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -49,5 +51,4 @@ public class MoviesViewTest {
         verify(inputOutputHandler).writeMessage("2 Swades 2000 Rakesh Roshan 8.0");
         verify(inputOutputHandler, times(0)).writeMessage("3 FightClub 1999 Brad Pitt 10");
     }
-
 }
