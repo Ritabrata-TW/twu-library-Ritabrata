@@ -1,7 +1,7 @@
 package com.twu.biblioteca.Controller;
 
 import com.twu.biblioteca.Model.BookAlreadyPresentException;
-import com.twu.biblioteca.Model.BookNotFoundException;
+import com.twu.biblioteca.Model.NotFoundException;
 import com.twu.biblioteca.Model.Books;
 import com.twu.biblioteca.Model.InvalidInputException;
 import com.twu.biblioteca.View.AppView;
@@ -26,7 +26,7 @@ public class BooksController {
         try {
             booksModel.checkoutBook(bookNumber);
             appView.displayMessage("Thank you! Enjoy the book! ");
-        } catch (BookNotFoundException bookNotfoundException) {
+        } catch (NotFoundException bookNotfoundException) {
             appView.displayMessage("That book is not available.");
         } catch (InvalidInputException invalidInputException ) {
             appView.displayMessage("Please select a valid option! ");

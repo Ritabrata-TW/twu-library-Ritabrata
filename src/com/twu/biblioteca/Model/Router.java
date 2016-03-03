@@ -18,6 +18,7 @@ public class Router {
         CheckoutBookCommand checkoutBookCommand = (CheckoutBookCommand) dependencies.get(CheckoutBookCommand.class);
         ReturnBookCommand returnBookCommand = (ReturnBookCommand) dependencies.get(ReturnBookCommand.class);
         DisplayMoviesCommand displayMoviesCommand = (DisplayMoviesCommand) dependencies.get(DisplayMoviesCommand.class);
+        CheckoutMovieCommand checkoutMovieCommand = (CheckoutMovieCommand)dependencies.get(CheckoutMovieCommand.class);
 
         CommandFactory commandFactory = (CommandFactory) dependencies.get(CommandFactory.class);
         commandFactory.register(1, displayBooksCommand);
@@ -26,6 +27,7 @@ public class Router {
         commandFactory.register(2, checkoutBookCommand);
         commandFactory.register(3, returnBookCommand);
         commandFactory.register(4, displayMoviesCommand);
+        commandFactory.register(5,checkoutMovieCommand);
         MenusController menuController = (MenusController) dependencies.get(MenusController.class);
         menuController.welcome();
 

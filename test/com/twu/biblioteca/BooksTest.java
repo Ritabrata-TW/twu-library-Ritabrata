@@ -1,10 +1,7 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.Model.InvalidInputException;
-import com.twu.biblioteca.Model.Book;
-import com.twu.biblioteca.Model.BookAlreadyPresentException;
-import com.twu.biblioteca.Model.BookNotFoundException;
-import com.twu.biblioteca.Model.Books;
+import com.twu.biblioteca.Model.*;
+import com.twu.biblioteca.Model.NotFoundException;
 import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Assert;
 import org.junit.Before;
@@ -46,7 +43,7 @@ public class BooksTest {
     }
 
     @Test
-    public void shouldBeAbleToCheckoutABook() throws BookNotFoundException, InvalidInputException {
+    public void shouldBeAbleToCheckoutABook() throws NotFoundException, InvalidInputException {
         booksModel.checkoutBook(100);
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
@@ -57,8 +54,8 @@ public class BooksTest {
     public ExpectedException expectedException = ExpectedException.none();
 
     @Test
-    public void shouldNotBeAbleToCheckoutSameBookTwice() throws BookNotFoundException, InvalidInputException {
-        expectedException.expect(BookNotFoundException.class);
+    public void shouldNotBeAbleToCheckoutSameBookTwice() throws NotFoundException, InvalidInputException {
+        expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
 
         booksModel.checkoutBook(100);
@@ -66,15 +63,15 @@ public class BooksTest {
     }
 
     @Test
-    public void shouldThrowExceptionIfBookNameEnteredIsNotPresentInLibrary() throws BookNotFoundException, InvalidInputException {
-        expectedException.expect(BookNotFoundException.class);
+    public void shouldThrowExceptionIfBookNameEnteredIsNotPresentInLibrary() throws NotFoundException, InvalidInputException {
+        expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
 
         booksModel.checkoutBook(109);
     }
 
     @Test
-    public void shouldBeAbleToReturnABookThatWasPreviouslyCheckedOut() throws BookNotFoundException, BookAlreadyPresentException, InvalidInputException {
+    public void shouldBeAbleToReturnABookThatWasPreviouslyCheckedOut() throws NotFoundException, BookAlreadyPresentException, InvalidInputException {
         booksModel.checkoutBook(100);
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());

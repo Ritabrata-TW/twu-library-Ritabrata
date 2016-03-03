@@ -38,10 +38,11 @@ public class Dependencies {
         ExitCommand exitCommand = new ExitCommand();
         CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(booksController);
         ReturnBookCommand returnBookCommand = new ReturnBookCommand(booksController);
-        Movies movies = new Movies(Arrays.asList(new Movie(1,"The Schindler's List",1994,"Steven Spielberg",10), new Movie(2,"Swades",2000,"Rakesh Roshan",8)));
+        Movies movies = new Movies(Arrays.asList(new Movie(1,"The Schindler's List",1994,"Steven Spielberg",10, false), new Movie(2,"Swades",2000,"Rakesh Roshan",8, false)));
         MoviesView moviesView = new MoviesView(inputOutputHandler);
-        MoviesController moviesController = new MoviesController(movies,moviesView);
+        MoviesController moviesController = new MoviesController(movies,moviesView, appView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
+        CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController);
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(Books.class, booksModel);
@@ -62,7 +63,7 @@ public class Dependencies {
         dependencies.register(MoviesController.class,moviesController);
         dependencies.register(MoviesView.class,moviesView);
         dependencies.register(DisplayMoviesCommand.class,displayMoviesCommand);
-
+        dependencies.register(CheckoutMovieCommand.class,checkoutMovieCommand);
         return dependencies;
     }
 

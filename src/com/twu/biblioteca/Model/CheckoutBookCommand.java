@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Model;
 
 import com.twu.biblioteca.Controller.BooksController;
+import com.twu.biblioteca.Controller.MoviesController;
 
 public class CheckoutBookCommand implements Command {
 
@@ -9,6 +10,8 @@ public class CheckoutBookCommand implements Command {
     public CheckoutBookCommand(BooksController booksController) {
         this.booksController = booksController;
     }
+
+
 
     @Override
     public int execute() {

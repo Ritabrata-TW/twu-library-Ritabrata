@@ -14,7 +14,16 @@ public class MoviesView {
 
     public void displayMovies(List<Movie> movies) {
         for (Movie movie:movies) {
+            if(!movie.checkoutStatus())
             inputOutputHandler.writeMessage(movie.toString());
+        }
+    }
+
+    public Integer getMovieNumber(String message) {
+        try {
+            return inputOutputHandler.input(message);
+        }catch (Exception exception ) {
+            return -1;
         }
     }
 

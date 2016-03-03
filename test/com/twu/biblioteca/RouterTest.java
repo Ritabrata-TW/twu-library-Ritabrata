@@ -20,6 +20,7 @@ public class RouterTest {
     CheckoutBookCommand checkoutBookCommand;
     ReturnBookCommand returnBookCommand;
     DisplayMoviesCommand displayMoviesCommand;
+    CheckoutMovieCommand checkoutMovieCommand;
 
     @Before
     public void setup() {
@@ -37,6 +38,7 @@ public class RouterTest {
         exitCommand = mock(ExitCommand.class);
         checkoutBookCommand = mock(CheckoutBookCommand.class);
         returnBookCommand = mock(ReturnBookCommand.class);
+        checkoutMovieCommand = mock(CheckoutMovieCommand.class);
 
         doNothing().when(commandFactory).register(0,invalidInputCommand);
         doNothing().when(menuController).welcome();
@@ -142,6 +144,20 @@ public class RouterTest {
         router.startApp();
 
         verify(displayMoviesCommand).execute();
+    }
+
+    @Test
+    public void shouldBeAbleToCheckoutAMovieWhenUserEntersOptionForCheckout() {
+        when(menuController.mainMenu())
+                .thenReturn(6)
+                .thenReturn(0);
+
+        when(commandFactory.commandFor(6)).thenReturn(checkoutMovieCommand);
+        when(commandFactory.commandFor(0)).thenReturn(exitCommand);
+
+        router.startApp();
+
+        verify(checkoutMovieCommand).execute();
     }
 
 

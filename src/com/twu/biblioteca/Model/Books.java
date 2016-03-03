@@ -16,7 +16,7 @@ public class Books {
         return books;
     }
 
-    public Book checkoutBook(int bookNumber) throws BookNotFoundException, InvalidInputException {
+    public Book checkoutBook(int bookNumber) throws NotFoundException, InvalidInputException {
         if (bookNumber == -1) {
             throw new InvalidInputException();
         }
@@ -28,7 +28,7 @@ public class Books {
             }
 
         }
-        throw new BookNotFoundException("This book doesn't exist in the records");
+        throw new NotFoundException("This book doesn't exist in the records");
     }
 
     public void returnBook(Integer bookNumber) throws BookAlreadyPresentException, InvalidInputException {
