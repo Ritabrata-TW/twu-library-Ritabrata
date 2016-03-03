@@ -19,7 +19,11 @@ public class BooksView {
     }
 
     public Integer getBookNumber(String message) {
-        return inputOutputHandler.input(message);
+        try {
+            return inputOutputHandler.input(message);
+        }catch (Exception exception ) {
+            return -1;
+        }
     }
 
 

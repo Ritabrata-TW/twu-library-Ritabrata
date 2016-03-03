@@ -22,6 +22,11 @@ public class BooksController {
     }
 
     public void checkoutBook(int bookNumber) {
+        if (bookNumber == -1) {
+            appView.displayMessage("Please select a valid option! ");
+            return;
+        }
+
         try {
             booksModel.checkoutBook(bookNumber);
             appView.displayMessage("Thank you! Enjoy the book! ");
@@ -38,7 +43,7 @@ public class BooksController {
         try {
             booksModel.returnBook(bookNumber);
             appView.displayMessage("Thank you for returning the book.");
-        } catch(BookAlreadyPresentException bookAlreadyPresentException) {
+        } catch (BookAlreadyPresentException bookAlreadyPresentException) {
             appView.displayMessage("That is not a valid book to return.");
         }
     }
