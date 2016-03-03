@@ -7,6 +7,7 @@ import com.twu.biblioteca.Model.Menus;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MenuView;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -55,6 +56,17 @@ public class MenusControllerTest {
         menuController.displayMessage("Hi there");
 
         verify(appView).displayMessage("Hi there");
+    }
+
+    @Test
+    public void shouldBeAbleToTakeInputFromMainMenu() {
+        when(menuModel.getOptions()).thenReturn(options);
+        when(menuView.displayMenuOptions(options)).thenReturn(1);
+        when(menuModel.validateChoice(1)).thenReturn(1);
+
+        int input = menuController.mainMenu();
+
+        Assert.assertEquals(1,input);
     }
 
 

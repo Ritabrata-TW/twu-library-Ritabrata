@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import com.sun.org.glassfish.external.statistics.annotations.Reset;
 import com.twu.biblioteca.Controller.MoviesController;
 import com.twu.biblioteca.Model.InvalidInputException;
 import com.twu.biblioteca.Model.Movie;
@@ -8,10 +7,9 @@ import com.twu.biblioteca.Model.Movies;
 import com.twu.biblioteca.Model.NotFoundException;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.MoviesView;
+import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 
@@ -70,6 +68,17 @@ public class MoviesControllerTest {
         moviesController.checkoutMovie(100);
 
         verify(appView).displayMessage("That book is not available.");
+    }
+
+    @Test
+    public void shouldBeAbleToGetMovieNumberForCheckoutAndReturn() {
+        when(moviesView.getMovieNumber("Enter the number of the book you want to checkout. ")).thenReturn(1);
+
+        int choice = moviesController.getMovieNumber("Enter the number of the book you want to checkout. ");
+
+        Assert.assertEquals(1,choice);
+
+
     }
 
 }
