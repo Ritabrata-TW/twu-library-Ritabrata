@@ -29,7 +29,7 @@ public class MoviesControllerTest {
         moviesModel = mock(Movies.class);
         moviesView = mock(MoviesView.class);
         appView = mock(AppView.class);
-        moviesController = new MoviesController(moviesModel, moviesView, appView);
+        moviesController = new MoviesController(moviesModel, moviesView);
         when(moviesModel.getMovies()).thenReturn(movies);
     }
 

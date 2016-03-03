@@ -5,7 +5,6 @@ import com.twu.biblioteca.Controller.MenusController;
 import com.twu.biblioteca.Controller.MoviesController;
 import com.twu.biblioteca.View.*;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -41,7 +40,7 @@ public class Dependencies {
         ReturnBookCommand returnBookCommand = new ReturnBookCommand(booksController);
         Movies movies = new Movies(Arrays.asList(new Movie(1,"The Schindler's List",1994,"Steven Spielberg",10), new Movie(2,"Swades",2000,"Rakesh Roshan",8)));
         MoviesView moviesView = new MoviesView(inputOutputHandler);
-        MoviesController moviesController = new MoviesController(movies,moviesView,appView);
+        MoviesController moviesController = new MoviesController(movies,moviesView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
 
         Dependencies dependencies = new Dependencies();

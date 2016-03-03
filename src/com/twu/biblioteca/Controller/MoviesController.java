@@ -7,13 +7,11 @@ import com.twu.biblioteca.View.MoviesView;
 public class MoviesController {
     private Movies moviesModel;
     private MoviesView moviesView;
-    private AppView appView;
 
-    public MoviesController(Movies moviesModel, MoviesView moviesView, AppView appView) {
+    public MoviesController(Movies moviesModel, MoviesView moviesView) {
 
         this.moviesModel = moviesModel;
         this.moviesView = moviesView;
-        this.appView = appView;
     }
 
     public void displayMovies() {

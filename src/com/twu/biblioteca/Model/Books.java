@@ -16,7 +16,11 @@ public class Books {
         return books;
     }
 
-    public Book checkoutBook(int bookNumber) throws BookNotFoundException {
+    public Book checkoutBook(int bookNumber) throws BookNotFoundException, InvalidInputException {
+        if (bookNumber == -1) {
+            throw new InvalidInputException();
+        }
+
         for (Book book : books) {
             if (book.getNumber().equals(bookNumber) && !book.checkoutStatus()) {
                 book.checkout();
@@ -27,7 +31,12 @@ public class Books {
         throw new BookNotFoundException("This book doesn't exist in the records");
     }
 
-    public void returnBook(Integer bookNumber) throws BookAlreadyPresentException {
+    public void returnBook(Integer bookNumber) throws BookAlreadyPresentException, InvalidInputException {
+        if (bookNumber == -1) {
+            throw new InvalidInputException();
+        }
+
+
         for (Book book : books) {
             if (book.getNumber().equals(bookNumber) && book.checkoutStatus()) {
                 book.returnBook();
