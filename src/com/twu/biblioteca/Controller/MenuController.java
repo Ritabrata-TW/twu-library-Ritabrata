@@ -17,11 +17,7 @@ public class MenuController {
 
     public int mainMenu() {
         int choice = menuView.displayMenuOptions(menuModel.getOptions());
-
-        if(choice >=1 && choice <=4)
-        return choice;
-
-        return 0;
+        return menuModel.validateChoice(choice);
     }
 
     public void displayMessage(String message) {

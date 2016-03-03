@@ -17,4 +17,12 @@ public class MenuModel {
     public List<String> getOptions(){
         return options;
     }
+
+    public int validateChoice(int choice) {
+        if(choice >=1 && choice<=4) {
+            return choice;
+        }
+        return 0;
+
+    }
 }
