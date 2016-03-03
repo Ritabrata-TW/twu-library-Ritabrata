@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.Controller.MenuController;
+import com.twu.biblioteca.Controller.MenusController;
 import com.twu.biblioteca.Model.InvalidInputCommand;
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 public class InvalidInputCommandTest {
     @Test
     public void shouldBeAbleToDisplayInvalidInputWarning() {
-        MenuController menuController = mock(MenuController.class);
+        MenusController menuController = mock(MenusController.class);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
 
         invalidInputCommand.execute();

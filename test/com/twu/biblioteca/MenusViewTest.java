@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.Controller.MenuController;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MenuView;
 import org.junit.Before;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class MenusViewTest {
     InputOutputHandler inputOutputHandler;

@@ -1,6 +1,6 @@
 package com.twu.biblioteca.Model;
 
-import com.twu.biblioteca.Controller.MenuController;
+import com.twu.biblioteca.Controller.MenusController;
 
 public class Router {
 
@@ -17,14 +17,16 @@ public class Router {
         ExitCommand exitCommand = (ExitCommand) dependencies.get(ExitCommand.class);
         CheckoutBookCommand checkoutBookCommand = (CheckoutBookCommand) dependencies.get(CheckoutBookCommand.class);
         ReturnBookCommand returnBookCommand = (ReturnBookCommand) dependencies.get(ReturnBookCommand.class);
+        DisplayMoviesCommand displayMoviesCommand = (DisplayMoviesCommand) dependencies.get(DisplayMoviesCommand.class);
 
         CommandFactory commandFactory = (CommandFactory) dependencies.get(CommandFactory.class);
         commandFactory.register(1, displayBooksCommand);
-        commandFactory.register(0, invalidInputCommand);
-        commandFactory.register(2, exitCommand);
-        commandFactory.register(3, checkoutBookCommand);
-        commandFactory.register(4, returnBookCommand);
-        MenuController menuController = (MenuController) dependencies.get(MenuController.class);
+        commandFactory.register(-1, invalidInputCommand);
+        commandFactory.register(0, exitCommand);
+        commandFactory.register(2, checkoutBookCommand);
+        commandFactory.register(3, returnBookCommand);
+        commandFactory.register(4, displayMoviesCommand);
+        MenusController menuController = (MenusController) dependencies.get(MenusController.class);
         menuController.welcome();
 
         int nextAction = 1;

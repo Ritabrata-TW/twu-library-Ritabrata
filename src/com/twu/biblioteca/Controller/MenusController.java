@@ -4,12 +4,12 @@ import com.twu.biblioteca.Model.Menus;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.MenuView;
 
-public class MenuController {
+public class MenusController {
     private Menus menuModel;
     private MenuView menuView;
     private AppView appView;
 
-    public MenuController(Menus menuModel, MenuView menuView, AppView appView) {
+    public MenusController(Menus menuModel, MenuView menuView, AppView appView) {
         this.menuModel = menuModel;
         this.menuView = menuView;
         this.appView = appView;

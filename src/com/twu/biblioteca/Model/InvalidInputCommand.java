@@ -1,11 +1,11 @@
 package com.twu.biblioteca.Model;
 
-import com.twu.biblioteca.Controller.MenuController;
+import com.twu.biblioteca.Controller.MenusController;
 
 public class InvalidInputCommand implements Command {
-    private MenuController menuController;
+    private MenusController menuController;
 
-    public InvalidInputCommand(MenuController menuController) {
+    public InvalidInputCommand(MenusController menuController) {
         this.menuController = menuController;
     }
 

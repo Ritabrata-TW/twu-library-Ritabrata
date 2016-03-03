@@ -9,9 +9,10 @@ public class Menus {
     public Menus() {
         options =new ArrayList<String>();
         options.add("1. List Books");
-        options.add("2. Quit");
-        options.add("3. Checkout Book");
-        options.add("4. Return Book");
+        options.add("2. Checkout Book");
+        options.add("3. Return Book");
+        options.add("4. List Movies");
+        options.add("0. Quit");
     }
 
     public List<String> getOptions(){
@@ -19,10 +20,10 @@ public class Menus {
     }
 
     public int validateChoice(int choice) {
-        if(choice >=1 && choice<=4) {
+        if(choice >=0 && choice<=4) {
             return choice;
         }
-        return 0;
+        return -1;
 
     }
 }

@@ -1,16 +1,16 @@
 package com.twu.biblioteca.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Movies {
-    private ArrayList<Movie> movies;
+    List<Movie> movies;
 
-    public Movies(ArrayList<Movie> movies) {
-
+    public Movies(List<Movie> movies) {
         this.movies = movies;
     }
 
-    public ArrayList<Movie> getMovies() {
+    public List<Movie> getMovies() {
         return movies;
     }
 }

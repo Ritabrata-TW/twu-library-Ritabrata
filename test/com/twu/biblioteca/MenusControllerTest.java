@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.BooksController;
-import com.twu.biblioteca.Controller.MenuController;
+import com.twu.biblioteca.Controller.MenusController;
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.Menus;
 import com.twu.biblioteca.View.AppView;
@@ -19,9 +19,10 @@ public class MenusControllerTest {
     InputOutputHandler inputOutputHandler;
     ArrayList<Book> books;
     Menus menuModel;
-    MenuController menuController;
+    MenusController menuController;
     BooksController booksController;
     ArrayList<String> options;
+    AppView appView;
 
     @Before
     public void setup() {
@@ -32,7 +33,9 @@ public class MenusControllerTest {
         menuView = mock(MenuView.class);
         books = new ArrayList<Book>(5);
         books.add(new Book(101, "Head First Design Pattern!", "Martin Fowler", 2007, false));
-        menuController = new MenuController(menuModel, menuView, mock(AppView.class));
+
+        appView = mock(AppView.class);
+        menuController = new MenusController(menuModel, menuView, appView);
         options = new ArrayList<String>();
         options.add("1. List Books");
     }
@@ -46,4 +49,13 @@ public class MenusControllerTest {
 
         verify(menuView).welcome();
     }
+
+    @Test
+    public void shouldBeAbleToDisplayGenericMessageThroughAppView() {
+        menuController.displayMessage("Hi there");
+
+        verify(appView).displayMessage("Hi there");
+    }
+
+
 }
