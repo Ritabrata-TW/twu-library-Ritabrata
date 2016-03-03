@@ -40,6 +40,11 @@ public class BooksController {
     }
 
     public void returnBook(Integer bookNumber) {
+        if (bookNumber == -1) {
+            appView.displayMessage("Please select a valid option! ");
+            return;
+        }
+
         try {
             booksModel.returnBook(bookNumber);
             appView.displayMessage("Thank you for returning the book.");
