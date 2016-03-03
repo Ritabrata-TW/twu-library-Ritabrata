@@ -37,7 +37,5 @@ public class Router {
             nextAction = command.execute();
         }
     }
-
-
 }
 

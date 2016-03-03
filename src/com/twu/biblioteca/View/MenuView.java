@@ -29,7 +29,7 @@ public class MenuView {
         try {
             return inputOutputHandler.input("Enter your choice");
         } catch (Exception e) {
-            return 0;
+            return -1;
         }
     }
 }
