@@ -1,18 +1,23 @@
 package com.twu.biblioteca.Model;
 
 public class Movie {
-    private int serialNumber;
+
+    int serialNumber;
     String name;
-    int yaer;
+    int year;
     String director;
     float rating;
 
-    public Movie(int serialNumber, String name, int yaer, String director, float rating) {
+    public Movie(int serialNumber, String name, int year, String director, float rating) {
         this.serialNumber = serialNumber;
         this.name = name;
-        this.yaer = yaer;
+        this.year = year;
         this.director = director;
         this.rating = rating;
     }
 
+    @Override
+    public String toString() {
+        return serialNumber + " " + name + " " + year + " " + director + " " + rating;
+    }
 }

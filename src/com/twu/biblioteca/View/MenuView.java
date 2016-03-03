@@ -4,7 +4,7 @@ package com.twu.biblioteca.View;
 import java.util.List;
 
 public class MenuView {
-    String message = "**** Welcome Customer! We are glad to have you at BooksModel! ****";
+    String message = "**** Welcome Customer! We are glad to have you at Books! ****";
 
     InputOutputHandler inputOutputHandler;
 

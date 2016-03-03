@@ -11,8 +11,6 @@ public class BooksView {
         this.inputOutputHandler = inputOutputHandler;
     }
 
-
-
     public void displayBooks(List<Book> books) {
         for (Book book:books) {
             if(!book.checkoutStatus())

@@ -3,12 +3,12 @@ package com.twu.biblioteca.Model;
 import java.util.List;
 
 //Welcome User, Display Main menu
-public class BooksModel {
+public class Books {
     String welcomeMessage;
     List<Book> books;
 
-    public BooksModel(List<Book> books) {
-        welcomeMessage = "**** Welcome Customer! We are glad to have you at BooksModel! ****";
+    public Books(List<Book> books) {
+        welcomeMessage = "**** Welcome Customer! We are glad to have you at Books! ****";
         this.books = books;
     }
 

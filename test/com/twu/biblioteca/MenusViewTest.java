@@ -12,7 +12,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class MenuViewTest {
+public class MenusViewTest {
     InputOutputHandler inputOutputHandler;
     MenuView menuView;
     ArrayList<String> options;
@@ -31,7 +31,7 @@ public class MenuViewTest {
     public void WelcomeMessageMustBeDisplayedForTheUser() {
         menuView.welcome();
 
-        verify(inputOutputHandler).writeMessage("**** Welcome Customer! We are glad to have you at BooksModel! ****");
+        verify(inputOutputHandler).writeMessage("**** Welcome Customer! We are glad to have you at Books! ****");
     }
 
     @Test

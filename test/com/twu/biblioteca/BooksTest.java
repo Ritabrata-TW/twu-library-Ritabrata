@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.BookNotFoundException;
-import com.twu.biblioteca.Model.BooksModel;
+import com.twu.biblioteca.Model.Books;
 import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,10 +18,10 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 
 
-//Test for BooksModel App
-public class BooksModelTest {
+//Test for Books App
+public class BooksTest {
     InputOutputHandler inputOutputHandler;
-    BooksModel booksModel;
+    Books booksModel;
     Book headFirstDesignPattern;
     Book headFirstJava;
 
@@ -36,7 +36,7 @@ public class BooksModelTest {
         books.add(headFirstJava);
 
         inputOutputHandler = mock(InputOutputHandler.class);
-        booksModel = new BooksModel(books);
+        booksModel = new Books(books);
     }
 
     @Test

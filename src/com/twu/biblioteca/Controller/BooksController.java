@@ -2,16 +2,16 @@ package com.twu.biblioteca.Controller;
 
 import com.twu.biblioteca.Model.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.BookNotFoundException;
-import com.twu.biblioteca.Model.BooksModel;
+import com.twu.biblioteca.Model.Books;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.BooksView;
 
 public class BooksController {
-    BooksModel booksModel;
+    Books booksModel;
     BooksView booksView;
     private AppView appView;
 
-    public BooksController(BooksModel booksModel, BooksView booksView, AppView appView) {
+    public BooksController(Books booksModel, BooksView booksView, AppView appView) {
         this.booksModel = booksModel;
         this.booksView = booksView;
         this.appView = appView;

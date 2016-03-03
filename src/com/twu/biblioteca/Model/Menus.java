@@ -3,10 +3,10 @@ package com.twu.biblioteca.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuModel {
+public class Menus {
     public List<String> options;
 
-    public MenuModel() {
+    public Menus() {
         options =new ArrayList<String>();
         options.add("1. List Books");
         options.add("2. Quit");

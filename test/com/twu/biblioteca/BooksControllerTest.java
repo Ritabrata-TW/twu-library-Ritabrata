@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Model.Book;
-import com.twu.biblioteca.Model.BooksModel;
+import com.twu.biblioteca.Model.Books;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.BooksView;
 import org.junit.Before;
@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 public class BooksControllerTest {
     ArrayList<Book> books;
-    BooksModel booksModel;
+    Books booksModel;
     BooksView booksView;
     BooksController booksController;
     Book book;
@@ -26,7 +26,7 @@ public class BooksControllerTest {
         book = new Book(101, "Head First Design Pattern!", "Martin Fowler", 2007, false);
         books = new ArrayList<Book>(5);
         books.add(book);
-        booksModel = new BooksModel(books);
+        booksModel = new Books(books);
         booksView = mock(BooksView.class);
         appView = mock(AppView.class);
         booksController = new BooksController(booksModel, booksView, appView);

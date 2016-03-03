@@ -23,7 +23,7 @@ public class Dependencies {
     }
 
     public static Dependencies init() {
-        BooksModel booksModel = new BooksModel(Arrays.asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007, false),
+        Books booksModel = new Books(Arrays.asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007, false),
                                                             new Book(101, "Head First Java","Martin Fowler",2009,false),
                                                             new Book(102, "Imperial C","Dennis Ritchie",1948,false)));
 
@@ -32,7 +32,7 @@ public class Dependencies {
         AppView appView = new AppView(inputOutputHandler);
         MenuView menuView = new MenuView(inputOutputHandler);
         BooksController booksController = new BooksController(booksModel, booksView, appView);
-        MenuModel menuModel = new MenuModel();
+        Menus menuModel = new Menus();
         MenuController menuController = new MenuController(menuModel, menuView, appView);
         CommandFactory commandFactory = new CommandFactory();
         DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(booksController);
@@ -42,14 +42,14 @@ public class Dependencies {
         ReturnBookCommand returnBookCommand = new ReturnBookCommand(booksController);
 
         Dependencies dependencies = new Dependencies();
-        dependencies.register(BooksModel.class, booksModel);
+        dependencies.register(Books.class, booksModel);
         dependencies.register(InputOutputHandler.class, inputOutputHandler);
         dependencies.register(BooksView.class, booksView);
         dependencies.register(MenuView.class, menuView);
         dependencies.register(BooksController.class, booksController);
         dependencies.register(MenuController.class, menuController);
         dependencies.register(CommandFactory.class, commandFactory);
-        dependencies.register(MenuModel.class, menuModel);
+        dependencies.register(Menus.class, menuModel);
         dependencies.register(DisplayBooksCommand.class,displayBooksCommand);
         dependencies.register(InvalidInputCommand.class,invalidInputCommand);
         dependencies.register(ExitCommand.class,exitCommand);

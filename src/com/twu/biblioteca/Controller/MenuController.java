@@ -1,15 +1,15 @@
 package com.twu.biblioteca.Controller;
 
-import com.twu.biblioteca.Model.MenuModel;
+import com.twu.biblioteca.Model.Menus;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.MenuView;
 
 public class MenuController {
-    private MenuModel menuModel;
+    private Menus menuModel;
     private MenuView menuView;
     private AppView appView;
 
-    public MenuController(MenuModel menuModel, MenuView menuView, AppView appView) {
+    public MenuController(Menus menuModel, MenuView menuView, AppView appView) {
         this.menuModel = menuModel;
         this.menuView = menuView;
         this.appView = appView;

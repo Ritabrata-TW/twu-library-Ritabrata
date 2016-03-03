@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Controller.MenuController;
 import com.twu.biblioteca.Model.Book;
-import com.twu.biblioteca.Model.MenuModel;
+import com.twu.biblioteca.Model.Menus;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MenuView;
@@ -14,18 +14,18 @@ import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
-public class MenuControllerTest {
+public class MenusControllerTest {
     MenuView menuView;
     InputOutputHandler inputOutputHandler;
     ArrayList<Book> books;
-    MenuModel menuModel;
+    Menus menuModel;
     MenuController menuController;
     BooksController booksController;
     ArrayList<String> options;
 
     @Before
     public void setup() {
-        menuModel = mock(MenuModel.class);
+        menuModel = mock(Menus.class);
         booksController = mock(BooksController.class);
         inputOutputHandler = mock(InputOutputHandler.class);
 
