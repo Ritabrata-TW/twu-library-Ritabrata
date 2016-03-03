@@ -32,10 +32,9 @@ public class MoviesViewTest {
 
     @Test
     public void PresentBookListMustBeDisplayedForTheUser() {
-        doNothing().when(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
-
         moviesView.displayMovies(movies);
 
         verify(inputOutputHandler).writeMessage("1 The Schindler's List 1994 Steven Spielberg 10.0");
+        verify(inputOutputHandler).writeMessage("2 Swades 2000 Rakesh Roshan 8.0");
     }
 }

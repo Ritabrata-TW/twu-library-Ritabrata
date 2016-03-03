@@ -2,11 +2,15 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.BookNotFoundException;
 import com.twu.biblioteca.Model.Books;
+import com.twu.biblioteca.Model.InvalidInputException;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.BooksView;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 
@@ -56,7 +60,4 @@ public class BooksControllerTest {
 
         verify(appView).displayMessage("Thank you! Enjoy the book! ");
     }
-
-
-
 }
