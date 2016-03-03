@@ -1,10 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.BooksController;
-import com.twu.biblioteca.Model.Book;
-import com.twu.biblioteca.Model.Books;
-import com.twu.biblioteca.Model.InvalidInputException;
-import com.twu.biblioteca.Model.NotFoundException;
+import com.twu.biblioteca.Model.*;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.BooksView;
 import org.junit.Assert;
@@ -63,7 +60,7 @@ public class BooksControllerTest {
     }
 
     @Test
-    public void shouldBeAbleToWarnUserIfInputIsInvalid() throws NotFoundException, InvalidInputException {
+    public void shouldBeAbleToWarnUserIfInputIsInvalidDuringCheckout() throws NotFoundException, InvalidInputException {
         when(booksModel.checkoutBook(1)).thenThrow(new InvalidInputException());
 
         booksController.checkoutBook(1);
@@ -72,7 +69,7 @@ public class BooksControllerTest {
     }
 
     @Test
-    public void shouldBeAbleToWarnUserIfBookDoesNotExist() throws NotFoundException, InvalidInputException {
+    public void shouldBeAbleToWarnUserIfBookDoesNotExistDuringCheckout() throws NotFoundException, InvalidInputException {
         when(booksModel.checkoutBook(1)).thenThrow(new NotFoundException("Book not found!"));
 
         booksController.checkoutBook(1);

@@ -27,7 +27,5 @@ public class MenusController {
     public void welcome() {
         menuView.welcome();
     }
-
-
 }
 
