@@ -4,21 +4,21 @@ import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.Model.Movies;
 import com.twu.biblioteca.View.AppView;
-import com.twu.biblioteca.View.MoviesView;
+import com.twu.biblioteca.View.ItemsView;
 
 public class MoviesController {
     private Movies moviesModel;
-    private MoviesView moviesView;
+    private ItemsView itemsView;
     private AppView appView;
 
-    public MoviesController(Movies moviesModel, MoviesView moviesView, AppView appView) {
+    public MoviesController(Movies moviesModel, ItemsView itemsView, AppView appView) {
         this.moviesModel = moviesModel;
-        this.moviesView = moviesView;
+        this.itemsView = itemsView;
         this.appView = appView;
     }
 
     public void displayMovies() {
-        moviesView.displayMovies(moviesModel.getItems());
+        itemsView.displayItems(moviesModel.getItems());
     }
 
     public void checkoutMovie() {
@@ -35,6 +35,6 @@ public class MoviesController {
     }
 
     public Integer getMovieNumber(String message) {
-        return moviesView.getMovieNumber(message);
+        return itemsView.getItemNumber(message);
     }
 }

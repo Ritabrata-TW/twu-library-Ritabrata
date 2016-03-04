@@ -3,6 +3,7 @@ package com.twu.biblioteca.Model;
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Controller.MenusController;
 import com.twu.biblioteca.Controller.MoviesController;
+import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Commands.*;
 import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Movie;
@@ -10,6 +11,7 @@ import com.twu.biblioteca.View.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class Dependencies {
 
@@ -24,15 +26,16 @@ public class Dependencies {
     }
 
     public static Dependencies init() {
-        Books booksModel = new Books(Arrays.asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007, false),
+        List<Item> books = Arrays.<Item>asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007, false),
                 new Book(101, "Head First Java", "Martin Fowler", 2009, false),
-                new Book(102, "Imperial C", "Dennis Ritchie", 1948, false)));
+                new Book(102, "Imperial C", "Dennis Ritchie", 1948, false));
+        Books booksModel = new Books(books);
 
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
-        BooksView booksView = new BooksView(inputOutputHandler);
+        ItemsView itemsView = new ItemsView(inputOutputHandler);
         AppView appView = new AppView(inputOutputHandler);
         MenuView menuView = new MenuView(inputOutputHandler);
-        BooksController booksController = new BooksController(booksModel, booksView, appView);
+        BooksController booksController = new BooksController(booksModel, itemsView, appView);
         Menus menuModel = new Menus();
         MenusController menuController = new MenusController(menuModel, menuView, appView);
         CommandFactory commandFactory = new CommandFactory();
@@ -41,16 +44,15 @@ public class Dependencies {
         ExitCommand exitCommand = new ExitCommand();
         CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(booksController);
         ReturnBookCommand returnBookCommand = new ReturnBookCommand(booksController);
-        Movies movies = new Movies(Arrays.asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false)));
-        MoviesView moviesView = new MoviesView(inputOutputHandler);
-        MoviesController moviesController = new MoviesController(movies, moviesView, appView);
+        Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false)));
+        MoviesController moviesController = new MoviesController(movies, itemsView, appView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
         CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController);
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(Books.class, booksModel);
         dependencies.register(InputOutputHandler.class, inputOutputHandler);
-        dependencies.register(BooksView.class, booksView);
+        dependencies.register(ItemsView.class, itemsView);
         dependencies.register(MenuView.class, menuView);
         dependencies.register(BooksController.class, booksController);
         dependencies.register(MenusController.class, menuController);
@@ -64,7 +66,6 @@ public class Dependencies {
         dependencies.register(ReturnBookCommand.class, returnBookCommand);
         dependencies.register(Movies.class, movies);
         dependencies.register(MoviesController.class, moviesController);
-        dependencies.register(MoviesView.class, moviesView);
         dependencies.register(DisplayMoviesCommand.class, displayMoviesCommand);
         dependencies.register(CheckoutMovieCommand.class, checkoutMovieCommand);
         return dependencies;

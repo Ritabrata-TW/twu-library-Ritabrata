@@ -1,8 +1,9 @@
 package com.twu.biblioteca.ViewsTest;
 
 import com.twu.biblioteca.Book;
-import com.twu.biblioteca.View.BooksView;
+import com.twu.biblioteca.Item;
 import com.twu.biblioteca.View.InputOutputHandler;
+import com.twu.biblioteca.View.ItemsView;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,8 +14,8 @@ import static org.mockito.Mockito.*;
 
 public class BooksViewTest {
     InputOutputHandler inputOutputHandler;
-    BooksView booksView;
-    List<Book> books;
+    ItemsView itemsView;
+    List<Item> books;
     Book headFirstDesignPattern;
     Book headFirstJava;
     Book ImperialC;
@@ -22,20 +23,20 @@ public class BooksViewTest {
 
     @Before
     public void setup() {
-        books = new ArrayList<Book>(5);
+        books = new ArrayList<Item>(5);
         headFirstDesignPattern = new Book(100, "Head First Design Pattern!", "Martin Fowler", 2007, false);
         headFirstJava = new Book(101, "Head First Java", "Martin Fowler", 2010, false);
         books.add(headFirstDesignPattern);
         books.add(headFirstJava);
         inputOutputHandler = mock(InputOutputHandler.class);
-        booksView = new BooksView(inputOutputHandler);
+        itemsView = new ItemsView(inputOutputHandler);
     }
 
     @Test
     public void PresentBookListMustBeDisplayedForTheUser() {
         doNothing().when(inputOutputHandler).writeMessage("Head First Design Pattern! Martin Fowler 2007");
 
-        booksView.displayBooks(books);
+        itemsView.displayItems(books);
 
         verify(inputOutputHandler).writeMessage("100 Head First Design Pattern! Martin Fowler 2007");
     }
@@ -45,7 +46,7 @@ public class BooksViewTest {
         ImperialC = new Book(102, "Imperial C", "Dennis Ritchie", 1945, true);
         books.add(ImperialC);
 
-        booksView.displayBooks(books);
+        itemsView.displayItems(books);
 
         verify(inputOutputHandler, times(0)).writeMessage("102 Imperial C Dennis Ritchie 1945");
     }

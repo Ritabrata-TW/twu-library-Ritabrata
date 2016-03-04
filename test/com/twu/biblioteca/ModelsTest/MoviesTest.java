@@ -1,5 +1,6 @@
 package com.twu.biblioteca.ModelsTest;
 
+import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
@@ -22,11 +23,11 @@ public class MoviesTest {
     Movies moviesModel;
     Movie schindlersList;
     Movie swades;
-    List<Movie> movies;
+    List<Item> movies;
 
     @Before
     public void setup() {
-        movies = new ArrayList<Movie>(5);
+        movies = new ArrayList<Item>(5);
         schindlersList = new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false);
         swades = new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false);
         movies.add(schindlersList);

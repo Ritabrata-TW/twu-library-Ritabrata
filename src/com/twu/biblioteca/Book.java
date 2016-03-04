@@ -31,7 +31,8 @@ public class Book implements Item{
         checkoutStatus = true;
     }
 
-    public void returnBook() {
+    @Override
+    public void returnItem() {
         checkoutStatus = false;
     }
 

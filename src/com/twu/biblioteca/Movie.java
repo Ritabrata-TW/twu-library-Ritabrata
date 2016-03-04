@@ -34,6 +34,11 @@ public class Movie implements Item {
     }
 
     @Override
+    public void returnItem() {
+
+    }
+
+    @Override
     public void checkout() {
         checkoutStatus = true;
     }

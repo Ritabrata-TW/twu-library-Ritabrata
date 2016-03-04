@@ -5,21 +5,21 @@ import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.View.AppView;
-import com.twu.biblioteca.View.BooksView;
+import com.twu.biblioteca.View.ItemsView;
 
 public class BooksController {
     Books booksModel;
-    BooksView booksView;
+    ItemsView itemsView;
     private AppView appView;
 
-    public BooksController(Books booksModel, BooksView booksView, AppView appView) {
+    public BooksController(Books booksModel, ItemsView itemsView, AppView appView) {
         this.booksModel = booksModel;
-        this.booksView = booksView;
+        this.itemsView = itemsView;
         this.appView = appView;
     }
 
     public void displayBooks() {
-        booksView.displayBooks(booksModel.getItems());
+        itemsView.displayItems(booksModel.getItems());
     }
 
     public void checkoutBook() {
@@ -36,14 +36,14 @@ public class BooksController {
     }
 
     public Integer getBookNumber(String message) {
-        return booksView.getBookNumber(message);
+        return itemsView.getItemNumber(message);
     }
 
     public void returnBook() {
         Integer bookNumber = getBookNumber("Enter the name of the book that you want to return");
 
         try {
-            booksModel.returnBook(bookNumber);
+            booksModel.returnItem(bookNumber);
             appView.displayMessage("Thank you for returning the book.");
         } catch (BookAlreadyPresentException bookAlreadyPresentException) {
             appView.displayMessage("That is not a valid book to return.");

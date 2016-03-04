@@ -1,7 +1,6 @@
 package com.twu.biblioteca.View;
 
 import com.twu.biblioteca.Item;
-import com.twu.biblioteca.Model.Items;
 
 import java.util.List;
 
@@ -14,12 +13,12 @@ public class ItemsView {
 
     public void displayItems(List<Item> items) {
         for (Item item : items) {
-            if (item.checkoutStatus())
+            if (!item.checkoutStatus())
                 inputOutputHandler.writeMessage(item.toString());
         }
     }
 
-    public Integer getBookNumber(String message) {
+    public Integer getItemNumber(String message) {
         try {
             return inputOutputHandler.input(message);
         } catch (Exception exception) {

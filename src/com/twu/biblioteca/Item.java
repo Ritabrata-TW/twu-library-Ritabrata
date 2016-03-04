@@ -4,4 +4,5 @@ public interface Item {
     boolean checkoutStatus();
     void checkout();
     Integer getNumber();
+    void returnItem();
 }

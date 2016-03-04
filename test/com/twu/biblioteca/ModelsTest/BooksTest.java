@@ -1,5 +1,6 @@
 package com.twu.biblioteca.ModelsTest;
 
+import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Books;
 import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
@@ -26,11 +27,11 @@ public class BooksTest {
     Book headFirstDesignPattern;
     Book headFirstJava;
 
-    List<Book> books;
+    List<Item> books;
 
     @Before
     public void setup() {
-        books = new ArrayList<Book>(5);
+        books = new ArrayList<Item>(5);
         headFirstDesignPattern = new Book(100, "Head First Design Pattern!", "Martin Fowler", 2007, false);
         headFirstJava = new Book(101, "Head First Java", "Martin Fowler", 2000, false);
         books.add(headFirstDesignPattern);
@@ -79,7 +80,7 @@ public class BooksTest {
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
 
-        booksModel.returnBook(100);
+        booksModel.returnItem(100);
 
         Assert.assertFalse(headFirstDesignPattern.checkoutStatus());
     }
@@ -89,7 +90,7 @@ public class BooksTest {
         expectedException.expect(BookAlreadyPresentException.class);
         expectedException.expectMessage("That is not a valid book to return.");
 
-        booksModel.returnBook(100);
+        booksModel.returnItem(100);
     }
 }
 
