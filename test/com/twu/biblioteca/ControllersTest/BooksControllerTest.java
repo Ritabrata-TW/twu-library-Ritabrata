@@ -48,7 +48,6 @@ public class BooksControllerTest {
 
     @Test
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckout() {
-
         itemController.checkoutItem();
 
         verify(appView).displayMessage("Thank you! Enjoy! ");
