@@ -86,7 +86,7 @@ public class BooksTest {
     }
 
     @Test
-    public void shouldNotBeAbleToReturnABookThatWasNotPreviouslyCheckedOut() throws BookAlreadyPresentException, InvalidInputException {
+    public void shouldNotBeAbleToReturnABookThatWasNotPreviouslyCheckedOut() throws BookAlreadyPresentException, InvalidInputException, NotFoundException {
         expectedException.expect(BookAlreadyPresentException.class);
         expectedException.expectMessage("That is not a valid book to return.");
 

@@ -1,6 +1,7 @@
 package com.twu.biblioteca.ModelsTest;
 
 import com.twu.biblioteca.Item;
+import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
@@ -54,7 +55,7 @@ public class MoviesTest {
     @Test
     public void shouldNotBeAbleToCheckoutSameMovieTwice() throws NotFoundException, InvalidInputException {
         expectedException.expect(NotFoundException.class);
-        expectedException.expectMessage("This book doesn't exist in the records");
+        expectedException.expectMessage("This item doesn't exist in the records");
 
         moviesModel.checkoutItem(100);
         moviesModel.checkoutItem(100);
@@ -63,7 +64,7 @@ public class MoviesTest {
     @Test
     public void shouldThrowExceptionIfMovieNumberEnteredIsNotPresentInLibrary() throws NotFoundException, InvalidInputException {
         expectedException.expect(NotFoundException.class);
-        expectedException.expectMessage("This book doesn't exist in the records");
+        expectedException.expectMessage("This item doesn't exist in the records");
 
         moviesModel.checkoutItem(109);
     }

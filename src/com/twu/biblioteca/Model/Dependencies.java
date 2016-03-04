@@ -47,6 +47,7 @@ public class Dependencies {
         ItemController moviesController = new ItemController(movies, itemsView, appView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
         CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController);
+        ReturnMovieCommand returnMovieCommand = new ReturnMovieCommand(moviesController);
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(Books.class, booksModel);
@@ -67,6 +68,8 @@ public class Dependencies {
         dependencies.register(ItemController.class,moviesController);
         dependencies.register(DisplayMoviesCommand.class, displayMoviesCommand);
         dependencies.register(CheckoutMovieCommand.class, checkoutMovieCommand);
+        dependencies.register(ReturnMovieCommand.class,returnMovieCommand);
+
         return dependencies;
     }
 

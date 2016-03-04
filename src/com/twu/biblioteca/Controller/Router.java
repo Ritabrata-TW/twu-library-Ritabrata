@@ -20,6 +20,7 @@ public class Router {
         ReturnBookCommand returnBookCommand = (ReturnBookCommand) dependencies.get(ReturnBookCommand.class);
         DisplayMoviesCommand displayMoviesCommand = (DisplayMoviesCommand) dependencies.get(DisplayMoviesCommand.class);
         CheckoutMovieCommand checkoutMovieCommand = (CheckoutMovieCommand) dependencies.get(CheckoutMovieCommand.class);
+        ReturnMovieCommand returnMovieCommand = (ReturnMovieCommand) dependencies.get(ReturnMovieCommand.class);
 
         CommandFactory commandFactory = (CommandFactory) dependencies.get(CommandFactory.class);
         commandFactory.register(1, displayBooksCommand);
@@ -29,6 +30,7 @@ public class Router {
         commandFactory.register(3, returnBookCommand);
         commandFactory.register(4, displayMoviesCommand);
         commandFactory.register(5, checkoutMovieCommand);
+        commandFactory.register(6, returnMovieCommand);
         MenusController menuController = (MenusController) dependencies.get(MenusController.class);
         menuController.welcome();
 

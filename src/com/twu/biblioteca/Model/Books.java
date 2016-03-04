@@ -40,7 +40,7 @@ public class Books implements Items{
 
 
     @Override
-    public void returnItem(Integer bookNumber) throws BookAlreadyPresentException, InvalidInputException {
+    public void returnItem(Integer bookNumber) throws InvalidInputException, BookAlreadyPresentException {
         isInputValid(bookNumber);
 
         for (Item book : books) {

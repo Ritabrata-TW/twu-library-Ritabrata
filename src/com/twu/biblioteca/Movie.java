@@ -35,7 +35,7 @@ public class Movie implements Item {
 
     @Override
     public void returnItem() {
-
+        checkoutStatus = false;
     }
 
     @Override

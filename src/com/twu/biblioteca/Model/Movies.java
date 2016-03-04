@@ -33,11 +33,22 @@ public class Movies implements Items{
             }
 
         }
-        throw new NotFoundException("This book doesn't exist in the records");
+        throw new NotFoundException("This item doesn't exist in the records");
     }
 
     @Override
-    public void returnItem(Integer number) throws BookAlreadyPresentException, InvalidInputException {
+    public void returnItem(Integer movieNumber) throws InvalidInputException, BookAlreadyPresentException {
+        if (movieNumber == -1) {
+            throw new InvalidInputException();
+        }
 
+        for (Item movie : movies) {
+            if (movie.getNumber().equals(movieNumber) && movie.checkoutStatus()) {
+                movie.returnItem();
+                return;
+            }
+
+        }
+        throw new BookAlreadyPresentException("This item doesn't exist in the records");
     }
 }

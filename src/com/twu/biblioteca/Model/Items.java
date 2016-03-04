@@ -9,6 +9,6 @@ import java.util.List;
 public interface Items<T> {
     List<?> getItems();
     T checkoutItem(int number) throws InvalidInputException,NotFoundException;
-    void returnItem(Integer number) throws BookAlreadyPresentException, InvalidInputException;
+    void returnItem(Integer number) throws InvalidInputException, BookAlreadyPresentException;
 
 }
