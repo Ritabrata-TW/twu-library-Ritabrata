@@ -1,6 +1,6 @@
 package com.twu.biblioteca.ViewsTest;
 
-import com.twu.biblioteca.Model.DTO.Book;
+import com.twu.biblioteca.Book;
 import com.twu.biblioteca.View.BooksView;
 import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Before;

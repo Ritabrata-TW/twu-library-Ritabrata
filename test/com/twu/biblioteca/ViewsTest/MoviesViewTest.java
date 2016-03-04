@@ -1,6 +1,6 @@
 package com.twu.biblioteca.ViewsTest;
 
-import com.twu.biblioteca.Model.DTO.Movie;
+import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MoviesView;
 import org.junit.Before;

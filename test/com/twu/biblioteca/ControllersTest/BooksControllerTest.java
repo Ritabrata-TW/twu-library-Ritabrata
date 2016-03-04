@@ -2,7 +2,7 @@ package com.twu.biblioteca.ControllersTest;
 
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Model.Books;
-import com.twu.biblioteca.Model.DTO.Book;
+import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.View.AppView;

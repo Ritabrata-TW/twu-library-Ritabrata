@@ -25,7 +25,6 @@ public class BooksController {
     public void checkoutBook() {
         int bookNumber = getBookNumber("Enter the number of the book that you want to checkout");
 
-
         try {
             booksModel.checkoutBook(bookNumber);
             appView.displayMessage("Thank you! Enjoy the book! ");

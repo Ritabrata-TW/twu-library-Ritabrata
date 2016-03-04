@@ -1,6 +1,6 @@
 package com.twu.biblioteca.View;
 
-import com.twu.biblioteca.Model.DTO.Movie;
+import com.twu.biblioteca.Movie;
 
 import java.util.List;
 

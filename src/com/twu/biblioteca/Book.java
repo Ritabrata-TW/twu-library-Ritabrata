@@ -1,4 +1,4 @@
-package com.twu.biblioteca.Model.DTO;
+package com.twu.biblioteca;
 
 //Dto for book
 public class Book {

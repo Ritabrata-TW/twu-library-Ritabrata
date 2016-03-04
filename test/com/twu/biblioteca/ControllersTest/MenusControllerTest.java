@@ -2,7 +2,7 @@ package com.twu.biblioteca.ControllersTest;
 
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Controller.MenusController;
-import com.twu.biblioteca.Model.DTO.Book;
+import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Model.Menus;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.InputOutputHandler;

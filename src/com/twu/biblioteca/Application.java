@@ -10,7 +10,5 @@ public class Application {
         Router router = new Router(dependencies);
         router.startApp();
     }
-
-
 }
 

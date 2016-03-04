@@ -1,7 +1,7 @@
 package com.twu.biblioteca.ModelsTest;
 
 import com.twu.biblioteca.Model.Books;
-import com.twu.biblioteca.Model.DTO.Book;
+import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;

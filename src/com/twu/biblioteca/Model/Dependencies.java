@@ -4,8 +4,8 @@ import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Controller.MenusController;
 import com.twu.biblioteca.Controller.MoviesController;
 import com.twu.biblioteca.Model.Commands.*;
-import com.twu.biblioteca.Model.DTO.Book;
-import com.twu.biblioteca.Model.DTO.Movie;
+import com.twu.biblioteca.Book;
+import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.View.*;
 
 import java.util.Arrays;

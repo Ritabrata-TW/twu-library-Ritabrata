@@ -1,9 +1,9 @@
 package com.twu.biblioteca.Model;
 
-import com.twu.biblioteca.Model.DTO.Book;
+import com.twu.biblioteca.Book;
+import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
-import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 
 import java.util.List;
 

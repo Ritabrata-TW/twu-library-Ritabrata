@@ -1,7 +1,7 @@
 package com.twu.biblioteca.ControllersTest;
 
 import com.twu.biblioteca.Controller.MoviesController;
-import com.twu.biblioteca.Model.DTO.Movie;
+import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.Model.Movies;

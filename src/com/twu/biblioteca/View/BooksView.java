@@ -1,6 +1,6 @@
 package com.twu.biblioteca.View;
 
-import com.twu.biblioteca.Model.DTO.Book;
+import com.twu.biblioteca.Book;
 
 import java.util.List;
 
