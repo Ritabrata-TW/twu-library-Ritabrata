@@ -7,7 +7,7 @@ public class Menus {
     public List<String> options;
 
     public Menus() {
-        options =new ArrayList<String>();
+        options = new ArrayList<String>();
         options.add("1. List Books");
         options.add("2. Checkout Book");
         options.add("3. Return Book");
@@ -16,12 +16,12 @@ public class Menus {
         options.add("0. Quit");
     }
 
-    public List<String> getOptions(){
+    public List<String> getOptions() {
         return options;
     }
 
     public int validateChoice(int choice) {
-        if(choice >=0 && choice<=5) {
+        if (choice >= 0 && choice <= 5) {
             return choice;
         }
         return -1;

@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Controller.MenusController;
-import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.DTO.Book;
 import com.twu.biblioteca.Model.Menus;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.InputOutputHandler;
@@ -66,7 +66,7 @@ public class MenusControllerTest {
 
         int input = menuController.mainMenu();
 
-        Assert.assertEquals(1,input);
+        Assert.assertEquals(1, input);
     }
 
 

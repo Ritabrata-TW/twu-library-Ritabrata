@@ -1,8 +1,8 @@
-package com.twu.biblioteca.Model;
+package com.twu.biblioteca.Model.Commands;
 
 import com.twu.biblioteca.Controller.MoviesController;
 
-public class DisplayMoviesCommand implements Command{
+public class DisplayMoviesCommand implements Command {
     MoviesController moviesController;
 
     public DisplayMoviesCommand(MoviesController moviesController) {

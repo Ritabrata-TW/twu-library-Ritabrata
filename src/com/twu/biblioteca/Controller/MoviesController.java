@@ -1,8 +1,8 @@
 package com.twu.biblioteca.Controller;
 
-import com.twu.biblioteca.Model.InvalidInputException;
+import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
+import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.Model.Movies;
-import com.twu.biblioteca.Model.NotFoundException;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.MoviesView;
 
@@ -21,13 +21,16 @@ public class MoviesController {
         moviesView.displayMovies(moviesModel.getMovies());
     }
 
-    public void checkoutMovie(Integer movieNumber) {
+    public void checkoutMovie() {
+        int movieNumber = getMovieNumber("Enter the number of the movie that you want to checkout");
+
+
         try {
             moviesModel.checkoutMovie(movieNumber);
             appView.displayMessage("Thank you! Enjoy the movie! ");
         } catch (NotFoundException bookNotfoundException) {
             appView.displayMessage("That book is not available.");
-        } catch (InvalidInputException invalidInputException ) {
+        } catch (InvalidInputException invalidInputException) {
             appView.displayMessage("Please select a valid option! ");
         }
     }

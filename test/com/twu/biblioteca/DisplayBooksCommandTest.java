@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.BooksController;
-import com.twu.biblioteca.Model.DisplayBooksCommand;
+import com.twu.biblioteca.Model.Commands.DisplayBooksCommand;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;

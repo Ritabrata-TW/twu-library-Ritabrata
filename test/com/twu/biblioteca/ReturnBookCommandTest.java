@@ -1,13 +1,11 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.BooksController;
-import com.twu.biblioteca.Model.ReturnBookCommand;
+import com.twu.biblioteca.Model.Commands.ReturnBookCommand;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ReturnBookCommandTest {
 
@@ -26,6 +24,6 @@ public class ReturnBookCommandTest {
 
         returnBookCommand.execute();
 
-        verify(booksController).returnBook(1);
+        verify(booksController).returnBook();
     }
 }

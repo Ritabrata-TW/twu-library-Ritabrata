@@ -1,6 +1,4 @@
-package com.twu.biblioteca.Model;
-
-import java.awt.font.ShapeGraphicAttribute;
+package com.twu.biblioteca.Model.DTO;
 
 //Dto for book
 public class Book {
@@ -20,13 +18,14 @@ public class Book {
 
     @Override
     public String toString() {
-        return serialNumber + " " + name + " " + author + " " + yearOfPublication;    }
+        return serialNumber + " " + name + " " + author + " " + yearOfPublication;
+    }
 
     public boolean checkoutStatus() {
         return checkoutStatus;
     }
 
-    public void checkout(){
+    public void checkout() {
         checkoutStatus = true;
     }
 

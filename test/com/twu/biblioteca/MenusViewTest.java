@@ -33,7 +33,7 @@ public class MenusViewTest {
     }
 
     @Test
-    public void MainMenuMustBeDisplayed()  {
+    public void MainMenuMustBeDisplayed() {
         menuView.displayMenuOptions(options);
 
 

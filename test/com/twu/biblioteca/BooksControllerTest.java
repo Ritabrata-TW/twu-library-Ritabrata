@@ -1,7 +1,10 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.BooksController;
-import com.twu.biblioteca.Model.*;
+import com.twu.biblioteca.Model.Books;
+import com.twu.biblioteca.Model.DTO.Book;
+import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
+import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.BooksView;
 import org.junit.Assert;
@@ -9,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.mockito.Mockito.*;
 
@@ -46,33 +48,35 @@ public class BooksControllerTest {
     @Test
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckout() {
 
-        booksController.checkoutBook(101);
+        booksController.checkoutBook();
 
         verify(appView).displayMessage("Thank you! Enjoy the book! ");
     }
 
     @Test
     public void shouldBeAbleToDisplaySuccessMessageToUserOnSuccessfulReturn() {
-        booksController.checkoutBook(101);
-        booksController.returnBook(101);
+        booksController.checkoutBook();
+        booksController.returnBook();
 
         verify(appView).displayMessage("Thank you! Enjoy the book! ");
     }
 
     @Test
     public void shouldBeAbleToWarnUserIfInputIsInvalidDuringCheckout() throws NotFoundException, InvalidInputException {
+        when(booksView.getBookNumber("Enter the number of the book that you want to checkout")).thenReturn(1);
         when(booksModel.checkoutBook(1)).thenThrow(new InvalidInputException());
 
-        booksController.checkoutBook(1);
+        booksController.checkoutBook();
 
         verify(appView).displayMessage("Please select a valid option! ");
     }
 
     @Test
     public void shouldBeAbleToWarnUserIfBookDoesNotExistDuringCheckout() throws NotFoundException, InvalidInputException {
+        when(booksView.getBookNumber("Enter the number of the book that you want to checkout")).thenReturn(1);
         when(booksModel.checkoutBook(1)).thenThrow(new NotFoundException("Book not found!"));
 
-        booksController.checkoutBook(1);
+        booksController.checkoutBook();
 
         verify(appView).displayMessage("That book is not available.");
 
@@ -82,6 +86,6 @@ public class BooksControllerTest {
     public void shouldBeAbleToGetBookNumber() {
         when(booksView.getBookNumber("Enter the number of the book. ")).thenReturn(1);
 
-        Assert.assertEquals(1,booksController.getBookNumber("Enter the number of the book. "),0);
+        Assert.assertEquals(1, booksController.getBookNumber("Enter the number of the book. "), 0);
     }
 }

@@ -1,8 +1,8 @@
-package com.twu.biblioteca.Model;
+package com.twu.biblioteca.Model.Commands;
 
 import com.twu.biblioteca.Controller.BooksController;
 
-public class ReturnBookCommand implements Command{
+public class ReturnBookCommand implements Command {
 
     private BooksController booksController;
 
@@ -13,8 +13,7 @@ public class ReturnBookCommand implements Command{
 
     @Override
     public int execute() {
-        Integer bookNumber = booksController.getBookNumber("Enter the name of the book that you want to return");
-        booksController.returnBook(bookNumber);
+        booksController.returnBook();
         return 1;
     }
 }

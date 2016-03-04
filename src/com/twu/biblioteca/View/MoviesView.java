@@ -1,7 +1,6 @@
 package com.twu.biblioteca.View;
 
-import com.twu.biblioteca.Model.Book;
-import com.twu.biblioteca.Model.Movie;
+import com.twu.biblioteca.Model.DTO.Movie;
 
 import java.util.List;
 
@@ -13,16 +12,16 @@ public class MoviesView {
     }
 
     public void displayMovies(List<Movie> movies) {
-        for (Movie movie:movies) {
-            if(!movie.checkoutStatus())
-            inputOutputHandler.writeMessage(movie.toString());
+        for (Movie movie : movies) {
+            if (!movie.checkoutStatus())
+                inputOutputHandler.writeMessage(movie.toString());
         }
     }
 
     public Integer getMovieNumber(String message) {
         try {
             return inputOutputHandler.input(message);
-        }catch (Exception exception ) {
+        } catch (Exception exception) {
             return -1;
         }
     }

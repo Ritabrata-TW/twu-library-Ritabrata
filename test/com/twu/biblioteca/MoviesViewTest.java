@@ -1,14 +1,12 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.Model.Movie;
+import com.twu.biblioteca.Model.DTO.Movie;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.MoviesView;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 
 import static org.mockito.Mockito.*;

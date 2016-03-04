@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.DTO.Book;
 import com.twu.biblioteca.View.BooksView;
 import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Before;
@@ -24,7 +24,7 @@ public class BooksViewTest {
     public void setup() {
         books = new ArrayList<Book>(5);
         headFirstDesignPattern = new Book(100, "Head First Design Pattern!", "Martin Fowler", 2007, false);
-        headFirstJava = new Book(101, "Head First Java","Martin Fowler",2010, false);
+        headFirstJava = new Book(101, "Head First Java", "Martin Fowler", 2010, false);
         books.add(headFirstDesignPattern);
         books.add(headFirstJava);
         inputOutputHandler = mock(InputOutputHandler.class);
@@ -42,11 +42,11 @@ public class BooksViewTest {
 
     @Test
     public void checkedOutBooksShouldNotBeDisplayedToTheUser() {
-        ImperialC = new Book(102, "Imperial C","Dennis Ritchie",1945, true);
+        ImperialC = new Book(102, "Imperial C", "Dennis Ritchie", 1945, true);
         books.add(ImperialC);
 
         booksView.displayBooks(books);
 
-        verify(inputOutputHandler,times(0)).writeMessage("102 Imperial C Dennis Ritchie 1945");
+        verify(inputOutputHandler, times(0)).writeMessage("102 Imperial C Dennis Ritchie 1945");
     }
 }

@@ -1,10 +1,10 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.MoviesController;
-import com.twu.biblioteca.Model.InvalidInputException;
-import com.twu.biblioteca.Model.Movie;
+import com.twu.biblioteca.Model.DTO.Movie;
+import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
+import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.Model.Movies;
-import com.twu.biblioteca.Model.NotFoundException;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.MoviesView;
 import org.junit.Assert;
@@ -47,25 +47,27 @@ public class MoviesControllerTest {
 
     @Test
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckoutOfAMovie() {
-        moviesController.checkoutMovie(1);
+        moviesController.checkoutMovie();
 
         verify(appView).displayMessage("Thank you! Enjoy the movie! ");
     }
 
     @Test
     public void shouldBeAbleToWarnInvalidInputToUser() throws NotFoundException, InvalidInputException {
+        when(moviesView.getMovieNumber("Enter the number of the movie that you want to checkout")).thenReturn(100);
         when(moviesModel.checkoutMovie(100)).thenThrow(new InvalidInputException());
 
-        moviesController.checkoutMovie(100);
+        moviesController.checkoutMovie();
 
         verify(appView).displayMessage("Please select a valid option! ");
     }
 
     @Test
     public void shouldBeAbleToWarnInvalidInputToUserIfMovieIsNotFound() throws NotFoundException, InvalidInputException {
+        when(moviesView.getMovieNumber("Enter the number of the movie that you want to checkout")).thenReturn(100);
         when(moviesModel.checkoutMovie(100)).thenThrow(new NotFoundException("Movie not found"));
 
-        moviesController.checkoutMovie(100);
+        moviesController.checkoutMovie();
 
         verify(appView).displayMessage("That book is not available.");
     }
@@ -76,7 +78,7 @@ public class MoviesControllerTest {
 
         int choice = moviesController.getMovieNumber("Enter the number of the book you want to checkout. ");
 
-        Assert.assertEquals(1,choice);
+        Assert.assertEquals(1, choice);
 
 
     }

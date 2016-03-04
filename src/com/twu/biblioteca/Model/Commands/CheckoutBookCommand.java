@@ -1,7 +1,6 @@
-package com.twu.biblioteca.Model;
+package com.twu.biblioteca.Model.Commands;
 
 import com.twu.biblioteca.Controller.BooksController;
-import com.twu.biblioteca.Controller.MoviesController;
 
 public class CheckoutBookCommand implements Command {
 
@@ -12,12 +11,9 @@ public class CheckoutBookCommand implements Command {
     }
 
 
-
     @Override
     public int execute() {
-        int bookNumber = booksController.getBookNumber("Enter the number of the book that you want to checkout");
-
-        booksController.checkoutBook(bookNumber);
+        booksController.checkoutBook();
 
         return 1;
     }

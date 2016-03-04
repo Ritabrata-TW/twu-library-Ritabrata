@@ -1,7 +1,10 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.Model.*;
-import com.twu.biblioteca.Model.NotFoundException;
+import com.twu.biblioteca.Model.Books;
+import com.twu.biblioteca.Model.DTO.Book;
+import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
+import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
+import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Assert;
 import org.junit.Before;
@@ -26,7 +29,7 @@ public class BooksTest {
     List<Book> books;
 
     @Before
-    public void setup () {
+    public void setup() {
         books = new ArrayList<Book>(5);
         headFirstDesignPattern = new Book(100, "Head First Design Pattern!", "Martin Fowler", 2007, false);
         headFirstJava = new Book(101, "Head First Java", "Martin Fowler", 2000, false);
@@ -39,7 +42,7 @@ public class BooksTest {
 
     @Test
     public void shouldBeAbleToAddBooksToTheLibrary() {
-        Assert.assertEquals(Arrays.asList(headFirstDesignPattern,headFirstJava), booksModel.getBooks());
+        Assert.assertEquals(Arrays.asList(headFirstDesignPattern, headFirstJava), booksModel.getBooks());
     }
 
     @Test

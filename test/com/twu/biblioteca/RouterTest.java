@@ -2,7 +2,9 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.BooksController;
 import com.twu.biblioteca.Controller.MenusController;
-import com.twu.biblioteca.Model.*;
+import com.twu.biblioteca.Controller.Router;
+import com.twu.biblioteca.Model.Commands.*;
+import com.twu.biblioteca.Model.Dependencies;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,14 +35,14 @@ public class RouterTest {
         when(dependencies.get(MenusController.class)).thenReturn(menuController);
         commandFactory = mock(CommandFactory.class);
         when(dependencies.get(CommandFactory.class)).thenReturn(commandFactory);
-        doNothing().when(commandFactory).register(1,displayBooksCommand);
+        doNothing().when(commandFactory).register(1, displayBooksCommand);
         invalidInputCommand = mock(InvalidInputCommand.class);
         exitCommand = mock(ExitCommand.class);
         checkoutBookCommand = mock(CheckoutBookCommand.class);
         returnBookCommand = mock(ReturnBookCommand.class);
         checkoutMovieCommand = mock(CheckoutMovieCommand.class);
 
-        doNothing().when(commandFactory).register(0,invalidInputCommand);
+        doNothing().when(commandFactory).register(0, invalidInputCommand);
         doNothing().when(menuController).welcome();
         router = new Router(dependencies);
 

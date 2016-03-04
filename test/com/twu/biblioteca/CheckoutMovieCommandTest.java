@@ -1,12 +1,10 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.MoviesController;
-import com.twu.biblioteca.Model.CheckoutMovieCommand;
+import com.twu.biblioteca.Model.Commands.CheckoutMovieCommand;
 import org.junit.Test;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CheckoutMovieCommandTest {
     @Test
@@ -17,7 +15,7 @@ public class CheckoutMovieCommandTest {
 
         checkoutMovieCommand.execute();
 
-        verify(moviesController).checkoutMovie(1);
+        verify(moviesController).checkoutMovie();
     }
 
 

@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.Controller.MenusController;
-import com.twu.biblioteca.Model.InvalidInputCommand;
+import com.twu.biblioteca.Model.Commands.InvalidInputCommand;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;

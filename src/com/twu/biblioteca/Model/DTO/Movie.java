@@ -1,4 +1,4 @@
-package com.twu.biblioteca.Model;
+package com.twu.biblioteca.Model.DTO;
 
 public class Movie {
 
