@@ -37,12 +37,12 @@ public class MoviesTest {
 
     @Test
     public void shouldBeAbleToAddMoviesToTheLibrary() {
-        Assert.assertEquals(Arrays.asList(schindlersList, swades), moviesModel.getMovies());
+        Assert.assertEquals(Arrays.asList(schindlersList, swades), moviesModel.getItems());
     }
 
     @Test
     public void shouldBeAbleToCheckoutAMovie() throws NotFoundException, InvalidInputException {
-        moviesModel.checkoutMovie(1);
+        moviesModel.checkoutItem(1);
 
         Assert.assertTrue(schindlersList.checkoutStatus());
     }
@@ -55,8 +55,8 @@ public class MoviesTest {
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
 
-        moviesModel.checkoutMovie(100);
-        moviesModel.checkoutMovie(100);
+        moviesModel.checkoutItem(100);
+        moviesModel.checkoutItem(100);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class MoviesTest {
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
 
-        moviesModel.checkoutMovie(109);
+        moviesModel.checkoutItem(109);
     }
 
 }

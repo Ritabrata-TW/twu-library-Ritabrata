@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
 //Dto for book
-public class Book {
+public class Book implements Item{
     Integer serialNumber;
     String name;
     String author;
@@ -21,10 +21,12 @@ public class Book {
         return serialNumber + " " + name + " " + author + " " + yearOfPublication;
     }
 
+    @Override
     public boolean checkoutStatus() {
         return checkoutStatus;
     }
 
+    @Override
     public void checkout() {
         checkoutStatus = true;
     }
@@ -33,6 +35,7 @@ public class Book {
         checkoutStatus = false;
     }
 
+    @Override
     public Integer getNumber() {
         return serialNumber;
     }

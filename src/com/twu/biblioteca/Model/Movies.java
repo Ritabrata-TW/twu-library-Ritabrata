@@ -6,18 +6,20 @@ import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 
 import java.util.List;
 
-public class Movies {
+public class Movies implements Items{
     List<Movie> movies;
 
     public Movies(List<Movie> movies) {
         this.movies = movies;
     }
 
-    public List<Movie> getMovies() {
+    @Override
+    public List<Movie> getItems() {
         return movies;
     }
 
-    public Movie checkoutMovie(int movieNumber) throws NotFoundException, InvalidInputException {
+    @Override
+    public Movie checkoutItem(int movieNumber) throws NotFoundException, InvalidInputException {
         if (movieNumber == -1) {
             throw new InvalidInputException();
         }

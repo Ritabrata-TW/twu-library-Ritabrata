@@ -42,12 +42,12 @@ public class BooksTest {
 
     @Test
     public void shouldBeAbleToAddBooksToTheLibrary() {
-        Assert.assertEquals(Arrays.asList(headFirstDesignPattern, headFirstJava), booksModel.getBooks());
+        Assert.assertEquals(Arrays.asList(headFirstDesignPattern, headFirstJava), booksModel.getItems());
     }
 
     @Test
     public void shouldBeAbleToCheckoutABook() throws NotFoundException, InvalidInputException {
-        booksModel.checkoutBook(100);
+        booksModel.checkoutItem(100);
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
 
@@ -61,8 +61,8 @@ public class BooksTest {
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
 
-        booksModel.checkoutBook(100);
-        booksModel.checkoutBook(100);
+        booksModel.checkoutItem(100);
+        booksModel.checkoutItem(100);
     }
 
     @Test
@@ -70,12 +70,12 @@ public class BooksTest {
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
 
-        booksModel.checkoutBook(109);
+        booksModel.checkoutItem(109);
     }
 
     @Test
     public void shouldBeAbleToReturnABookThatWasPreviouslyCheckedOut() throws NotFoundException, BookAlreadyPresentException, InvalidInputException {
-        booksModel.checkoutBook(100);
+        booksModel.checkoutItem(100);
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
 

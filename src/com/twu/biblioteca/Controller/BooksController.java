@@ -19,14 +19,14 @@ public class BooksController {
     }
 
     public void displayBooks() {
-        booksView.displayBooks(booksModel.getBooks());
+        booksView.displayBooks(booksModel.getItems());
     }
 
     public void checkoutBook() {
         int bookNumber = getBookNumber("Enter the number of the book that you want to checkout");
 
         try {
-            booksModel.checkoutBook(bookNumber);
+            booksModel.checkoutItem(bookNumber);
             appView.displayMessage("Thank you! Enjoy the book! ");
         } catch (NotFoundException bookNotfoundException) {
             appView.displayMessage("That book is not available.");

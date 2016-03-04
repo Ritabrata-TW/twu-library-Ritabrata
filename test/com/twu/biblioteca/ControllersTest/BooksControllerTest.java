@@ -38,7 +38,7 @@ public class BooksControllerTest {
     @Test
     public void shouldBeAbleToDisplayBooks() {
         doNothing().when(booksView).displayBooks(books);
-        when(booksModel.getBooks()).thenReturn(books);
+        when(booksModel.getItems()).thenReturn(books);
 
         booksController.displayBooks();
 
@@ -64,7 +64,7 @@ public class BooksControllerTest {
     @Test
     public void shouldBeAbleToWarnUserIfInputIsInvalidDuringCheckout() throws NotFoundException, InvalidInputException {
         when(booksView.getBookNumber("Enter the number of the book that you want to checkout")).thenReturn(1);
-        when(booksModel.checkoutBook(1)).thenThrow(new InvalidInputException());
+        when(booksModel.checkoutItem(1)).thenThrow(new InvalidInputException());
 
         booksController.checkoutBook();
 
@@ -74,7 +74,7 @@ public class BooksControllerTest {
     @Test
     public void shouldBeAbleToWarnUserIfBookDoesNotExistDuringCheckout() throws NotFoundException, InvalidInputException {
         when(booksView.getBookNumber("Enter the number of the book that you want to checkout")).thenReturn(1);
-        when(booksModel.checkoutBook(1)).thenThrow(new NotFoundException("Book not found!"));
+        when(booksModel.checkoutItem(1)).thenThrow(new NotFoundException("Book not found!"));
 
         booksController.checkoutBook();
 

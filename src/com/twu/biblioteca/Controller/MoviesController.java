@@ -18,14 +18,14 @@ public class MoviesController {
     }
 
     public void displayMovies() {
-        moviesView.displayMovies(moviesModel.getMovies());
+        moviesView.displayMovies(moviesModel.getItems());
     }
 
     public void checkoutMovie() {
         int movieNumber = getMovieNumber("Enter the number of the movie that you want to checkout");
 
         try {
-            moviesModel.checkoutMovie(movieNumber);
+            moviesModel.checkoutItem(movieNumber);
             appView.displayMessage("Thank you! Enjoy the movie! ");
         } catch (NotFoundException bookNotfoundException) {
             appView.displayMessage("That book is not available.");

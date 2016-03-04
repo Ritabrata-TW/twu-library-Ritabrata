@@ -8,7 +8,7 @@ import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import java.util.List;
 
 //Welcome User, Display Main menu
-public class Books {
+public class Books implements Items{
     String welcomeMessage;
     List<Book> books;
 
@@ -17,15 +17,17 @@ public class Books {
         this.books = books;
     }
 
-    public List<Book> getBooks() {
+    @Override
+    public List<Book> getItems() {
         return books;
     }
 
-    public Book checkoutBook(int bookNumber) throws NotFoundException, InvalidInputException {
-        isInputValid(bookNumber);
+    @Override
+    public Object checkoutItem(int number) throws NotFoundException, InvalidInputException {
+        isInputValid(number);
 
         for (Book book : books) {
-            if (book.getNumber().equals(bookNumber) && !book.checkoutStatus()) {
+            if (book.getNumber().equals(number) && !book.checkoutStatus()) {
                 book.checkout();
                 return book;
             }

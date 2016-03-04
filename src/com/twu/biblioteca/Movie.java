@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public class Movie {
+public class Movie implements Item {
 
     int serialNumber;
     String name;
@@ -23,14 +23,17 @@ public class Movie {
         return serialNumber + " " + name + " " + year + " " + director + " " + rating;
     }
 
-    public Boolean checkoutStatus() {
+    @Override
+    public boolean checkoutStatus() {
         return checkoutStatus;
     }
 
-    public int getNumber() {
+    @Override
+    public Integer getNumber() {
         return serialNumber;
     }
 
+    @Override
     public void checkout() {
         checkoutStatus = true;
     }

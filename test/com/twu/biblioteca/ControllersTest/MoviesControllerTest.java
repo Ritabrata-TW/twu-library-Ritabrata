@@ -33,7 +33,7 @@ public class MoviesControllerTest {
         moviesView = mock(MoviesView.class);
         appView = mock(AppView.class);
         moviesController = new MoviesController(moviesModel, moviesView, appView);
-        when(moviesModel.getMovies()).thenReturn(movies);
+        when(moviesModel.getItems()).thenReturn(movies);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class MoviesControllerTest {
     @Test
     public void shouldBeAbleToWarnInvalidInputToUser() throws NotFoundException, InvalidInputException {
         when(moviesView.getMovieNumber("Enter the number of the movie that you want to checkout")).thenReturn(100);
-        when(moviesModel.checkoutMovie(100)).thenThrow(new InvalidInputException());
+        when(moviesModel.checkoutItem(100)).thenThrow(new InvalidInputException());
 
         moviesController.checkoutMovie();
 
@@ -65,7 +65,7 @@ public class MoviesControllerTest {
     @Test
     public void shouldBeAbleToWarnInvalidInputToUserIfMovieIsNotFound() throws NotFoundException, InvalidInputException {
         when(moviesView.getMovieNumber("Enter the number of the movie that you want to checkout")).thenReturn(100);
-        when(moviesModel.checkoutMovie(100)).thenThrow(new NotFoundException("Movie not found"));
+        when(moviesModel.checkoutItem(100)).thenThrow(new NotFoundException("Movie not found"));
 
         moviesController.checkoutMovie();
 
