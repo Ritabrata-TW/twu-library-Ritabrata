@@ -55,7 +55,7 @@ public class MoviesTest {
     @Test
     public void shouldNotBeAbleToCheckoutSameMovieTwice() throws NotFoundException, InvalidInputException {
         expectedException.expect(NotFoundException.class);
-        expectedException.expectMessage("This item doesn't exist in the records");
+        expectedException.expectMessage("This movie doesn't exist in the records");
 
         moviesModel.checkoutItem(100);
         moviesModel.checkoutItem(100);
@@ -64,7 +64,7 @@ public class MoviesTest {
     @Test
     public void shouldThrowExceptionIfMovieNumberEnteredIsNotPresentInLibrary() throws NotFoundException, InvalidInputException {
         expectedException.expect(NotFoundException.class);
-        expectedException.expectMessage("This item doesn't exist in the records");
+        expectedException.expectMessage("This movie doesn't exist in the records");
 
         moviesModel.checkoutItem(109);
     }

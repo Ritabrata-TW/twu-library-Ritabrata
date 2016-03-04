@@ -33,7 +33,7 @@ public class Movies implements Items{
             }
 
         }
-        throw new NotFoundException("This item doesn't exist in the records");
+        throw new NotFoundException("This movie doesn't exist in the records");
     }
 
     @Override
@@ -49,6 +49,6 @@ public class Movies implements Items{
             }
 
         }
-        throw new BookAlreadyPresentException("This item doesn't exist in the records");
+        throw new BookAlreadyPresentException("This movie doesn't exist in the records");
     }
 }
