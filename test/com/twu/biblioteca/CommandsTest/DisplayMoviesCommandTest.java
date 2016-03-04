@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.CommandsTest;
 
 import com.twu.biblioteca.Controller.MoviesController;
 import com.twu.biblioteca.Model.Commands.DisplayMoviesCommand;

@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.ModelsTest;
 
 import com.twu.biblioteca.Model.DTO.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;

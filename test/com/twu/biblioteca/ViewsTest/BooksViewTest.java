@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.ViewsTest;
 
 import com.twu.biblioteca.Model.DTO.Book;
 import com.twu.biblioteca.View.BooksView;

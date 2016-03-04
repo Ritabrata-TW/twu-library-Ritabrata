@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.ControllersTest;
 
 import com.twu.biblioteca.Controller.MoviesController;
 import com.twu.biblioteca.Model.DTO.Movie;

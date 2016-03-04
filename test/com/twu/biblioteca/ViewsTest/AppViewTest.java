@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.ViewsTest;
 
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.InputOutputHandler;

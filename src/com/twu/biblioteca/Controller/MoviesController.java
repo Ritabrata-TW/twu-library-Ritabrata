@@ -24,7 +24,6 @@ public class MoviesController {
     public void checkoutMovie() {
         int movieNumber = getMovieNumber("Enter the number of the movie that you want to checkout");
 
-
         try {
             moviesModel.checkoutMovie(movieNumber);
             appView.displayMessage("Thank you! Enjoy the movie! ");
