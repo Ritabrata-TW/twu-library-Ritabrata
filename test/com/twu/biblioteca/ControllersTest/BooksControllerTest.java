@@ -1,6 +1,6 @@
 package com.twu.biblioteca.ControllersTest;
 
-import com.twu.biblioteca.Controller.BooksController;
+import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Books;
 import com.twu.biblioteca.Book;
@@ -20,7 +20,7 @@ public class BooksControllerTest {
     ArrayList<Item> books;
     Books booksModel;
     ItemsView itemsView;
-    BooksController booksController;
+    ItemController itemController;
     Book book;
     AppView appView;
 
@@ -33,7 +33,7 @@ public class BooksControllerTest {
         booksModel = mock(Books.class);
         itemsView = mock(ItemsView.class);
         appView = mock(AppView.class);
-        booksController = new BooksController(booksModel, itemsView, appView);
+        itemController = new ItemController(booksModel, itemsView, appView);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class BooksControllerTest {
         doNothing().when(itemsView).displayItems(books);
         when(booksModel.getItems()).thenReturn(books);
 
-        booksController.displayBooks();
+        itemController.displayItems();
 
         verify(itemsView).displayItems(books);
     }
@@ -49,37 +49,37 @@ public class BooksControllerTest {
     @Test
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckout() {
 
-        booksController.checkoutBook();
+        itemController.checkoutItem();
 
-        verify(appView).displayMessage("Thank you! Enjoy the book! ");
+        verify(appView).displayMessage("Thank you! Enjoy! ");
     }
 
     @Test
     public void shouldBeAbleToDisplaySuccessMessageToUserOnSuccessfulReturn() {
-        booksController.checkoutBook();
-        booksController.returnBook();
+        itemController.checkoutItem();
+        itemController.returnItem();
 
-        verify(appView).displayMessage("Thank you! Enjoy the book! ");
+        verify(appView).displayMessage("Thank you! Enjoy! ");
     }
 
     @Test
     public void shouldBeAbleToWarnUserIfInputIsInvalidDuringCheckout() throws NotFoundException, InvalidInputException {
-        when(itemsView.getItemNumber("Enter the number of the book that you want to checkout")).thenReturn(1);
+        when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
         when(booksModel.checkoutItem(1)).thenThrow(new InvalidInputException());
 
-        booksController.checkoutBook();
+        itemController.checkoutItem();
 
         verify(appView).displayMessage("Please select a valid option! ");
     }
 
     @Test
     public void shouldBeAbleToWarnUserIfBookDoesNotExistDuringCheckout() throws NotFoundException, InvalidInputException {
-        when(itemsView.getItemNumber("Enter the number of the book that you want to checkout")).thenReturn(1);
+        when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
         when(booksModel.checkoutItem(1)).thenThrow(new NotFoundException("Book not found!"));
 
-        booksController.checkoutBook();
+        itemController.checkoutItem();
 
-        verify(appView).displayMessage("That book is not available.");
+        verify(appView).displayMessage("That item is not available.");
 
     }
 
@@ -87,6 +87,6 @@ public class BooksControllerTest {
     public void shouldBeAbleToGetBookNumber() {
         when(itemsView.getItemNumber("Enter the number of the book. ")).thenReturn(1);
 
-        Assert.assertEquals(1, booksController.getBookNumber("Enter the number of the book. "), 0);
+        Assert.assertEquals(1, itemController.getItemNumber("Enter the number of the book. "), 0);
     }
 }

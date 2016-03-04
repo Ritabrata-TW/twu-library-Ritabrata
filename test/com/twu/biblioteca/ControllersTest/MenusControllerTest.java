@@ -1,8 +1,9 @@
 package com.twu.biblioteca.ControllersTest;
 
-import com.twu.biblioteca.Controller.BooksController;
+import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Controller.MenusController;
 import com.twu.biblioteca.Book;
+import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Menus;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.InputOutputHandler;
@@ -21,14 +22,14 @@ public class MenusControllerTest {
     ArrayList<Book> books;
     Menus menuModel;
     MenusController menuController;
-    BooksController booksController;
+    ItemController itemController;
     ArrayList<String> options;
     AppView appView;
 
     @Before
     public void setup() {
         menuModel = mock(Menus.class);
-        booksController = mock(BooksController.class);
+        itemController = mock(ItemController.class);
         inputOutputHandler = mock(InputOutputHandler.class);
 
         menuView = mock(MenuView.class);

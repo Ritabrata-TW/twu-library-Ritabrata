@@ -1,19 +1,19 @@
 package com.twu.biblioteca.Model.Commands;
 
-import com.twu.biblioteca.Controller.BooksController;
+import com.twu.biblioteca.Controller.ItemController;
 
 public class CheckoutBookCommand implements Command {
 
-    private BooksController booksController;
+    private ItemController itemController;
 
-    public CheckoutBookCommand(BooksController booksController) {
-        this.booksController = booksController;
+    public CheckoutBookCommand(ItemController itemController) {
+        this.itemController = itemController;
     }
 
 
     @Override
     public int execute() {
-        booksController.checkoutBook();
+        itemController.checkoutItem();
 
         return 1;
     }

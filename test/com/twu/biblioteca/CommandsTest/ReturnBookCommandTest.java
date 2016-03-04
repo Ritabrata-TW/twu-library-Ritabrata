@@ -1,6 +1,6 @@
 package com.twu.biblioteca.CommandsTest;
 
-import com.twu.biblioteca.Controller.BooksController;
+import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Model.Commands.ReturnBookCommand;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,21 +9,21 @@ import static org.mockito.Mockito.*;
 
 public class ReturnBookCommandTest {
 
-    BooksController booksController;
+    ItemController itemController;
     ReturnBookCommand returnBookCommand;
 
     @Before
     public void setup() {
-        booksController = mock(BooksController.class);
-        returnBookCommand = new ReturnBookCommand(booksController);
+        itemController = mock(ItemController.class);
+        returnBookCommand = new ReturnBookCommand(itemController);
     }
 
     @Test
     public void shouldBeAbleReturnBookWhenCommandIsExecuted() {
-        when(booksController.getBookNumber("Enter the name of the book that you want to return")).thenReturn(1);
+        when(itemController.getItemNumber("Enter the name of the book that you want to return")).thenReturn(1);
 
         returnBookCommand.execute();
 
-        verify(booksController).returnBook();
+        verify(itemController).returnItem();
     }
 }

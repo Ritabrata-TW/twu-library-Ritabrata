@@ -1,6 +1,6 @@
 package com.twu.biblioteca.ControllersTest;
 
-import com.twu.biblioteca.Controller.MoviesController;
+import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
@@ -20,7 +20,7 @@ public class MoviesControllerTest {
     ArrayList<Item> movies;
     Movies moviesModel;
     ItemsView itemsView;
-    MoviesController moviesController;
+    ItemController itemController;
     Movie movie;
     AppView appView;
 
@@ -33,7 +33,7 @@ public class MoviesControllerTest {
         moviesModel = mock(Movies.class);
         itemsView = mock(ItemsView.class);
         appView = mock(AppView.class);
-        moviesController = new MoviesController(moviesModel, itemsView, appView);
+        itemController = new ItemController(moviesModel, itemsView, appView);
         when(moviesModel.getItems()).thenReturn(movies);
     }
 
@@ -41,43 +41,43 @@ public class MoviesControllerTest {
     public void shouldBeAbleToDisplayBooks() {
         doNothing().when(itemsView).displayItems(movies);
 
-        moviesController.displayMovies();
+        itemController.displayItems();
 
         verify(itemsView).displayItems(movies);
     }
 
     @Test
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckoutOfAMovie() {
-        moviesController.checkoutMovie();
+        itemController.checkoutItem();
 
-        verify(appView).displayMessage("Thank you! Enjoy the movie! ");
+        verify(appView).displayMessage("Thank you! Enjoy! ");
     }
 
     @Test
     public void shouldBeAbleToWarnInvalidInputToUser() throws NotFoundException, InvalidInputException {
-        when(itemsView.getItemNumber("Enter the number of the movie that you want to checkout")).thenReturn(100);
+        when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
         when(moviesModel.checkoutItem(100)).thenThrow(new InvalidInputException());
 
-        moviesController.checkoutMovie();
+        itemController.checkoutItem();
 
         verify(appView).displayMessage("Please select a valid option! ");
     }
 
     @Test
     public void shouldBeAbleToWarnInvalidInputToUserIfMovieIsNotFound() throws NotFoundException, InvalidInputException {
-        when(itemsView.getItemNumber("Enter the number of the movie that you want to checkout")).thenReturn(100);
+        when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
         when(moviesModel.checkoutItem(100)).thenThrow(new NotFoundException("Movie not found"));
 
-        moviesController.checkoutMovie();
+        itemController.checkoutItem();
 
-        verify(appView).displayMessage("That book is not available.");
+        verify(appView).displayMessage("That item is not available.");
     }
 
     @Test
     public void shouldBeAbleToGetMovieNumberForCheckoutAndReturn() {
         when(itemsView.getItemNumber("Enter the number of the book you want to checkout. ")).thenReturn(1);
 
-        int choice = moviesController.getMovieNumber("Enter the number of the book you want to checkout. ");
+        int choice = itemController.getItemNumber("Enter the number of the book you want to checkout. ");
 
         Assert.assertEquals(1, choice);
 

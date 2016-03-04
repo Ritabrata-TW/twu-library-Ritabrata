@@ -1,8 +1,7 @@
 package com.twu.biblioteca.Model;
 
-import com.twu.biblioteca.Controller.BooksController;
+import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Controller.MenusController;
-import com.twu.biblioteca.Controller.MoviesController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Commands.*;
 import com.twu.biblioteca.Book;
@@ -35,17 +34,17 @@ public class Dependencies {
         ItemsView itemsView = new ItemsView(inputOutputHandler);
         AppView appView = new AppView(inputOutputHandler);
         MenuView menuView = new MenuView(inputOutputHandler);
-        BooksController booksController = new BooksController(booksModel, itemsView, appView);
+        ItemController itemController = new ItemController(booksModel,itemsView,appView);
         Menus menuModel = new Menus();
         MenusController menuController = new MenusController(menuModel, menuView, appView);
         CommandFactory commandFactory = new CommandFactory();
-        DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(booksController);
+        DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(itemController);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
         ExitCommand exitCommand = new ExitCommand();
-        CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(booksController);
-        ReturnBookCommand returnBookCommand = new ReturnBookCommand(booksController);
+        CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(itemController);
+        ReturnBookCommand returnBookCommand = new ReturnBookCommand(itemController);
         Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false)));
-        MoviesController moviesController = new MoviesController(movies, itemsView, appView);
+        ItemController moviesController = new ItemController(movies, itemsView, appView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
         CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController);
 
@@ -54,7 +53,7 @@ public class Dependencies {
         dependencies.register(InputOutputHandler.class, inputOutputHandler);
         dependencies.register(ItemsView.class, itemsView);
         dependencies.register(MenuView.class, menuView);
-        dependencies.register(BooksController.class, booksController);
+        dependencies.register(ItemController.class, itemController);
         dependencies.register(MenusController.class, menuController);
         dependencies.register(CommandFactory.class, commandFactory);
         dependencies.register(Menus.class, menuModel);
@@ -65,7 +64,7 @@ public class Dependencies {
         dependencies.register(AppView.class, appView);
         dependencies.register(ReturnBookCommand.class, returnBookCommand);
         dependencies.register(Movies.class, movies);
-        dependencies.register(MoviesController.class, moviesController);
+        dependencies.register(ItemController.class,moviesController);
         dependencies.register(DisplayMoviesCommand.class, displayMoviesCommand);
         dependencies.register(CheckoutMovieCommand.class, checkoutMovieCommand);
         return dependencies;

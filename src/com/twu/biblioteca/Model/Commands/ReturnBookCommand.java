@@ -1,19 +1,18 @@
 package com.twu.biblioteca.Model.Commands;
 
-import com.twu.biblioteca.Controller.BooksController;
+import com.twu.biblioteca.Controller.ItemController;
 
 public class ReturnBookCommand implements Command {
 
-    private BooksController booksController;
+    private ItemController itemController;
 
-    public ReturnBookCommand(BooksController booksController) {
-
-        this.booksController = booksController;
+    public ReturnBookCommand(ItemController itemController) {
+        this.itemController = itemController;
     }
 
     @Override
     public int execute() {
-        booksController.returnBook();
+        itemController.returnItem();
         return 1;
     }
 }

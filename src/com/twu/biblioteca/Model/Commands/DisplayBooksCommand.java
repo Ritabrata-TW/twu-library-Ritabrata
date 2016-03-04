@@ -1,17 +1,17 @@
 package com.twu.biblioteca.Model.Commands;
 
-import com.twu.biblioteca.Controller.BooksController;
+import com.twu.biblioteca.Controller.ItemController;
 
 public class DisplayBooksCommand implements Command {
-    public BooksController booksController;
+    public ItemController itemController;
 
-    public DisplayBooksCommand(BooksController booksController) {
-        this.booksController = booksController;
+    public DisplayBooksCommand(ItemController itemController) {
+        this.itemController = itemController;
     }
 
     @Override
     public int execute() {
-        booksController.displayBooks();
+        itemController.displayItems();
         return 1;
     }
 }

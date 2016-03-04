@@ -1,6 +1,6 @@
 package com.twu.biblioteca.CommandsTest;
 
-import com.twu.biblioteca.Controller.MoviesController;
+import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Model.Commands.CheckoutMovieCommand;
 import org.junit.Test;
 
@@ -9,13 +9,13 @@ import static org.mockito.Mockito.*;
 public class CheckoutMovieCommandTest {
     @Test
     public void shouldBeAbleToCheckoutMovieWhenCommandIsExecuted() {
-        MoviesController moviesController = mock(MoviesController.class);
+        ItemController moviesController = mock(ItemController.class);
         CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController);
-        when(moviesController.getMovieNumber("Enter the number of the movie that you want to checkout")).thenReturn(1);
+        when(moviesController.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
 
         checkoutMovieCommand.execute();
 
-        verify(moviesController).checkoutMovie();
+        verify(moviesController).checkoutItem();
     }
 
 
