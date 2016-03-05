@@ -29,4 +29,9 @@ public class LoginController {
             appView.displayMessage("Invalid Login details. Please try again.");
         }
     }
+
+
+    public boolean checkIfLoggedIn() {
+        return loginModel.checkIfLoggedIn();
+    }
 }

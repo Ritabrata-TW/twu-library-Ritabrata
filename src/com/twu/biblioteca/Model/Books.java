@@ -1,15 +1,16 @@
 package com.twu.biblioteca.Model;
 
-import com.twu.biblioteca.Book;
+import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
-import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
+import com.twu.biblioteca.Model.Exceptions.NotFoundException;
+import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 
 import java.util.List;
 
 //Welcome User, Display Main menu
-public class Books implements Items{
+public class Books implements Items {
     String welcomeMessage;
     List<Item> books;
 
@@ -24,8 +25,9 @@ public class Books implements Items{
     }
 
     @Override
-    public Object checkoutItem(int number) throws NotFoundException, InvalidInputException {
+    public Item checkoutItem(int number, LoginController loginController) throws NotFoundException, InvalidInputException, UserNotLoggedInException {
         isInputValid(number);
+        checkIfLoggedIn(loginController);
 
         for (Item book : books) {
             if (book.getNumber().equals(number) && !book.checkoutStatus()) {
@@ -36,7 +38,6 @@ public class Books implements Items{
         }
         throw new NotFoundException("This book doesn't exist in the records");
     }
-
 
 
     @Override
@@ -57,5 +58,10 @@ public class Books implements Items{
         if (bookNumber == -1) {
             throw new InvalidInputException();
         }
+    }
+
+    public void checkIfLoggedIn(LoginController loginController) throws UserNotLoggedInException {
+        if(!loginController.checkIfLoggedIn())
+            throw new UserNotLoggedInException();
     }
 }

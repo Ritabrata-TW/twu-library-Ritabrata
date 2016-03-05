@@ -3,6 +3,7 @@ package com.twu.biblioteca.Controller;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
+import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Model.Items;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.ItemsView;
@@ -22,16 +23,18 @@ public class ItemController {
         itemsView.displayItems(itemsModel.getItems());
     }
 
-    public void checkoutItem() {
+    public void checkoutItem(LoginController loginController) {
         int bookNumber = getItemNumber("Enter the number of the item that you want to checkout");
 
         try {
-            itemsModel.checkoutItem(bookNumber);
+            itemsModel.checkoutItem(bookNumber, loginController);
             appView.displayMessage("Thank you! Enjoy! ");
         } catch (NotFoundException bookNotfoundException) {
             appView.displayMessage("That item is not available.");
         } catch (InvalidInputException invalidInputException) {
             appView.displayMessage("Please select a valid option! ");
+        } catch (UserNotLoggedInException userNotLoggedInException) {
+            appView.displayMessage("You need to be logged in to checkout an item! ");
         }
     }
 

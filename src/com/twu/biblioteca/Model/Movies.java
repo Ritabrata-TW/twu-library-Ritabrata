@@ -1,8 +1,8 @@
 package com.twu.biblioteca.Model;
 
+import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
-import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 
@@ -21,7 +21,7 @@ public class Movies implements Items{
     }
 
     @Override
-    public Item checkoutItem(int movieNumber) throws NotFoundException, InvalidInputException {
+    public Item checkoutItem(int movieNumber, LoginController loginController) throws NotFoundException, InvalidInputException {
         if (movieNumber == -1) {
             throw new InvalidInputException();
         }

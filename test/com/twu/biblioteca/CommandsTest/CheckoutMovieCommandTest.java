@@ -15,7 +15,7 @@ public class CheckoutMovieCommandTest {
 
         checkoutMovieCommand.execute();
 
-        verify(moviesController).checkoutItem();
+        verify(moviesController).checkoutItem(null);
     }
 
 

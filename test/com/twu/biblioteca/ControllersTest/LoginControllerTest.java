@@ -6,6 +6,7 @@ import com.twu.biblioteca.Model.Login;
 import com.twu.biblioteca.Model.LoginData;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.LoginView;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -61,5 +62,13 @@ public class LoginControllerTest {
         loginController.logIn();
 
         verify(appView).displayMessage("Invalid Login details. Please try again.");
+    }
+
+    @Test
+    public void shouldBeAbleToCheckIfUserIsLoggedIn() {
+        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+
+        Assert.assertTrue(loginController.checkIfLoggedIn());
+
     }
 }

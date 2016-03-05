@@ -1,7 +1,6 @@
 package com.twu.biblioteca.ModelsTest;
 
 import com.twu.biblioteca.Item;
-import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
@@ -44,7 +43,7 @@ public class MoviesTest {
 
     @Test
     public void shouldBeAbleToCheckoutAMovie() throws NotFoundException, InvalidInputException {
-        moviesModel.checkoutItem(1);
+        moviesModel.checkoutItem(1, null);
 
         Assert.assertTrue(schindlersList.checkoutStatus());
     }
@@ -57,8 +56,8 @@ public class MoviesTest {
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This movie doesn't exist in the records");
 
-        moviesModel.checkoutItem(100);
-        moviesModel.checkoutItem(100);
+        moviesModel.checkoutItem(100, null);
+        moviesModel.checkoutItem(100, null);
     }
 
     @Test
@@ -66,7 +65,7 @@ public class MoviesTest {
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This movie doesn't exist in the records");
 
-        moviesModel.checkoutItem(109);
+        moviesModel.checkoutItem(109, null);
     }
 
 }

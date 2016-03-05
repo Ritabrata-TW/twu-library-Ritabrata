@@ -42,7 +42,6 @@ public class Dependencies {
         DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(itemController);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
         ExitCommand exitCommand = new ExitCommand();
-        CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(itemController);
         ReturnBookCommand returnBookCommand = new ReturnBookCommand(itemController);
         Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false)));
         ItemController moviesController = new ItemController(movies, itemsView, appView);
@@ -53,6 +52,7 @@ public class Dependencies {
         LoginView loginView = new LoginView(inputOutputHandler);
         LoginController loginController = new LoginController(loginModel,loginView,appView);
         LoginCommand loginCommand = new LoginCommand(loginController);
+        CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(itemController, loginController);
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(Books.class, booksModel);

@@ -11,7 +11,7 @@ public class CheckoutMovieCommand implements Command {
 
     @Override
     public int execute() {
-        itemController.checkoutItem();
+        itemController.checkoutItem(null);
         return 1;
     }
 }

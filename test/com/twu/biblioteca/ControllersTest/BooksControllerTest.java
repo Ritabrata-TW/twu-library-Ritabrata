@@ -1,11 +1,13 @@
 package com.twu.biblioteca.ControllersTest;
 
+import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Controller.ItemController;
+import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Books;
-import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
+import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.ItemsView;
 import org.junit.Assert;
@@ -23,14 +25,17 @@ public class BooksControllerTest {
     ItemController itemController;
     Book book;
     AppView appView;
+    LoginController loginController;
 
 
     @Before
     public void setup() {
         book = new Book(101, "Head First Design Pattern!", "Martin Fowler", 2007, false);
-        books = new ArrayList<Item>(5);
+        books = new ArrayList<>(5);
         books.add(book);
         booksModel = mock(Books.class);
+        loginController = mock(LoginController.class);
+
         itemsView = mock(ItemsView.class);
         appView = mock(AppView.class);
         itemController = new ItemController(booksModel, itemsView, appView);
@@ -48,35 +53,35 @@ public class BooksControllerTest {
 
     @Test
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckout() {
-        itemController.checkoutItem();
+        itemController.checkoutItem(loginController);
 
         verify(appView).displayMessage("Thank you! Enjoy! ");
     }
 
     @Test
     public void shouldBeAbleToDisplaySuccessMessageToUserOnSuccessfulReturn() {
-        itemController.checkoutItem();
+        itemController.checkoutItem(loginController);
         itemController.returnItem();
 
         verify(appView).displayMessage("Thank you! Enjoy! ");
     }
 
     @Test
-    public void shouldBeAbleToWarnUserIfInputIsInvalidDuringCheckout() throws NotFoundException, InvalidInputException {
+    public void shouldBeAbleToWarnUserIfInputIsInvalidDuringCheckout() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
-        when(booksModel.checkoutItem(1)).thenThrow(new InvalidInputException());
+        when(booksModel.checkoutItem(1, loginController)).thenThrow(new InvalidInputException());
 
-        itemController.checkoutItem();
+        itemController.checkoutItem(loginController);
 
         verify(appView).displayMessage("Please select a valid option! ");
     }
 
     @Test
-    public void shouldBeAbleToWarnUserIfBookDoesNotExistDuringCheckout() throws NotFoundException, InvalidInputException {
+    public void shouldBeAbleToWarnUserIfBookDoesNotExistDuringCheckout() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
-        when(booksModel.checkoutItem(1)).thenThrow(new NotFoundException("Book not found!"));
+        when(booksModel.checkoutItem(1, loginController)).thenThrow(new NotFoundException("Book not found!"));
 
-        itemController.checkoutItem();
+        itemController.checkoutItem(loginController);
 
         verify(appView).displayMessage("That item is not available.");
 
@@ -87,5 +92,15 @@ public class BooksControllerTest {
         when(itemsView.getItemNumber("Enter the number of the book. ")).thenReturn(1);
 
         Assert.assertEquals(1, itemController.getItemNumber("Enter the number of the book. "), 0);
+    }
+
+    @Test
+    public void shouldBeAbleToNotifyUserIfHeTriesToCheckoutWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException {
+        when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
+        when(booksModel.checkoutItem(1, loginController)).thenThrow(UserNotLoggedInException.class);
+
+        itemController.checkoutItem(loginController);
+
+        verify(appView).displayMessage("You need to be logged in to checkout an item! ");
     }
 }

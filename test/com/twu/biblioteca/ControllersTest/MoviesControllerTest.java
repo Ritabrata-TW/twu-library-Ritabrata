@@ -48,7 +48,7 @@ public class MoviesControllerTest {
 
     @Test
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckoutOfAMovie() {
-        itemController.checkoutItem();
+        itemController.checkoutItem(null);
 
         verify(appView).displayMessage("Thank you! Enjoy! ");
     }
@@ -56,9 +56,9 @@ public class MoviesControllerTest {
     @Test
     public void shouldBeAbleToWarnInvalidInputToUser() throws NotFoundException, InvalidInputException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
-        when(moviesModel.checkoutItem(100)).thenThrow(new InvalidInputException());
+        when(moviesModel.checkoutItem(100, null)).thenThrow(new InvalidInputException());
 
-        itemController.checkoutItem();
+        itemController.checkoutItem(null);
 
         verify(appView).displayMessage("Please select a valid option! ");
     }
@@ -66,9 +66,9 @@ public class MoviesControllerTest {
     @Test
     public void shouldBeAbleToWarnInvalidInputToUserIfMovieIsNotFound() throws NotFoundException, InvalidInputException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
-        when(moviesModel.checkoutItem(100)).thenThrow(new NotFoundException("Movie not found"));
+        when(moviesModel.checkoutItem(100, null)).thenThrow(new NotFoundException("Movie not found"));
 
-        itemController.checkoutItem();
+        itemController.checkoutItem(null);
 
         verify(appView).displayMessage("That item is not available.");
     }
