@@ -1,5 +1,6 @@
 package com.twu.biblioteca.ModelsTest;
 
+import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
@@ -22,6 +23,7 @@ public class MoviesTest {
     InputOutputHandler inputOutputHandler;
     Movies moviesModel;
     Movie schindlersList;
+    LoginController loginController;
     Movie swades;
     List<Item> movies;
 
@@ -33,6 +35,7 @@ public class MoviesTest {
         movies.add(schindlersList);
         movies.add(swades);
         inputOutputHandler = mock(InputOutputHandler.class);
+        loginController = mock(LoginController.class);
         moviesModel = new Movies(movies);
     }
 
@@ -43,7 +46,7 @@ public class MoviesTest {
 
     @Test
     public void shouldBeAbleToCheckoutAMovie() throws NotFoundException, InvalidInputException {
-        moviesModel.checkoutItem(1, null);
+        moviesModel.checkoutItem(1, loginController);
 
         Assert.assertTrue(schindlersList.checkoutStatus());
     }
@@ -56,8 +59,8 @@ public class MoviesTest {
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This movie doesn't exist in the records");
 
-        moviesModel.checkoutItem(100, null);
-        moviesModel.checkoutItem(100, null);
+        moviesModel.checkoutItem(100, loginController);
+        moviesModel.checkoutItem(100, loginController);
     }
 
     @Test
@@ -65,7 +68,7 @@ public class MoviesTest {
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This movie doesn't exist in the records");
 
-        moviesModel.checkoutItem(109, null);
+        moviesModel.checkoutItem(109, loginController);
     }
 
 }

@@ -46,13 +46,13 @@ public class Dependencies {
         Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false)));
         ItemController moviesController = new ItemController(movies, itemsView, appView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
-        CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController);
         ReturnMovieCommand returnMovieCommand = new ReturnMovieCommand(moviesController);
         Login loginModel = new Login();
         LoginView loginView = new LoginView(inputOutputHandler);
         LoginController loginController = new LoginController(loginModel,loginView,appView);
         LoginCommand loginCommand = new LoginCommand(loginController);
         CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(itemController, loginController);
+        CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController, loginController);
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(Books.class, booksModel);

@@ -5,6 +5,7 @@ import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Books;
+import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
@@ -103,4 +104,27 @@ public class BooksControllerTest {
 
         verify(appView).displayMessage("You need to be logged in to checkout an item! ");
     }
+
+    @Test
+    public void shouldBeAbleToWarnUserIfInputIsInvalidDuringReturn() throws NotFoundException, InvalidInputException, UserNotLoggedInException, BookAlreadyPresentException {
+        when(itemsView.getItemNumber("Enter the name of the item that you want to return")).thenReturn(1);
+        doThrow(new InvalidInputException()).when(booksModel).returnItem(1);
+
+        itemController.returnItem();
+
+        verify(appView).displayMessage("Please select a valid option! ");
+    }
+
+    @Test
+    public void shouldBeAbleToWarnUserIfBookWasNotCheckedOutPreviouslyDuringReturn() throws NotFoundException, InvalidInputException, UserNotLoggedInException, BookAlreadyPresentException {
+        when(itemsView.getItemNumber("Enter the name of the item that you want to return")).thenReturn(1);
+        doThrow(new BookAlreadyPresentException("Book not checked out previusly. ")).when(booksModel).returnItem(1);
+
+        itemController.returnItem();
+
+        verify(appView).displayMessage("That is not a valid item to return.");
+
+    }
+
+
 }
