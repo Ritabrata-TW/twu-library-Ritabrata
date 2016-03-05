@@ -43,6 +43,7 @@ public class LoginController {
     public void logout() {
         try{
             loginModel.logout();
+            appView.displayMessage("You have been logged out! ");
         }catch(UserNotLoggedInException userNotLoggedInException) {
             appView.displayMessage("You are not currently logged in.");
         }

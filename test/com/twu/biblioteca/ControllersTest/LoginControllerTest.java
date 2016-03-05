@@ -77,6 +77,7 @@ public class LoginControllerTest {
         loginController.logout();
 
         verify(loginModel).logout();
+        verify(appView).displayMessage("You have been logged out! ");
     }
 
     @Test
