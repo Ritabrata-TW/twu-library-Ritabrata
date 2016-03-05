@@ -1,14 +1,17 @@
 package com.twu.biblioteca.ModelsTest;
 
+import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
 import com.twu.biblioteca.Model.Login;
 import com.twu.biblioteca.Model.LoginData;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class LoginModelTest {
 
     @Test
-    public void userShouldBeAbleToLoginWhenCorrectUserInformationIsEntered() {
+    public void userShouldBeAbleToLoginWhenCorrectUserInformationIsEntered() throws LoginDetailsInvalidException {
         Login loginModel = new Login();
 
         loginModel.logIn(new LoginData("rmoitra@thoughtworks.com","abcd"));
@@ -16,12 +19,15 @@ public class LoginModelTest {
         Assert.assertTrue(loginModel.getLoginStatus());
     }
 
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
     @Test
-    public void userShouldNotBeAbleToLoginWhenIncorrectUserInformationIsEntered() {
+    public void userShouldNotBeAbleToLoginWhenIncorrectUserInformationIsEntered() throws LoginDetailsInvalidException {
+        expectedException.expect(LoginDetailsInvalidException.class);
+
         Login loginModel = new Login();
 
         loginModel.logIn(new LoginData("someone@thoughtworks.com","abcd"));
-
-        Assert.assertFalse(loginModel.getLoginStatus());
     }
 }

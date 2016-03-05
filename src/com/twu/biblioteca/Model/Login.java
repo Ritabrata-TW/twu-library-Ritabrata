@@ -1,5 +1,7 @@
 package com.twu.biblioteca.Model;
 
+import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
+
 import java.util.ArrayList;
 
 public class Login {
@@ -13,10 +15,12 @@ public class Login {
         userRecords.add(new LoginData("rmoitra@thoughtworks.com","abcd"));
     }
 
-    public void logIn(LoginData loginData) {
+    public void logIn(LoginData loginData) throws LoginDetailsInvalidException {
         if(userRecords.contains(loginData)) {
             loginStatus = true;
+            return;
         }
+        throw new LoginDetailsInvalidException();
     }
 
     public boolean getLoginStatus() {
