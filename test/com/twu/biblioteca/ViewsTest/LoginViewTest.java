@@ -41,4 +41,6 @@ public class LoginViewTest {
 
         Assert.assertEquals(new LoginData("abcd", "bacd"), loginView.inputDetails());
     }
+
+
 }

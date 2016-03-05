@@ -24,6 +24,7 @@ public class LoginController {
 
         try{
             loginModel.logIn(loginData);
+            appView.displayMessage("Login Successful!");
         }catch (LoginDetailsInvalidException loginDetailsInvalidException) {
             appView.displayMessage("Invalid Login details. Please try again.");
         }
