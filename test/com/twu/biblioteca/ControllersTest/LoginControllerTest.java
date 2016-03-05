@@ -22,7 +22,7 @@ public class LoginControllerTest {
         loginModel = mock(Login.class);
         loginView = mock(LoginView.class);
         appView = mock(AppView.class);
-        loginController = new LoginController(loginModel,loginView,appView);
+        loginController = new LoginController(loginModel, loginView, appView);
     }
 
     @Test
@@ -44,8 +44,8 @@ public class LoginControllerTest {
 
     @Test
     public void shouldBeAbleToNotifyUserOnInvalidInputOfData() throws LoginDetailsInvalidException {
-        when(loginView.inputDetails()).thenReturn(new LoginData("abcd","abcd"));
-        doThrow(LoginDetailsInvalidException.class).when(loginModel).logIn(new LoginData("abcd","abcd"));
+        when(loginView.inputDetails()).thenReturn(new LoginData("abcd", "abcd"));
+        doThrow(LoginDetailsInvalidException.class).when(loginModel).logIn(new LoginData("abcd", "abcd"));
 
         loginController.logIn();
 

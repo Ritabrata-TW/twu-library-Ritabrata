@@ -4,7 +4,19 @@ import com.twu.biblioteca.Model.LoginData;
 
 public class LoginView {
 
+    private InputOutputHandler inputOutputHandler;
+
+    public LoginView(InputOutputHandler inputOutputHandler) {
+
+        this.inputOutputHandler = inputOutputHandler;
+    }
+
     public LoginData inputDetails() {
-        return new LoginData("ritabrata1808@live.com","abcd");
+        inputOutputHandler.writeMessage("Please enter your username.");
+        String username = inputOutputHandler.getString();
+        inputOutputHandler.writeMessage("Please enter your password.");
+        String password = inputOutputHandler.getString();
+
+        return new LoginData(username,password);
     }
 }
