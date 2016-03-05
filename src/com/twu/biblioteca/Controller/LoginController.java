@@ -19,7 +19,7 @@ public class LoginController {
     }
 
 
-    public void logIn() throws LoginDetailsInvalidException {
+    public void logIn(){
         LoginData loginData = loginView.inputDetails();
 
         try{

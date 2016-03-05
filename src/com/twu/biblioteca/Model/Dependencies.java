@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Model;
 
 import com.twu.biblioteca.Controller.ItemController;
+import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Controller.MenusController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Commands.*;
@@ -48,6 +49,10 @@ public class Dependencies {
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
         CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController);
         ReturnMovieCommand returnMovieCommand = new ReturnMovieCommand(moviesController);
+        Login loginModel = new Login();
+        LoginView loginView = new LoginView(inputOutputHandler);
+        LoginController loginController = new LoginController(loginModel,loginView,appView);
+        LoginCommand loginCommand = new LoginCommand(loginController);
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(Books.class, booksModel);
@@ -69,6 +74,8 @@ public class Dependencies {
         dependencies.register(DisplayMoviesCommand.class, displayMoviesCommand);
         dependencies.register(CheckoutMovieCommand.class, checkoutMovieCommand);
         dependencies.register(ReturnMovieCommand.class,returnMovieCommand);
+        dependencies.register(LoginController.class,loginController);
+        dependencies.register(LoginCommand.class,loginCommand);
 
         return dependencies;
     }
