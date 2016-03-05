@@ -5,6 +5,7 @@ import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
+import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 
 import java.util.List;
 
@@ -21,7 +22,9 @@ public class Movies implements Items{
     }
 
     @Override
-    public Item checkoutItem(int movieNumber, LoginController loginController) throws NotFoundException, InvalidInputException {
+    public Item checkoutItem(int movieNumber, LoginController loginController) throws NotFoundException, InvalidInputException, UserNotLoggedInException {
+        checkIfLoggedIn(loginController);
+
         if (movieNumber == -1) {
             throw new InvalidInputException();
         }
@@ -50,5 +53,10 @@ public class Movies implements Items{
 
         }
         throw new BookAlreadyPresentException("This movie doesn't exist in the records");
+    }
+
+    public void checkIfLoggedIn(LoginController loginController) throws UserNotLoggedInException {
+        if(!loginController.checkIfLoggedIn())
+            throw new UserNotLoggedInException();
     }
 }

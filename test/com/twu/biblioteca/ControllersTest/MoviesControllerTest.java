@@ -3,6 +3,7 @@ package com.twu.biblioteca.ControllersTest;
 import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
+import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
@@ -58,7 +59,7 @@ public class MoviesControllerTest {
     }
 
     @Test
-    public void shouldBeAbleToWarnInvalidInputToUser() throws NotFoundException, InvalidInputException {
+    public void shouldBeAbleToWarnInvalidInputToUser() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
         when(moviesModel.checkoutItem(100, loginController)).thenThrow(new InvalidInputException());
 
@@ -68,7 +69,7 @@ public class MoviesControllerTest {
     }
 
     @Test
-    public void shouldBeAbleToWarnInvalidInputToUserIfMovieIsNotFound() throws NotFoundException, InvalidInputException {
+    public void shouldBeAbleToWarnInvalidInputToUserIfMovieIsNotFound() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
         when(moviesModel.checkoutItem(100, loginController)).thenThrow(new NotFoundException("Movie not found"));
 
@@ -84,8 +85,16 @@ public class MoviesControllerTest {
         int choice = itemController.getItemNumber("Enter the number of the book you want to checkout. ");
 
         Assert.assertEquals(1, choice);
+    }
 
+    @Test
+    public void shouldBeAbleToNotifyUserIfHeTriesToCheckoutWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException {
+        when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
+        when(moviesModel.checkoutItem(1, loginController)).thenThrow(UserNotLoggedInException.class);
 
+        itemController.checkoutItem(loginController);
+
+        verify(appView).displayMessage("You need to be logged in to checkout an item! ");
     }
 
 }

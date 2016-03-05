@@ -2,6 +2,7 @@ package com.twu.biblioteca.ModelsTest;
 
 import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
+import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
@@ -18,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class MoviesTest {
     InputOutputHandler inputOutputHandler;
@@ -45,7 +47,8 @@ public class MoviesTest {
     }
 
     @Test
-    public void shouldBeAbleToCheckoutAMovie() throws NotFoundException, InvalidInputException {
+    public void shouldBeAbleToCheckoutAMovie() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
+        when(loginController.checkIfLoggedIn()).thenReturn(true);
         moviesModel.checkoutItem(1, loginController);
 
         Assert.assertTrue(schindlersList.checkoutStatus());
@@ -55,7 +58,9 @@ public class MoviesTest {
     public ExpectedException expectedException = ExpectedException.none();
 
     @Test
-    public void shouldNotBeAbleToCheckoutSameMovieTwice() throws NotFoundException, InvalidInputException {
+    public void shouldNotBeAbleToCheckoutSameMovieTwice() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
+        when(loginController.checkIfLoggedIn()).thenReturn(true);
+
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This movie doesn't exist in the records");
 
@@ -64,11 +69,20 @@ public class MoviesTest {
     }
 
     @Test
-    public void shouldThrowExceptionIfMovieNumberEnteredIsNotPresentInLibrary() throws NotFoundException, InvalidInputException {
+    public void shouldThrowExceptionIfMovieNumberEnteredIsNotPresentInLibrary() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
+        when(loginController.checkIfLoggedIn()).thenReturn(true);
+
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This movie doesn't exist in the records");
 
         moviesModel.checkoutItem(109, loginController);
+    }
+
+    @Test
+    public void shouldNotBeAbleToCheckoutBookIfUserIsNotLoggedIn() throws UserNotLoggedInException {
+        expectedException.expect(UserNotLoggedInException.class);
+
+        moviesModel.checkIfLoggedIn(mock(LoginController.class));
     }
 
 }
