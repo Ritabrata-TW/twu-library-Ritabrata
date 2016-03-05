@@ -107,8 +107,10 @@ public class BooksControllerTest {
 
     @Test
     public void shouldBeAbleToWarnUserIfInputIsInvalidDuringReturn() throws NotFoundException, InvalidInputException, UserNotLoggedInException, BookAlreadyPresentException {
-        when(itemsView.getItemNumber("Enter the name of the item that you want to return")).thenReturn(1);
-        doThrow(new InvalidInputException()).when(booksModel).returnItem(1);
+        when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
+        doThrow(new InvalidInputException()).when(booksModel).returnItem(1, loginController);
+        when(loginController.checkIfLoggedIn()).thenReturn(true);
+
 
         itemController.returnItem(loginController);
 
@@ -117,24 +119,26 @@ public class BooksControllerTest {
 
     @Test
     public void shouldBeAbleToWarnUserIfBookWasNotCheckedOutPreviouslyDuringReturn() throws NotFoundException, InvalidInputException, UserNotLoggedInException, BookAlreadyPresentException {
-        when(itemsView.getItemNumber("Enter the name of the item that you want to return")).thenReturn(1);
-        doThrow(new BookAlreadyPresentException("Book not checked out previusly. ")).when(booksModel).returnItem(1);
+        when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
+        doThrow(new BookAlreadyPresentException("Book not checked out previusly. ")).when(booksModel).returnItem(1, loginController);
 
         itemController.returnItem(loginController);
 
         verify(appView).displayMessage("That is not a valid item to return.");
 
     }
-//
-//    @Test
-//    public void shouldBeAbleToNotifyUserIfHeTriesToReturnWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException {
-//        when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
-//        when(booksModel.checkoutItem(1, loginController)).thenThrow(UserNotLoggedInException.class);
-//
-//        itemController.checkoutItem(loginController);
-//
-//        verify(appView).displayMessage("You need to be logged in to checkout an item! ");
-//    }
+
+    @Test
+    public void shouldBeAbleToNotifyUserIfHeTriesToReturnWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException, BookAlreadyPresentException {
+        when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
+        doThrow(UserNotLoggedInException.class).when(booksModel).returnItem(1,loginController);
+
+        itemController.returnItem(loginController);
+
+        verify(appView).displayMessage("You need to be logged in to return an item! ");
+    }
+
+
 
 
 }

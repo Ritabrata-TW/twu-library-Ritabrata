@@ -11,6 +11,6 @@ import java.util.List;
 public interface Items<T> {
     List<?> getItems();
     T checkoutItem(int number, LoginController loginController) throws InvalidInputException, NotFoundException, UserNotLoggedInException;
-    void returnItem(Integer number) throws InvalidInputException, BookAlreadyPresentException;
+    void returnItem(Integer bookNumber, LoginController loginController) throws InvalidInputException, BookAlreadyPresentException, UserNotLoggedInException;
 
 }

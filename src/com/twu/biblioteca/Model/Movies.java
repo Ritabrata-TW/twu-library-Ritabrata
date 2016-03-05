@@ -40,7 +40,9 @@ public class Movies implements Items{
     }
 
     @Override
-    public void returnItem(Integer movieNumber) throws InvalidInputException, BookAlreadyPresentException {
+    public void returnItem(Integer movieNumber, LoginController loginController) throws InvalidInputException, BookAlreadyPresentException, UserNotLoggedInException {
+        checkIfLoggedIn(loginController);
+
         if (movieNumber == -1) {
             throw new InvalidInputException();
         }

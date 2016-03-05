@@ -43,15 +43,17 @@ public class ItemController {
     }
 
     public void returnItem(LoginController loginController) {
-        Integer bookNumber = getItemNumber("Enter the name of the item that you want to return");
+        Integer bookNumber = getItemNumber("Enter the number of the item that you want to return");
 
         try {
-            itemsModel.returnItem(bookNumber);
+            itemsModel.returnItem(bookNumber, loginController);
             appView.displayMessage("Thank you for returning.");
         } catch (BookAlreadyPresentException bookAlreadyPresentException) {
             appView.displayMessage("That is not a valid item to return.");
         } catch (InvalidInputException invalidInputException) {
             appView.displayMessage("Please select a valid option! ");
+        } catch (UserNotLoggedInException userNotLoggedInException) {
+            appView.displayMessage("You need to be logged in to return an item! ");
         }
     }
 

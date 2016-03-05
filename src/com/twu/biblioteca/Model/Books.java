@@ -41,9 +41,9 @@ public class Books implements Items {
 
 
     @Override
-    public void returnItem(Integer bookNumber) throws InvalidInputException, BookAlreadyPresentException {
+    public void returnItem(Integer bookNumber, LoginController loginController) throws InvalidInputException, BookAlreadyPresentException, UserNotLoggedInException {
         isInputValid(bookNumber);
-
+        checkIfLoggedIn(loginController);
 
         for (Item book : books) {
             if (book.getNumber().equals(bookNumber) && book.checkoutStatus()) {

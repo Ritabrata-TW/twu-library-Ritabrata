@@ -79,7 +79,7 @@ public class MoviesTest {
     }
 
     @Test
-    public void shouldNotBeAbleToCheckoutBookIfUserIsNotLoggedIn() throws UserNotLoggedInException {
+    public void shouldNotBeAbleToCheckoutOrReturnMoviesIfUserIsNotLoggedIn() throws UserNotLoggedInException {
         expectedException.expect(UserNotLoggedInException.class);
 
         moviesModel.checkIfLoggedIn(mock(LoginController.class));

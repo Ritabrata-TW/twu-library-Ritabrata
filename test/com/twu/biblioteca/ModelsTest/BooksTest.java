@@ -90,21 +90,22 @@ public class BooksTest {
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
 
-        booksModel.returnItem(100);
+        booksModel.returnItem(100, loginController);
 
         Assert.assertFalse(headFirstDesignPattern.checkoutStatus());
     }
 
     @Test
-    public void shouldNotBeAbleToReturnABookThatWasNotPreviouslyCheckedOut() throws BookAlreadyPresentException, InvalidInputException, NotFoundException {
+    public void shouldNotBeAbleToReturnABookThatWasNotPreviouslyCheckedOut() throws BookAlreadyPresentException, InvalidInputException, NotFoundException, UserNotLoggedInException {
         expectedException.expect(BookAlreadyPresentException.class);
         expectedException.expectMessage("That is not a valid book to return.");
+        when(loginController.checkIfLoggedIn()).thenReturn(true);
 
-        booksModel.returnItem(100);
+        booksModel.returnItem(100, loginController);
     }
 
     @Test
-    public void shouldNotBeAbleToCheckoutBookIfUserIsNotLoggedIn() throws UserNotLoggedInException {
+    public void shouldNotBeAbleToCheckoutOrReturnBookIfUserIsNotLoggedIn() throws UserNotLoggedInException {
         expectedException.expect(UserNotLoggedInException.class);
 
         booksModel.checkIfLoggedIn(mock(LoginController.class));
