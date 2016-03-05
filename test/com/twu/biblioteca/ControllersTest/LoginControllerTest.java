@@ -46,7 +46,7 @@ public class LoginControllerTest {
     @Test
     public void shouldBeAbleToDisplaySuccessMessageOnSuccessfulLogin() throws LoginDetailsInvalidException {
         when(loginView.inputDetails()).thenReturn(new LoginData("abcd", "abcd"));
-        doNothing().when(loginModel).logIn(new LoginData("abcd","abcd"));
+        doNothing().when(loginModel).logIn(new LoginData("abcd", "abcd"));
 
         loginController.logIn();
 

@@ -31,7 +31,7 @@ public class BooksControllerTest {
 
     @Before
     public void setup() {
-        book = new Book(101, "Head First Design Pattern!", "Martin Fowler", 2007, false);
+        book = new Book(101, "Head First Design Pattern!", "Martin Fowler", 2007, false, null);
         books = new ArrayList<>(5);
         books.add(book);
         booksModel = mock(Books.class);
@@ -131,14 +131,12 @@ public class BooksControllerTest {
     @Test
     public void shouldBeAbleToNotifyUserIfHeTriesToReturnWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException, BookAlreadyPresentException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
-        doThrow(UserNotLoggedInException.class).when(booksModel).returnItem(1,loginController);
+        doThrow(UserNotLoggedInException.class).when(booksModel).returnItem(1, loginController);
 
         itemController.returnItem(loginController);
 
         verify(appView).displayMessage("You need to be logged in to return an item! ");
     }
-
-
 
 
 }

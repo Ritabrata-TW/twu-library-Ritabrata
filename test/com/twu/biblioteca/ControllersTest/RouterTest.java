@@ -3,7 +3,6 @@ package com.twu.biblioteca.ControllersTest;
 import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Controller.MenusController;
 import com.twu.biblioteca.Controller.Router;
-import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Commands.*;
 import com.twu.biblioteca.Model.Dependencies;
 import org.junit.Before;

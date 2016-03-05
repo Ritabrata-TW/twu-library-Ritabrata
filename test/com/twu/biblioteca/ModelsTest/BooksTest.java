@@ -35,9 +35,9 @@ public class BooksTest {
 
     @Before
     public void setup() {
-        books = new ArrayList<Item>(5);
-        headFirstDesignPattern = new Book(100, "Head First Design Pattern!", "Martin Fowler", 2007, false);
-        headFirstJava = new Book(101, "Head First Java", "Martin Fowler", 2000, false);
+        books = new ArrayList<>(5);
+        headFirstDesignPattern = new Book(100, "Head First Design Pattern!", "Martin Fowler", 2007, false, null);
+        headFirstJava = new Book(101, "Head First Java", "Martin Fowler", 2000, false, null);
         books.add(headFirstDesignPattern);
         books.add(headFirstJava);
 
@@ -109,6 +109,15 @@ public class BooksTest {
         expectedException.expect(UserNotLoggedInException.class);
 
         booksModel.checkIfLoggedIn(mock(LoginController.class));
+    }
+
+    @Test
+    public void shouldBeAbleToStoreLibraryNumberOfUserWhenHeChecksOutABook() throws InvalidInputException, UserNotLoggedInException, NotFoundException {
+        when(loginController.checkIfLoggedIn()).thenReturn(true);
+        when(loginController.loggedInUserId()).thenReturn("123-4567");
+        booksModel.checkoutItem(100,loginController);
+
+        Assert.assertEquals("123-4567",headFirstDesignPattern.getCheckedOutBy());
     }
 }
 

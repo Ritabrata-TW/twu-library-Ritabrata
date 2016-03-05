@@ -18,7 +18,7 @@ public class ReturnMovieCommandTest {
     public void setup() {
         itemController = mock(ItemController.class);
         loginController = mock(LoginController.class);
-        returnMovieCommand = new ReturnMovieCommand(itemController,loginController);
+        returnMovieCommand = new ReturnMovieCommand(itemController, loginController);
     }
 
     @Test

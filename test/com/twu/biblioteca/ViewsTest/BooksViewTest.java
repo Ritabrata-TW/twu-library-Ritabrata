@@ -24,8 +24,8 @@ public class BooksViewTest {
     @Before
     public void setup() {
         books = new ArrayList<Item>(5);
-        headFirstDesignPattern = new Book(100, "Head First Design Pattern!", "Martin Fowler", 2007, false);
-        headFirstJava = new Book(101, "Head First Java", "Martin Fowler", 2010, false);
+        headFirstDesignPattern = new Book(100, "Head First Design Pattern!", "Martin Fowler", 2007, false, null);
+        headFirstJava = new Book(101, "Head First Java", "Martin Fowler", 2010, false, null);
         books.add(headFirstDesignPattern);
         books.add(headFirstJava);
         inputOutputHandler = mock(InputOutputHandler.class);
@@ -43,7 +43,7 @@ public class BooksViewTest {
 
     @Test
     public void checkedOutBooksShouldNotBeDisplayedToTheUser() {
-        ImperialC = new Book(102, "Imperial C", "Dennis Ritchie", 1945, true);
+        ImperialC = new Book(102, "Imperial C", "Dennis Ritchie", 1945, true, null);
         books.add(ImperialC);
 
         itemsView.displayItems(books);

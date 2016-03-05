@@ -1,11 +1,11 @@
 package com.twu.biblioteca.Model;
 
+import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Controller.MenusController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Commands.*;
-import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.View.*;
 
@@ -26,28 +26,28 @@ public class Dependencies {
     }
 
     public static Dependencies init() {
-        List<Item> books = Arrays.<Item>asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007, false),
-                new Book(101, "Head First Java", "Martin Fowler", 2009, false),
-                new Book(102, "Imperial C", "Dennis Ritchie", 1948, false));
+        List<Item> books = Arrays.<Item>asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007, false, null),
+                new Book(101, "Head First Java", "Martin Fowler", 2009, false, null),
+                new Book(102, "Imperial C", "Dennis Ritchie", 1948, false, null));
         Books booksModel = new Books(books);
 
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
         ItemsView itemsView = new ItemsView(inputOutputHandler);
         AppView appView = new AppView(inputOutputHandler);
         MenuView menuView = new MenuView(inputOutputHandler);
-        ItemController itemController = new ItemController(booksModel,itemsView,appView);
+        ItemController itemController = new ItemController(booksModel, itemsView, appView);
         Menus menuModel = new Menus();
         MenusController menuController = new MenusController(menuModel, menuView, appView);
         CommandFactory commandFactory = new CommandFactory();
         DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(itemController);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
         ExitCommand exitCommand = new ExitCommand();
-        Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false)));
+        Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false, null), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false, null)));
         ItemController moviesController = new ItemController(movies, itemsView, appView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
         Login loginModel = new Login();
         LoginView loginView = new LoginView(inputOutputHandler);
-        LoginController loginController = new LoginController(loginModel,loginView,appView);
+        LoginController loginController = new LoginController(loginModel, loginView, appView);
         LoginCommand loginCommand = new LoginCommand(loginController);
         CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(itemController, loginController);
         CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController, loginController);
@@ -70,12 +70,12 @@ public class Dependencies {
         dependencies.register(AppView.class, appView);
         dependencies.register(ReturnBookCommand.class, returnBookCommand);
         dependencies.register(Movies.class, movies);
-        dependencies.register(ItemController.class,moviesController);
+        dependencies.register(ItemController.class, moviesController);
         dependencies.register(DisplayMoviesCommand.class, displayMoviesCommand);
         dependencies.register(CheckoutMovieCommand.class, checkoutMovieCommand);
-        dependencies.register(ReturnMovieCommand.class,returnMovieCommand);
-        dependencies.register(LoginController.class,loginController);
-        dependencies.register(LoginCommand.class,loginCommand);
+        dependencies.register(ReturnMovieCommand.class, returnMovieCommand);
+        dependencies.register(LoginController.class, loginController);
+        dependencies.register(LoginCommand.class, loginCommand);
 
         return dependencies;
     }

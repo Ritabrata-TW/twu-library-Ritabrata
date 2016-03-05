@@ -4,11 +4,11 @@ import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
-import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
-import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
+import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Model.Movies;
+import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.ItemsView;
 import org.junit.Assert;
@@ -31,7 +31,7 @@ public class MoviesControllerTest {
 
     @Before
     public void setup() {
-        movie = new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false);
+        movie = new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false, null);
         movies = new ArrayList<Item>();
         movies.add(movie);
         moviesModel = mock(Movies.class);
@@ -101,7 +101,7 @@ public class MoviesControllerTest {
     @Test
     public void shouldBeAbleToNotifyUserIfHeTriesToReturnWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException, BookAlreadyPresentException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
-        doThrow(UserNotLoggedInException.class).when(moviesModel).returnItem(1,loginController);
+        doThrow(UserNotLoggedInException.class).when(moviesModel).returnItem(1, loginController);
 
         itemController.returnItem(loginController);
 

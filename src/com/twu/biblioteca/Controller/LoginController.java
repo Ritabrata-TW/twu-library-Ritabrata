@@ -19,13 +19,13 @@ public class LoginController {
     }
 
 
-    public void logIn(){
+    public void logIn() {
         LoginData loginData = loginView.inputDetails();
 
-        try{
+        try {
             loginModel.logIn(loginData);
             appView.displayMessage("Login Successful!");
-        }catch (LoginDetailsInvalidException loginDetailsInvalidException) {
+        } catch (LoginDetailsInvalidException loginDetailsInvalidException) {
             appView.displayMessage("Invalid Login details. Please try again.");
         }
     }
@@ -33,5 +33,9 @@ public class LoginController {
 
     public boolean checkIfLoggedIn() {
         return loginModel.checkIfLoggedIn();
+    }
+
+    public String loggedInUserId() {
+        return loginModel.loggedInUserId();
     }
 }

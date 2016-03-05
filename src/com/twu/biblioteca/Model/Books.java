@@ -31,7 +31,7 @@ public class Books implements Items {
 
         for (Item book : books) {
             if (book.getNumber().equals(number) && !book.checkoutStatus()) {
-                book.checkout();
+                book.checkout(loginController.loggedInUserId());
                 return book;
             }
 
@@ -62,7 +62,7 @@ public class Books implements Items {
     }
 
     public void checkIfLoggedIn(LoginController loginController) throws UserNotLoggedInException {
-        if(!loginController.checkIfLoggedIn())
+        if (!loginController.checkIfLoggedIn())
             throw new UserNotLoggedInException();
     }
 }

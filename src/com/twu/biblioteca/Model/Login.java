@@ -10,14 +10,14 @@ public class Login {
     String loggedInUserId;
 
 
-    public Login(){
+    public Login() {
         loginStatus = false;
         userRecords = new ArrayList<>();
-        userRecords.add(new LoginData("123-4567","abcd"));
+        userRecords.add(new LoginData("123-4567", "abcd"));
     }
 
     public void logIn(LoginData loginData) throws LoginDetailsInvalidException {
-        if(userRecords.contains(loginData)) {
+        if (userRecords.contains(loginData)) {
             loginStatus = true;
             loggedInUserId = loginData.libraryNumber;
             return;

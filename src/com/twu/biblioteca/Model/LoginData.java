@@ -4,7 +4,7 @@ public class LoginData {
     String libraryNumber;
     String password;
 
-    public LoginData(String libraryNumber, String password){
+    public LoginData(String libraryNumber, String password) {
         this.libraryNumber = libraryNumber;
         this.password = password;
     }
@@ -16,8 +16,7 @@ public class LoginData {
 
         LoginData loginData = (LoginData) o;
 
-        if (libraryNumber != null ? !libraryNumber.equals(loginData.libraryNumber) : loginData.libraryNumber != null) return false;
-        return password != null ? password.equals(loginData.password) : loginData.password == null;
+        return libraryNumber != null ? libraryNumber.equals(loginData.libraryNumber) : loginData.libraryNumber == null && (password != null ? password.equals(loginData.password) : loginData.password == null);
 
     }
 

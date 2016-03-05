@@ -8,14 +8,16 @@ public class Movie implements Item {
     String director;
     float rating;
     Boolean checkoutStatus;
+    private String checkedOutBy;
 
-    public Movie(int serialNumber, String name, int year, String director, float rating, Boolean checkoutStatus) {
+    public Movie(int serialNumber, String name, int year, String director, float rating, Boolean checkoutStatus, String checkedOutBy) {
         this.serialNumber = serialNumber;
         this.name = name;
         this.year = year;
         this.director = director;
         this.rating = rating;
         this.checkoutStatus = checkoutStatus;
+        this.checkedOutBy = checkedOutBy;
     }
 
     @Override
@@ -39,7 +41,13 @@ public class Movie implements Item {
     }
 
     @Override
-    public void checkout() {
+    public String getCheckedOutBy() {
+        return checkedOutBy;
+    }
+
+    @Override
+    public void checkout(String libraryNumber) {
         checkoutStatus = true;
+        checkedOutBy = libraryNumber;
     }
 }

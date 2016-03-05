@@ -32,8 +32,8 @@ public class MoviesTest {
     @Before
     public void setup() {
         movies = new ArrayList<Item>(5);
-        schindlersList = new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false);
-        swades = new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false);
+        schindlersList = new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false, null);
+        swades = new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false, null);
         movies.add(schindlersList);
         movies.add(swades);
         inputOutputHandler = mock(InputOutputHandler.class);

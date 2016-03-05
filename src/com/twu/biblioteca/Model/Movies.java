@@ -9,7 +9,7 @@ import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 
 import java.util.List;
 
-public class Movies implements Items{
+public class Movies implements Items {
     List<Item> movies;
 
     public Movies(List<Item> movies) {
@@ -31,7 +31,7 @@ public class Movies implements Items{
 
         for (Item movie : movies) {
             if (movie.getNumber() == movieNumber && !movie.checkoutStatus()) {
-                movie.checkout();
+                movie.checkout(loginController.loggedInUserId());
                 return movie;
             }
 
@@ -58,7 +58,7 @@ public class Movies implements Items{
     }
 
     public void checkIfLoggedIn(LoginController loginController) throws UserNotLoggedInException {
-        if(!loginController.checkIfLoggedIn())
+        if (!loginController.checkIfLoggedIn())
             throw new UserNotLoggedInException();
     }
 }
