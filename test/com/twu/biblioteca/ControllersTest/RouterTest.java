@@ -23,6 +23,8 @@ public class RouterTest {
     ReturnBookCommand returnBookCommand;
     DisplayMoviesCommand displayMoviesCommand;
     CheckoutMovieCommand checkoutMovieCommand;
+    LoginCommand loginCommand;
+    LogoutCommand logoutCommand;
 
     @Before
     public void setup() {
@@ -41,6 +43,8 @@ public class RouterTest {
         checkoutBookCommand = mock(CheckoutBookCommand.class);
         returnBookCommand = mock(ReturnBookCommand.class);
         checkoutMovieCommand = mock(CheckoutMovieCommand.class);
+        loginCommand = mock(LoginCommand.class);
+        logoutCommand = mock(LogoutCommand.class);
 
         doNothing().when(commandFactory).register(0, invalidInputCommand);
         doNothing().when(menuController).welcome();
@@ -50,7 +54,6 @@ public class RouterTest {
         when(invalidInputCommand.execute()).thenReturn(1);
         when(checkoutBookCommand.execute()).thenReturn(1);
         when(exitCommand.execute()).thenReturn(0);
-
     }
 
 
@@ -160,6 +163,36 @@ public class RouterTest {
         router.startApp();
 
         verify(checkoutMovieCommand).execute();
+    }
+
+    @Test
+    public void shouldBeAbleToLogInWhenUserEntersOptionForLogout() {
+        when(menuController.mainMenu())
+                .thenReturn(7)
+                .thenReturn(0);
+
+        when(commandFactory.commandFor(7)).thenReturn(loginCommand);
+        when(commandFactory.commandFor(0)).thenReturn(exitCommand);
+
+        router.startApp();
+
+        verify(loginCommand).execute();
+
+    }
+
+    @Test
+    public void shouldBeAbleToLogoutWhenUserEntersOptionForLogout() {
+        when(menuController.mainMenu())
+                .thenReturn(8)
+                .thenReturn(0);
+
+        when(commandFactory.commandFor(8)).thenReturn(logoutCommand);
+        when(commandFactory.commandFor(0)).thenReturn(exitCommand);
+
+        router.startApp();
+
+        verify(logoutCommand).execute();
+
     }
 
 

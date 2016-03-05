@@ -53,6 +53,7 @@ public class Dependencies {
         CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController, loginController);
         ReturnBookCommand returnBookCommand = new ReturnBookCommand(itemController, loginController);
         ReturnMovieCommand returnMovieCommand = new ReturnMovieCommand(moviesController, loginController);
+        LogoutCommand logoutCommand = new LogoutCommand(loginController);
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(Books.class, booksModel);
@@ -76,7 +77,7 @@ public class Dependencies {
         dependencies.register(ReturnMovieCommand.class, returnMovieCommand);
         dependencies.register(LoginController.class, loginController);
         dependencies.register(LoginCommand.class, loginCommand);
-
+        dependencies.register(LogoutCommand.class,logoutCommand);
         return dependencies;
     }
 
