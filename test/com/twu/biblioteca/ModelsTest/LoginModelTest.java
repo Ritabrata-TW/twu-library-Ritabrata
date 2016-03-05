@@ -14,9 +14,9 @@ public class LoginModelTest {
     public void userShouldBeAbleToLoginWhenCorrectUserInformationIsEntered() throws LoginDetailsInvalidException {
         Login loginModel = new Login();
 
-        loginModel.logIn(new LoginData("rmoitra@thoughtworks.com","abcd"));
+        loginModel.logIn(new LoginData("123-4567","abcd"));
 
-        Assert.assertTrue(loginModel.getLoginStatus());
+        Assert.assertTrue(loginModel.checkIfLoggedIn());
     }
 
     @Rule
@@ -30,4 +30,15 @@ public class LoginModelTest {
 
         loginModel.logIn(new LoginData("someone@thoughtworks.com","abcd"));
     }
+
+    @Test
+    public void shouldBeAbleToKeepRecordOfThePresentLoggedInUser() throws LoginDetailsInvalidException {
+        Login loginModel = new Login();
+
+        loginModel.logIn(new LoginData("123-4567","abcd"));
+
+        Assert.assertTrue(loginModel.checkIfLoggedIn());
+        Assert.assertEquals("123-4567",loginModel.loggedInUserId());
+    }
+
 }

@@ -12,7 +12,7 @@ public class LoginView {
     }
 
     public LoginData inputDetails() {
-        inputOutputHandler.writeMessage("Please enter your username.");
+        inputOutputHandler.writeMessage("Please enter your library number.");
         String username = inputOutputHandler.getString();
         inputOutputHandler.writeMessage("Please enter your password.");
         String password = inputOutputHandler.getString();

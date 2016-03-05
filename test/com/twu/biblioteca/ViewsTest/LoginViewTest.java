@@ -23,7 +23,7 @@ public class LoginViewTest {
     public void shouldBeAbleToAskUserforUsername() {
         loginView.inputDetails();
 
-        verify(inputOutputHandler).writeMessage("Please enter your username.");
+        verify(inputOutputHandler).writeMessage("Please enter your library number.");
         verify(inputOutputHandler, times(2)).getString();
     }
 

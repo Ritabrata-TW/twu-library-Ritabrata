@@ -1,11 +1,11 @@
 package com.twu.biblioteca.Model;
 
 public class LoginData {
-    String emailId;
+    String libraryNumber;
     String password;
 
-    public LoginData(String emailId,String password){
-        this.emailId = emailId;
+    public LoginData(String libraryNumber, String password){
+        this.libraryNumber = libraryNumber;
         this.password = password;
     }
 
@@ -16,14 +16,14 @@ public class LoginData {
 
         LoginData loginData = (LoginData) o;
 
-        if (emailId != null ? !emailId.equals(loginData.emailId) : loginData.emailId != null) return false;
+        if (libraryNumber != null ? !libraryNumber.equals(loginData.libraryNumber) : loginData.libraryNumber != null) return false;
         return password != null ? password.equals(loginData.password) : loginData.password == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = emailId != null ? emailId.hashCode() : 0;
+        int result = libraryNumber != null ? libraryNumber.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
