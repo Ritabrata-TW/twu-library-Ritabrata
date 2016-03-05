@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Controller;
 
 import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
+import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Model.Login;
 import com.twu.biblioteca.Model.LoginData;
 import com.twu.biblioteca.View.AppView;
@@ -37,5 +38,13 @@ public class LoginController {
 
     public String loggedInUserId() {
         return loginModel.loggedInUserId();
+    }
+
+    public void logout() {
+        try{
+            loginModel.logout();
+        }catch(UserNotLoggedInException userNotLoggedInException) {
+            appView.displayMessage("You are not currently logged in.");
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Model;
 
 import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
+import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 
 import java.util.ArrayList;
 
@@ -31,5 +32,13 @@ public class Login {
 
     public String loggedInUserId() {
         return loggedInUserId;
+    }
+
+    public void logout() throws UserNotLoggedInException {
+        if(!loginStatus)
+            throw new UserNotLoggedInException();
+
+        loginStatus = false;
+        loggedInUserId = null;
     }
 }

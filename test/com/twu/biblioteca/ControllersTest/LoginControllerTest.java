@@ -2,6 +2,7 @@ package com.twu.biblioteca.ControllersTest;
 
 import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
+import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Model.Login;
 import com.twu.biblioteca.Model.LoginData;
 import com.twu.biblioteca.View.AppView;
@@ -69,6 +70,23 @@ public class LoginControllerTest {
         when(loginModel.checkIfLoggedIn()).thenReturn(true);
 
         Assert.assertTrue(loginController.checkIfLoggedIn());
-
     }
+
+    @Test
+    public void shouldBeAbleToLogout() throws UserNotLoggedInException {
+        loginController.logout();
+
+        verify(loginModel).logout();
+    }
+
+    @Test
+    public void shouldNotBeAbleToLogoutIfNotPreviouslyLoggedIn() throws UserNotLoggedInException {
+        doThrow(UserNotLoggedInException.class).when(loginModel).logout();
+
+        loginController.logout();
+
+        verify(appView).displayMessage("You are not currently logged in.");
+    }
+
+
 }
