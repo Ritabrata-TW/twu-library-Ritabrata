@@ -3,6 +3,7 @@ package com.twu.biblioteca.ControllersTest;
 import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
+import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
@@ -95,6 +96,16 @@ public class MoviesControllerTest {
         itemController.checkoutItem(loginController);
 
         verify(appView).displayMessage("You need to be logged in to checkout an item! ");
+    }
+
+    @Test
+    public void shouldBeAbleToNotifyUserIfHeTriesToReturnWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException, BookAlreadyPresentException {
+        when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
+        doThrow(UserNotLoggedInException.class).when(moviesModel).returnItem(1,loginController);
+
+        itemController.returnItem(loginController);
+
+        verify(appView).displayMessage("You need to be logged in to return an item! ");
     }
 
 }
