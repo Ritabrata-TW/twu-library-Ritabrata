@@ -46,7 +46,7 @@ public class Books implements Items {
         checkIfLoggedIn(loginController);
 
         for (Item book : books) {
-            if (book.getNumber().equals(bookNumber) && book.checkoutStatus()) {
+            if (book.getNumber().equals(bookNumber) && book.checkoutStatus() && book.getCheckedOutBy().equals(loginController.loggedInUserId())) {
                 book.returnItem();
                 return;
             }

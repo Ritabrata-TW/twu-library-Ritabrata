@@ -26,9 +26,9 @@ public class Dependencies {
     }
 
     public static Dependencies init() {
-        List<Item> books = Arrays.<Item>asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007, false, null),
-                new Book(101, "Head First Java", "Martin Fowler", 2009, false, null),
-                new Book(102, "Imperial C", "Dennis Ritchie", 1948, false, null));
+        List<Item> books = Arrays.<Item>asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007),
+                new Book(101, "Head First Java", "Martin Fowler", 2009),
+                new Book(102, "Imperial C", "Dennis Ritchie", 1948));
         Books booksModel = new Books(books);
 
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);

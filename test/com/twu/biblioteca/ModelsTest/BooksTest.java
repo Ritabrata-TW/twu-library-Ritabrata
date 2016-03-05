@@ -36,8 +36,8 @@ public class BooksTest {
     @Before
     public void setup() {
         books = new ArrayList<>(5);
-        headFirstDesignPattern = new Book(100, "Head First Design Pattern!", "Martin Fowler", 2007, false, null);
-        headFirstJava = new Book(101, "Head First Java", "Martin Fowler", 2000, false, null);
+        headFirstDesignPattern = new Book(100, "Head First Design Pattern!", "Martin Fowler", 2007);
+        headFirstJava = new Book(101, "Head First Java", "Martin Fowler", 2000);
         books.add(headFirstDesignPattern);
         books.add(headFirstJava);
 
@@ -86,6 +86,7 @@ public class BooksTest {
     @Test
     public void shouldBeAbleToReturnABookThatWasPreviouslyCheckedOut() throws NotFoundException, BookAlreadyPresentException, InvalidInputException, UserNotLoggedInException {
         when(loginController.checkIfLoggedIn()).thenReturn(true);
+        when(loginController.loggedInUserId()).thenReturn("1234-567").thenReturn("1234-567");
         booksModel.checkoutItem(100, loginController);
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
@@ -118,6 +119,17 @@ public class BooksTest {
         booksModel.checkoutItem(100,loginController);
 
         Assert.assertEquals("123-4567",headFirstDesignPattern.getCheckedOutBy());
+    }
+
+    @Test
+    public void shouldNotBeAbleToReturnABookThatWasWithdrawnBySomeoneElse() throws InvalidInputException, UserNotLoggedInException, NotFoundException, BookAlreadyPresentException {
+        expectedException.expect(BookAlreadyPresentException.class);
+
+        when(loginController.checkIfLoggedIn()).thenReturn(true);
+        when(loginController.loggedInUserId()).thenReturn("123-4567").thenReturn("765-4321");
+        booksModel.checkoutItem(100,loginController);
+
+        booksModel.returnItem(100,loginController);
     }
 }
 

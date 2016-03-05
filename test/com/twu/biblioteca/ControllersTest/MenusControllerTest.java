@@ -33,7 +33,7 @@ public class MenusControllerTest {
 
         menuView = mock(MenuView.class);
         books = new ArrayList<Book>(5);
-        books.add(new Book(101, "Head First Design Pattern!", "Martin Fowler", 2007, false, null));
+        books.add(new Book(101, "Head First Design Pattern!", "Martin Fowler", 2007));
 
         appView = mock(AppView.class);
         menuController = new MenusController(menuModel, menuView, appView);
