@@ -62,7 +62,7 @@ public class BooksControllerTest {
     @Test
     public void shouldBeAbleToDisplaySuccessMessageToUserOnSuccessfulReturn() {
         itemController.checkoutItem(loginController);
-        itemController.returnItem();
+        itemController.returnItem(loginController);
 
         verify(appView).displayMessage("Thank you! Enjoy! ");
     }
@@ -110,7 +110,7 @@ public class BooksControllerTest {
         when(itemsView.getItemNumber("Enter the name of the item that you want to return")).thenReturn(1);
         doThrow(new InvalidInputException()).when(booksModel).returnItem(1);
 
-        itemController.returnItem();
+        itemController.returnItem(loginController);
 
         verify(appView).displayMessage("Please select a valid option! ");
     }
@@ -120,11 +120,21 @@ public class BooksControllerTest {
         when(itemsView.getItemNumber("Enter the name of the item that you want to return")).thenReturn(1);
         doThrow(new BookAlreadyPresentException("Book not checked out previusly. ")).when(booksModel).returnItem(1);
 
-        itemController.returnItem();
+        itemController.returnItem(loginController);
 
         verify(appView).displayMessage("That is not a valid item to return.");
 
     }
+//
+//    @Test
+//    public void shouldBeAbleToNotifyUserIfHeTriesToReturnWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException {
+//        when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
+//        when(booksModel.checkoutItem(1, loginController)).thenThrow(UserNotLoggedInException.class);
+//
+//        itemController.checkoutItem(loginController);
+//
+//        verify(appView).displayMessage("You need to be logged in to checkout an item! ");
+//    }
 
 
 }

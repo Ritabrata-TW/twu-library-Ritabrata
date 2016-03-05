@@ -42,7 +42,7 @@ public class ItemController {
         return itemsView.getItemNumber(message);
     }
 
-    public void returnItem() {
+    public void returnItem(LoginController loginController) {
         Integer bookNumber = getItemNumber("Enter the name of the item that you want to return");
 
         try {
