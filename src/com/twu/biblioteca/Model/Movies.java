@@ -1,6 +1,5 @@
 package com.twu.biblioteca.Model;
 
-import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
@@ -59,8 +58,8 @@ public class Movies implements Items {
         throw new BookAlreadyPresentException("This movie doesn't exist in the records");
     }
 
-    public void checkIfLoggedIn(LoginController loginController) throws UserNotLoggedInException {
-        if (!loginController.checkIfLoggedIn())
+    public void checkIfLoggedIn() throws UserNotLoggedInException {
+        if (!loginModel.checkIfLoggedIn())
             throw new UserNotLoggedInException();
     }
 }

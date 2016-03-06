@@ -31,15 +31,6 @@ public class LoginController {
         }
     }
 
-
-    public boolean checkIfLoggedIn() {
-        return loginModel.checkIfLoggedIn();
-    }
-
-    public String loggedInUserId() {
-        return loginModel.loggedInUserId();
-    }
-
     public void logout() {
         try{
             loginModel.logout();

@@ -65,12 +65,6 @@ public class LoginControllerTest {
         verify(appView).displayMessage("Invalid Login details. Please try again.");
     }
 
-    @Test
-    public void shouldBeAbleToCheckIfUserIsLoggedIn() {
-        when(loginModel.checkIfLoggedIn()).thenReturn(true);
-
-        Assert.assertTrue(loginController.checkIfLoggedIn());
-    }
 
     @Test
     public void shouldBeAbleToLogout() throws UserNotLoggedInException {

@@ -1,6 +1,5 @@
 package com.twu.biblioteca.ModelsTest;
 
-import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Model.Login;
@@ -83,7 +82,7 @@ public class MoviesTest {
     public void shouldNotBeAbleToCheckoutOrReturnMoviesIfUserIsNotLoggedIn() throws UserNotLoggedInException {
         expectedException.expect(UserNotLoggedInException.class);
 
-        moviesModel.checkIfLoggedIn(mock(LoginController.class));
+        moviesModel.checkIfLoggedIn();
     }
 
 }

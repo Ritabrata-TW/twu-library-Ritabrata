@@ -109,7 +109,6 @@ public class BooksControllerTest {
     public void shouldBeAbleToWarnUserIfInputIsInvalidDuringReturn() throws NotFoundException, InvalidInputException, UserNotLoggedInException, BookAlreadyPresentException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
         doThrow(new InvalidInputException()).when(booksModel).returnItem(1);
-        when(loginController.checkIfLoggedIn()).thenReturn(true);
 
 
         itemController.returnItem(loginController);
