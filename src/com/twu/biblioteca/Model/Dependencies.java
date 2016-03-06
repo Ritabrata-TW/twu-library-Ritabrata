@@ -26,7 +26,7 @@ public class Dependencies {
     }
 
     public static Dependencies init() {
-        Login loginModel = new Login();
+        Customers loginModel = new Customers();
         List<Item> books = Arrays.<Item>asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007),
                 new Book(101, "Head First Java", "Martin Fowler", 2009),
                 new Book(102, "Imperial C", "Dennis Ritchie", 1948));

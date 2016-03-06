@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.*;
 
-public class LoginViewTest {
+public class CustomersViewTest {
     InputOutputHandler inputOutputHandler;
     LoginView loginView;
 

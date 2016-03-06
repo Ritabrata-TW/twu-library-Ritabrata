@@ -7,7 +7,7 @@ import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
-import com.twu.biblioteca.Model.Login;
+import com.twu.biblioteca.Model.Customers;
 import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,7 +29,7 @@ public class BooksTest {
     Books booksModel;
     Book headFirstDesignPattern;
     Book headFirstJava;
-    Login loginModel;
+    Customers loginModel;
 
     List<Item> books;
 
@@ -41,7 +41,7 @@ public class BooksTest {
         books.add(headFirstDesignPattern);
         books.add(headFirstJava);
 
-        loginModel = mock(Login.class);
+        loginModel = mock(Customers.class);
         inputOutputHandler = mock(InputOutputHandler.class);
         booksModel = new Books(books, loginModel);
     }

@@ -2,18 +2,18 @@ package com.twu.biblioteca.Controller;
 
 import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
-import com.twu.biblioteca.Model.Login;
+import com.twu.biblioteca.Model.Customers;
 import com.twu.biblioteca.Model.LoginData;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.LoginView;
 
 public class LoginController {
-    private Login loginModel;
+    private Customers loginModel;
     private LoginView loginView;
     private AppView appView;
 
 
-    public LoginController(Login loginModel, LoginView loginView, AppView appView) {
+    public LoginController(Customers loginModel, LoginView loginView, AppView appView) {
         this.loginModel = loginModel;
         this.loginView = loginView;
         this.appView = appView;

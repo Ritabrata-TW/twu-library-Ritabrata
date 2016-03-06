@@ -2,7 +2,7 @@ package com.twu.biblioteca.ModelsTest;
 
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
-import com.twu.biblioteca.Model.Login;
+import com.twu.biblioteca.Model.Customers;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
@@ -25,7 +25,7 @@ public class MoviesTest {
     InputOutputHandler inputOutputHandler;
     Movies moviesModel;
     Movie schindlersList;
-    Login loginModel;
+    Customers loginModel;
     Movie swades;
     List<Item> movies;
 
@@ -37,7 +37,7 @@ public class MoviesTest {
         movies.add(schindlersList);
         movies.add(swades);
         inputOutputHandler = mock(InputOutputHandler.class);
-        loginModel = mock(Login.class);
+        loginModel = mock(Customers.class);
         moviesModel = new Movies(movies, loginModel);
     }
 

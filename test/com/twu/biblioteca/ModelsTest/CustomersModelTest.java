@@ -2,7 +2,7 @@ package com.twu.biblioteca.ModelsTest;
 
 import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
-import com.twu.biblioteca.Model.Login;
+import com.twu.biblioteca.Model.Customers;
 import com.twu.biblioteca.Model.LoginData;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,12 +10,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class LoginModelTest {
-    Login loginModel;
+public class CustomersModelTest {
+    Customers loginModel;
 
     @Before
     public void setup() {
-        loginModel = new Login();
+        loginModel = new Customers();
     }
 
     @Test

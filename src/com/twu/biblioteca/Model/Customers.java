@@ -5,13 +5,13 @@ import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 
 import java.util.ArrayList;
 
-public class Login {
+public class Customers {
     private boolean loginStatus;
     private ArrayList<LoginData> userRecords;
     String loggedInUserId;
 
 
-    public Login() {
+    public Customers() {
         loginStatus = false;
         userRecords = new ArrayList<>();
         userRecords.add(new LoginData("123-4567", "abcd"));

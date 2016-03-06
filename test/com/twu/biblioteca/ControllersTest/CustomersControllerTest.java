@@ -3,25 +3,24 @@ package com.twu.biblioteca.ControllersTest;
 import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
-import com.twu.biblioteca.Model.Login;
+import com.twu.biblioteca.Model.Customers;
 import com.twu.biblioteca.Model.LoginData;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.LoginView;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.mockito.Mockito.*;
 
-public class LoginControllerTest {
-    Login loginModel;
+public class CustomersControllerTest {
+    Customers loginModel;
     LoginView loginView;
     LoginController loginController;
     AppView appView;
 
     @Before
     public void setup() {
-        loginModel = mock(Login.class);
+        loginModel = mock(Customers.class);
         loginView = mock(LoginView.class);
         appView = mock(AppView.class);
         loginController = new LoginController(loginModel, loginView, appView);

@@ -12,9 +12,9 @@ import java.util.List;
 public class Books implements Items {
     String welcomeMessage;
     List<Item> books;
-    private Login loginModel;
+    private Customers loginModel;
 
-    public Books(List<Item> books, Login loginModel) {
+    public Books(List<Item> books, Customers loginModel) {
         welcomeMessage = "**** Welcome Customer! We are glad to have you at Books! ****";
         this.books = books;
         this.loginModel = loginModel;

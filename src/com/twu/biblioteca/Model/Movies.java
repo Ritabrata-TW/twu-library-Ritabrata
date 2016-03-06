@@ -10,9 +10,9 @@ import java.util.List;
 
 public class Movies implements Items {
     List<Item> movies;
-    private Login loginModel;
+    private Customers loginModel;
 
-    public Movies(List<Item> movies, Login loginModel) {
+    public Movies(List<Item> movies, Customers loginModel) {
         this.movies = movies;
         this.loginModel = loginModel;
     }
