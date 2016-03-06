@@ -2,7 +2,7 @@ package com.twu.biblioteca.ControllersTest;
 
 import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Controller.ItemController;
-import com.twu.biblioteca.Controller.LoginController;
+import com.twu.biblioteca.Controller.CustomersController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Books;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
@@ -26,7 +26,7 @@ public class BooksControllerTest {
     ItemController itemController;
     Book book;
     AppView appView;
-    LoginController loginController;
+    CustomersController customersController;
 
 
     @Before
@@ -35,7 +35,7 @@ public class BooksControllerTest {
         books = new ArrayList<>(5);
         books.add(book);
         booksModel = mock(Books.class);
-        loginController = mock(LoginController.class);
+        customersController = mock(CustomersController.class);
 
         itemsView = mock(ItemsView.class);
         appView = mock(AppView.class);
@@ -54,15 +54,15 @@ public class BooksControllerTest {
 
     @Test
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckout() {
-        itemController.checkoutItem(loginController);
+        itemController.checkoutItem();
 
         verify(appView).displayMessage("Thank you! Enjoy! ");
     }
 
     @Test
     public void shouldBeAbleToDisplaySuccessMessageToUserOnSuccessfulReturn() {
-        itemController.checkoutItem(loginController);
-        itemController.returnItem(loginController);
+        itemController.checkoutItem();
+        itemController.returnItem();
 
         verify(appView).displayMessage("Thank you! Enjoy! ");
     }
@@ -72,7 +72,7 @@ public class BooksControllerTest {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
         when(booksModel.checkoutItem(1)).thenThrow(new InvalidInputException());
 
-        itemController.checkoutItem(loginController);
+        itemController.checkoutItem();
 
         verify(appView).displayMessage("Please select a valid option! ");
     }
@@ -82,7 +82,7 @@ public class BooksControllerTest {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
         when(booksModel.checkoutItem(1)).thenThrow(new NotFoundException("Book not found!"));
 
-        itemController.checkoutItem(loginController);
+        itemController.checkoutItem();
 
         verify(appView).displayMessage("That item is not available.");
 
@@ -100,7 +100,7 @@ public class BooksControllerTest {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
         when(booksModel.checkoutItem(1)).thenThrow(UserNotLoggedInException.class);
 
-        itemController.checkoutItem(loginController);
+        itemController.checkoutItem();
 
         verify(appView).displayMessage("You need to be logged in to checkout an item! ");
     }
@@ -111,7 +111,7 @@ public class BooksControllerTest {
         doThrow(new InvalidInputException()).when(booksModel).returnItem(1);
 
 
-        itemController.returnItem(loginController);
+        itemController.returnItem();
 
         verify(appView).displayMessage("Please select a valid option! ");
     }
@@ -121,7 +121,7 @@ public class BooksControllerTest {
         when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
         doThrow(new BookAlreadyPresentException("Book not checked out previusly. ")).when(booksModel).returnItem(1);
 
-        itemController.returnItem(loginController);
+        itemController.returnItem();
 
         verify(appView).displayMessage("That is not a valid item to return.");
 
@@ -132,7 +132,7 @@ public class BooksControllerTest {
         when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
         doThrow(UserNotLoggedInException.class).when(booksModel).returnItem(1);
 
-        itemController.returnItem(loginController);
+        itemController.returnItem();
 
         verify(appView).displayMessage("You need to be logged in to return an item! ");
     }

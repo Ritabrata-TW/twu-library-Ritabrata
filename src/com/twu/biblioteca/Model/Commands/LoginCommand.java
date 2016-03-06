@@ -1,19 +1,19 @@
 package com.twu.biblioteca.Model.Commands;
 
-import com.twu.biblioteca.Controller.LoginController;
+import com.twu.biblioteca.Controller.CustomersController;
 
 public class LoginCommand implements Command{
 
-    private LoginController loginController;
+    private CustomersController customersController;
 
-    public LoginCommand(LoginController loginController){
+    public LoginCommand(CustomersController customersController){
 
-        this.loginController = loginController;
+        this.customersController = customersController;
     }
 
     @Override
     public int execute() {
-        loginController.logIn();
+        customersController.logIn();
         return 1;
     }
 }

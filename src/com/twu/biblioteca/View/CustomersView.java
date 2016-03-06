@@ -2,11 +2,11 @@ package com.twu.biblioteca.View;
 
 import com.twu.biblioteca.Model.LoginData;
 
-public class LoginView {
+public class CustomersView {
 
     private InputOutputHandler inputOutputHandler;
 
-    public LoginView(InputOutputHandler inputOutputHandler) {
+    public CustomersView(InputOutputHandler inputOutputHandler) {
 
         this.inputOutputHandler = inputOutputHandler;
     }

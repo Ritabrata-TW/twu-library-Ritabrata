@@ -5,26 +5,26 @@ import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Model.Customers;
 import com.twu.biblioteca.Model.LoginData;
 import com.twu.biblioteca.View.AppView;
-import com.twu.biblioteca.View.LoginView;
+import com.twu.biblioteca.View.CustomersView;
 
-public class LoginController {
-    private Customers loginModel;
-    private LoginView loginView;
+public class CustomersController {
+    private Customers customersModel;
+    private CustomersView customersView;
     private AppView appView;
 
 
-    public LoginController(Customers loginModel, LoginView loginView, AppView appView) {
-        this.loginModel = loginModel;
-        this.loginView = loginView;
+    public CustomersController(Customers customersModel, CustomersView customersView, AppView appView) {
+        this.customersModel = customersModel;
+        this.customersView = customersView;
         this.appView = appView;
     }
 
 
     public void logIn() {
-        LoginData loginData = loginView.inputDetails();
+        LoginData loginData = customersView.inputDetails();
 
         try {
-            loginModel.logIn(loginData);
+            customersModel.logIn(loginData);
             appView.displayMessage("Login Successful!");
         } catch (LoginDetailsInvalidException loginDetailsInvalidException) {
             appView.displayMessage("Invalid Login details. Please try again.");
@@ -33,7 +33,7 @@ public class LoginController {
 
     public void logout() {
         try{
-            loginModel.logout();
+            customersModel.logout();
             appView.displayMessage("You have been logged out! ");
         }catch(UserNotLoggedInException userNotLoggedInException) {
             appView.displayMessage("You are not currently logged in.");

@@ -1,7 +1,7 @@
 package com.twu.biblioteca.CommandsTest;
 
 import com.twu.biblioteca.Controller.ItemController;
-import com.twu.biblioteca.Controller.LoginController;
+import com.twu.biblioteca.Controller.CustomersController;
 import com.twu.biblioteca.Model.Commands.ReturnMovieCommand;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,13 +12,13 @@ public class ReturnMovieCommandTest {
 
     ItemController itemController;
     ReturnMovieCommand returnMovieCommand;
-    LoginController loginController;
+    CustomersController customersController;
 
     @Before
     public void setup() {
         itemController = mock(ItemController.class);
-        loginController = mock(LoginController.class);
-        returnMovieCommand = new ReturnMovieCommand(itemController, loginController);
+        customersController = mock(CustomersController.class);
+        returnMovieCommand = new ReturnMovieCommand(itemController, customersController);
     }
 
     @Test
@@ -27,6 +27,6 @@ public class ReturnMovieCommandTest {
 
         returnMovieCommand.execute();
 
-        verify(itemController).returnItem(loginController);
+        verify(itemController).returnItem();
     }
 }

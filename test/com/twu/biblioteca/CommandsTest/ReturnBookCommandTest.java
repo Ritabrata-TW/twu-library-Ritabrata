@@ -1,7 +1,7 @@
 package com.twu.biblioteca.CommandsTest;
 
 import com.twu.biblioteca.Controller.ItemController;
-import com.twu.biblioteca.Controller.LoginController;
+import com.twu.biblioteca.Controller.CustomersController;
 import com.twu.biblioteca.Model.Commands.ReturnBookCommand;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,14 +11,14 @@ import static org.mockito.Mockito.*;
 public class ReturnBookCommandTest {
 
     ItemController itemController;
-    LoginController loginController;
+    CustomersController customersController;
     ReturnBookCommand returnBookCommand;
 
     @Before
     public void setup() {
         itemController = mock(ItemController.class);
-        loginController = mock(LoginController.class);
-        returnBookCommand = new ReturnBookCommand(itemController, loginController);
+        customersController = mock(CustomersController.class);
+        returnBookCommand = new ReturnBookCommand(itemController, customersController);
     }
 
     @Test
@@ -27,6 +27,6 @@ public class ReturnBookCommandTest {
 
         returnBookCommand.execute();
 
-        verify(itemController).returnItem(loginController);
+        verify(itemController).returnItem();
     }
 }

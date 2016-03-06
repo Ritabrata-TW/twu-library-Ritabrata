@@ -1,6 +1,6 @@
 package com.twu.biblioteca.CommandsTest;
 
-import com.twu.biblioteca.Controller.LoginController;
+import com.twu.biblioteca.Controller.CustomersController;
 import com.twu.biblioteca.Model.Commands.LoginCommand;
 import org.junit.Test;
 
@@ -11,11 +11,11 @@ public class LoginCommandTest {
 
     @Test
     public void shouldBeAbleToLogin() {
-        LoginController loginController = mock(LoginController.class);
-        LoginCommand loginCommand = new LoginCommand(loginController);
+        CustomersController customersController = mock(CustomersController.class);
+        LoginCommand loginCommand = new LoginCommand(customersController);
 
         loginCommand.execute();
 
-        verify(loginController).logIn();
+        verify(customersController).logIn();
     }
 }

@@ -1,12 +1,12 @@
 package com.twu.biblioteca.ControllersTest;
 
-import com.twu.biblioteca.Controller.LoginController;
+import com.twu.biblioteca.Controller.CustomersController;
 import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Model.Customers;
 import com.twu.biblioteca.Model.LoginData;
 import com.twu.biblioteca.View.AppView;
-import com.twu.biblioteca.View.LoginView;
+import com.twu.biblioteca.View.CustomersView;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,41 +14,41 @@ import static org.mockito.Mockito.*;
 
 public class CustomersControllerTest {
     Customers loginModel;
-    LoginView loginView;
-    LoginController loginController;
+    CustomersView customersView;
+    CustomersController customersController;
     AppView appView;
 
     @Before
     public void setup() {
         loginModel = mock(Customers.class);
-        loginView = mock(LoginView.class);
+        customersView = mock(CustomersView.class);
         appView = mock(AppView.class);
-        loginController = new LoginController(loginModel, loginView, appView);
+        customersController = new CustomersController(loginModel, customersView, appView);
     }
 
     @Test
     public void shouldBeAbleToAskUserForHisDetails() throws LoginDetailsInvalidException {
-        loginController.logIn();
+        customersController.logIn();
 
-        verify(loginView).inputDetails();
+        verify(customersView).inputDetails();
     }
 
     @Test
     public void shouldBeAbleToLogInUserOnRecieveingDetails() throws LoginDetailsInvalidException {
         LoginData loginData = new LoginData("ritabrata1808@live.com", "abcd");
-        when(loginView.inputDetails()).thenReturn(loginData);
+        when(customersView.inputDetails()).thenReturn(loginData);
 
-        loginController.logIn();
+        customersController.logIn();
 
         verify(loginModel).logIn(loginData);
     }
 
     @Test
     public void shouldBeAbleToDisplaySuccessMessageOnSuccessfulLogin() throws LoginDetailsInvalidException {
-        when(loginView.inputDetails()).thenReturn(new LoginData("abcd", "abcd"));
+        when(customersView.inputDetails()).thenReturn(new LoginData("abcd", "abcd"));
         doNothing().when(loginModel).logIn(new LoginData("abcd", "abcd"));
 
-        loginController.logIn();
+        customersController.logIn();
 
         verify(appView).displayMessage("Login Successful!");
 
@@ -56,10 +56,10 @@ public class CustomersControllerTest {
 
     @Test
     public void shouldBeAbleToNotifyUserOnInvalidInputOfData() throws LoginDetailsInvalidException {
-        when(loginView.inputDetails()).thenReturn(new LoginData("abcd", "abcd"));
+        when(customersView.inputDetails()).thenReturn(new LoginData("abcd", "abcd"));
         doThrow(LoginDetailsInvalidException.class).when(loginModel).logIn(new LoginData("abcd", "abcd"));
 
-        loginController.logIn();
+        customersController.logIn();
 
         verify(appView).displayMessage("Invalid Login details. Please try again.");
     }
@@ -67,7 +67,7 @@ public class CustomersControllerTest {
 
     @Test
     public void shouldBeAbleToLogout() throws UserNotLoggedInException {
-        loginController.logout();
+        customersController.logout();
 
         verify(loginModel).logout();
         verify(appView).displayMessage("You have been logged out! ");
@@ -77,7 +77,7 @@ public class CustomersControllerTest {
     public void shouldNotBeAbleToLogoutIfNotPreviouslyLoggedIn() throws UserNotLoggedInException {
         doThrow(UserNotLoggedInException.class).when(loginModel).logout();
 
-        loginController.logout();
+        customersController.logout();
 
         verify(appView).displayMessage("You are not currently logged in.");
     }

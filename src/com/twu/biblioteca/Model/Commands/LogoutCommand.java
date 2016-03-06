@@ -1,17 +1,17 @@
 package com.twu.biblioteca.Model.Commands;
 
-import com.twu.biblioteca.Controller.LoginController;
+import com.twu.biblioteca.Controller.CustomersController;
 
 public class LogoutCommand implements Command {
-    private LoginController loginController;
+    private CustomersController customersController;
 
-    public LogoutCommand(LoginController loginController){
-        this.loginController = loginController;
+    public LogoutCommand(CustomersController customersController){
+        this.customersController = customersController;
     }
 
     @Override
     public int execute() {
-        loginController.logout();
+        customersController.logout();
         return 1;
     }
 }

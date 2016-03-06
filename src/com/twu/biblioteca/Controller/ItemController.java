@@ -23,7 +23,7 @@ public class ItemController {
         itemsView.displayItems(itemsModel.getItems());
     }
 
-    public void checkoutItem(LoginController loginController) {
+    public void checkoutItem() {
         int bookNumber = getItemNumber("Enter the number of the item that you want to checkout");
 
         try {
@@ -42,7 +42,7 @@ public class ItemController {
         return itemsView.getItemNumber(message);
     }
 
-    public void returnItem(LoginController loginController) {
+    public void returnItem() {
         Integer bookNumber = getItemNumber("Enter the number of the item that you want to return");
 
         try {

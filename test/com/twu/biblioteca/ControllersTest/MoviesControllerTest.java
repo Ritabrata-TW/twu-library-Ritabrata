@@ -1,7 +1,7 @@
 package com.twu.biblioteca.ControllersTest;
 
 import com.twu.biblioteca.Controller.ItemController;
-import com.twu.biblioteca.Controller.LoginController;
+import com.twu.biblioteca.Controller.CustomersController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
@@ -26,7 +26,7 @@ public class MoviesControllerTest {
     ItemController itemController;
     Movie movie;
     AppView appView;
-    LoginController loginController;
+    CustomersController customersController;
 
 
     @Before
@@ -36,7 +36,7 @@ public class MoviesControllerTest {
         movies.add(movie);
         moviesModel = mock(Movies.class);
         itemsView = mock(ItemsView.class);
-        loginController = mock(LoginController.class);
+        customersController = mock(CustomersController.class);
 
         appView = mock(AppView.class);
         itemController = new ItemController(moviesModel, itemsView, appView);
@@ -54,7 +54,7 @@ public class MoviesControllerTest {
 
     @Test
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckoutOfAMovie() {
-        itemController.checkoutItem(loginController);
+        itemController.checkoutItem();
 
         verify(appView).displayMessage("Thank you! Enjoy! ");
     }
@@ -64,7 +64,7 @@ public class MoviesControllerTest {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
         when(moviesModel.checkoutItem(100)).thenThrow(new InvalidInputException());
 
-        itemController.checkoutItem(loginController);
+        itemController.checkoutItem();
 
         verify(appView).displayMessage("Please select a valid option! ");
     }
@@ -74,7 +74,7 @@ public class MoviesControllerTest {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
         when(moviesModel.checkoutItem(100)).thenThrow(new NotFoundException("Movie not found"));
 
-        itemController.checkoutItem(loginController);
+        itemController.checkoutItem();
 
         verify(appView).displayMessage("That item is not available.");
     }
@@ -93,7 +93,7 @@ public class MoviesControllerTest {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
         when(moviesModel.checkoutItem(1)).thenThrow(UserNotLoggedInException.class);
 
-        itemController.checkoutItem(loginController);
+        itemController.checkoutItem();
 
         verify(appView).displayMessage("You need to be logged in to checkout an item! ");
     }
@@ -103,7 +103,7 @@ public class MoviesControllerTest {
         when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
         doThrow(UserNotLoggedInException.class).when(moviesModel).returnItem(1);
 
-        itemController.returnItem(loginController);
+        itemController.returnItem();
 
         verify(appView).displayMessage("You need to be logged in to return an item! ");
     }
