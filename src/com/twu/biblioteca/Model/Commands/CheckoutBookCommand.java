@@ -12,7 +12,7 @@ public class CheckoutBookCommand implements Command {
 
     @Override
     public int execute() {
-        itemController.checkoutItem();
+        itemController.checkoutItem("book");
         return 1;
     }
 }

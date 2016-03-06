@@ -12,12 +12,11 @@ public class CheckoutBookCommandTest {
     @Test
     public void shouldBeAbleToCheckoutBookWhenCommandIsExecuted() {
         ItemController booksController = mock(ItemController.class);
-        CustomersController customersController = mock(CustomersController.class);
         CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(booksController);
         when(booksController.getItemNumber("Enter the number of the book that you want to checkout")).thenReturn(1);
 
         checkoutBookCommand.execute();
 
-        verify(booksController).checkoutItem();
+        verify(booksController).checkoutItem("book");
     }
 }

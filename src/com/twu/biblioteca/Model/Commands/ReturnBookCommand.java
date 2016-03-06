@@ -12,7 +12,7 @@ public class ReturnBookCommand implements Command {
 
     @Override
     public int execute() {
-        itemController.returnItem();
+        itemController.returnItem("book");
         return 1;
     }
 }

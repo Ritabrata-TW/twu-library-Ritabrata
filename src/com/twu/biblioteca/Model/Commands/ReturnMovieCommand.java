@@ -11,7 +11,7 @@ public class ReturnMovieCommand implements Command{
 
     @Override
     public int execute() {
-        itemController.returnItem();
+        itemController.returnItem("movie");
         return 1;
     }
 }

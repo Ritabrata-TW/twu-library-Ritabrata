@@ -54,58 +54,58 @@ public class MoviesControllerTest {
 
     @Test
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckoutOfAMovie() {
-        itemController.checkoutItem();
+        itemController.checkoutItem("movie");
 
-        verify(appView).displayMessage("Thank you! Enjoy! ");
+        verify(appView).displayMessage("Thank you! Enjoy the movie! ");
     }
 
     @Test
     public void shouldBeAbleToWarnInvalidInputToUser() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
+        when(itemsView.getItemNumber("Enter the number of the movie that you want to checkout")).thenReturn(100);
         when(moviesModel.checkoutItem(100)).thenThrow(new InvalidInputException());
 
-        itemController.checkoutItem();
+        itemController.checkoutItem("movie");
 
         verify(appView).displayMessage("Please select a valid option! ");
     }
 
     @Test
     public void shouldBeAbleToWarnInvalidInputToUserIfMovieIsNotFound() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
+        when(itemsView.getItemNumber("Enter the number of the movie that you want to checkout")).thenReturn(100);
         when(moviesModel.checkoutItem(100)).thenThrow(new NotFoundException("Movie not found"));
 
-        itemController.checkoutItem();
+        itemController.checkoutItem("movie");
 
-        verify(appView).displayMessage("That item is not available.");
+        verify(appView).displayMessage("That movie is not available.");
     }
 
     @Test
     public void shouldBeAbleToGetMovieNumberForCheckoutAndReturn() {
-        when(itemsView.getItemNumber("Enter the number of the book you want to checkout. ")).thenReturn(1);
+        when(itemsView.getItemNumber("Enter the number of the movie you want to checkout. ")).thenReturn(1);
 
-        int choice = itemController.getItemNumber("Enter the number of the book you want to checkout. ");
+        int choice = itemController.getItemNumber("Enter the number of the movie you want to checkout. ");
 
         Assert.assertEquals(1, choice);
     }
 
     @Test
     public void shouldBeAbleToNotifyUserIfHeTriesToCheckoutWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException {
-        when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
+        when(itemsView.getItemNumber("Enter the number of the movie that you want to checkout")).thenReturn(1);
         when(moviesModel.checkoutItem(1)).thenThrow(UserNotLoggedInException.class);
 
-        itemController.checkoutItem();
+        itemController.checkoutItem("movie");
 
-        verify(appView).displayMessage("You need to be logged in to checkout an item! ");
+        verify(appView).displayMessage("You need to be logged in to checkout a movie");
     }
 
     @Test
     public void shouldBeAbleToNotifyUserIfHeTriesToReturnWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException, BookAlreadyPresentException {
-        when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
+        when(itemsView.getItemNumber("Enter the number of the movie that you want to return")).thenReturn(1);
         doThrow(UserNotLoggedInException.class).when(moviesModel).returnItem(1);
 
-        itemController.returnItem();
+        itemController.returnItem("movie");
 
-        verify(appView).displayMessage("You need to be logged in to return an item! ");
+        verify(appView).displayMessage("You need to be logged in to return a movie");
     }
 
 }

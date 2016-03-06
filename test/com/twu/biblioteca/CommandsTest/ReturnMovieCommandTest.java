@@ -22,11 +22,11 @@ public class ReturnMovieCommandTest {
     }
 
     @Test
-    public void shouldBeAbleReturnBookWhenCommandIsExecuted() {
-        when(itemController.getItemNumber("Enter the name of the item that you want to return")).thenReturn(1);
+    public void shouldBeAbleReturnMoviwWhenCommandIsExecuted() {
+        when(itemController.getItemNumber("Enter the name of the movie that you want to return")).thenReturn(1);
 
         returnMovieCommand.execute();
 
-        verify(itemController).returnItem();
+        verify(itemController).returnItem("movie");
     }
 }

@@ -27,6 +27,6 @@ public class ReturnBookCommandTest {
 
         returnBookCommand.execute();
 
-        verify(itemController).returnItem();
+        verify(itemController).returnItem("book");
     }
 }
