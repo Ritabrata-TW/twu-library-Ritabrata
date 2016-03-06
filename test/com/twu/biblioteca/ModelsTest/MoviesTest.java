@@ -3,6 +3,7 @@ package com.twu.biblioteca.ModelsTest;
 import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
+import com.twu.biblioteca.Model.Login;
 import com.twu.biblioteca.Movie;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
@@ -25,20 +26,20 @@ public class MoviesTest {
     InputOutputHandler inputOutputHandler;
     Movies moviesModel;
     Movie schindlersList;
-    LoginController loginController;
+    Login loginModel;
     Movie swades;
     List<Item> movies;
 
     @Before
     public void setup() {
         movies = new ArrayList<Item>(5);
-        schindlersList = new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false, null);
-        swades = new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false, null);
+        schindlersList = new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10);
+        swades = new Movie(2, "Swades", 2000, "Rakesh Roshan", 8);
         movies.add(schindlersList);
         movies.add(swades);
         inputOutputHandler = mock(InputOutputHandler.class);
-        loginController = mock(LoginController.class);
-        moviesModel = new Movies(movies);
+        loginModel = mock(Login.class);
+        moviesModel = new Movies(movies, loginModel);
     }
 
     @Test
@@ -48,8 +49,8 @@ public class MoviesTest {
 
     @Test
     public void shouldBeAbleToCheckoutAMovie() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginController.checkIfLoggedIn()).thenReturn(true);
-        moviesModel.checkoutItem(1, loginController);
+        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        moviesModel.checkoutItem(1);
 
         Assert.assertTrue(schindlersList.checkoutStatus());
     }
@@ -59,23 +60,23 @@ public class MoviesTest {
 
     @Test
     public void shouldNotBeAbleToCheckoutSameMovieTwice() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginController.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.checkIfLoggedIn()).thenReturn(true);
 
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This movie doesn't exist in the records");
 
-        moviesModel.checkoutItem(100, loginController);
-        moviesModel.checkoutItem(100, loginController);
+        moviesModel.checkoutItem(100);
+        moviesModel.checkoutItem(100);
     }
 
     @Test
     public void shouldThrowExceptionIfMovieNumberEnteredIsNotPresentInLibrary() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginController.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.checkIfLoggedIn()).thenReturn(true);
 
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This movie doesn't exist in the records");
 
-        moviesModel.checkoutItem(109, loginController);
+        moviesModel.checkoutItem(109);
     }
 
     @Test

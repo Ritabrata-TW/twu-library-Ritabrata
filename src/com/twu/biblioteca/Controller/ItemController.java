@@ -27,7 +27,7 @@ public class ItemController {
         int bookNumber = getItemNumber("Enter the number of the item that you want to checkout");
 
         try {
-            itemsModel.checkoutItem(bookNumber, loginController);
+            itemsModel.checkoutItem(bookNumber);
             appView.displayMessage("Thank you! Enjoy! ");
         } catch (NotFoundException bookNotfoundException) {
             appView.displayMessage("That item is not available.");
@@ -46,7 +46,7 @@ public class ItemController {
         Integer bookNumber = getItemNumber("Enter the number of the item that you want to return");
 
         try {
-            itemsModel.returnItem(bookNumber, loginController);
+            itemsModel.returnItem(bookNumber);
             appView.displayMessage("Thank you for returning.");
         } catch (BookAlreadyPresentException bookAlreadyPresentException) {
             appView.displayMessage("That is not a valid item to return.");

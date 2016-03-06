@@ -1,6 +1,5 @@
 package com.twu.biblioteca.Model;
 
-import com.twu.biblioteca.Controller.LoginController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
@@ -13,10 +12,12 @@ import java.util.List;
 public class Books implements Items {
     String welcomeMessage;
     List<Item> books;
+    private Login loginModel;
 
-    public Books(List<Item> books) {
+    public Books(List<Item> books, Login loginModel) {
         welcomeMessage = "**** Welcome Customer! We are glad to have you at Books! ****";
         this.books = books;
+        this.loginModel = loginModel;
     }
 
     @Override
@@ -25,13 +26,13 @@ public class Books implements Items {
     }
 
     @Override
-    public Item checkoutItem(int number, LoginController loginController) throws NotFoundException, InvalidInputException, UserNotLoggedInException {
+    public Item checkoutItem(int number) throws NotFoundException, InvalidInputException, UserNotLoggedInException {
         isInputValid(number);
-        checkIfLoggedIn(loginController);
+        loginModel.checkIfLoggedIn();
 
         for (Item book : books) {
             if (book.getNumber().equals(number) && !book.checkoutStatus()) {
-                book.checkout(loginController.loggedInUserId());
+                book.checkout(loginModel.loggedInUserId());
                 return book;
             }
 
@@ -41,12 +42,12 @@ public class Books implements Items {
 
 
     @Override
-    public void returnItem(Integer bookNumber, LoginController loginController) throws InvalidInputException, BookAlreadyPresentException, UserNotLoggedInException {
+    public void returnItem(Integer bookNumber) throws InvalidInputException, BookAlreadyPresentException, UserNotLoggedInException {
         isInputValid(bookNumber);
-        checkIfLoggedIn(loginController);
+        loginModel.checkIfLoggedIn();
 
         for (Item book : books) {
-            if (book.getNumber().equals(bookNumber) && book.checkoutStatus() && book.getCheckedOutBy().equals(loginController.loggedInUserId())) {
+            if (book.getNumber().equals(bookNumber) && book.checkoutStatus() && book.getCheckedOutBy().equals(loginModel.loggedInUserId())) {
                 book.returnItem();
                 return;
             }
@@ -61,8 +62,8 @@ public class Books implements Items {
         }
     }
 
-    public void checkIfLoggedIn(LoginController loginController) throws UserNotLoggedInException {
-        if (!loginController.checkIfLoggedIn())
+    public void checkIfLoggedIn() throws UserNotLoggedInException {
+        if (!loginModel.checkIfLoggedIn())
             throw new UserNotLoggedInException();
     }
 }

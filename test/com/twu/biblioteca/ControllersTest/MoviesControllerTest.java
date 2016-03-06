@@ -31,7 +31,7 @@ public class MoviesControllerTest {
 
     @Before
     public void setup() {
-        movie = new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false, null);
+        movie = new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10);
         movies = new ArrayList<Item>();
         movies.add(movie);
         moviesModel = mock(Movies.class);
@@ -62,7 +62,7 @@ public class MoviesControllerTest {
     @Test
     public void shouldBeAbleToWarnInvalidInputToUser() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
-        when(moviesModel.checkoutItem(100, loginController)).thenThrow(new InvalidInputException());
+        when(moviesModel.checkoutItem(100)).thenThrow(new InvalidInputException());
 
         itemController.checkoutItem(loginController);
 
@@ -72,7 +72,7 @@ public class MoviesControllerTest {
     @Test
     public void shouldBeAbleToWarnInvalidInputToUserIfMovieIsNotFound() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(100);
-        when(moviesModel.checkoutItem(100, loginController)).thenThrow(new NotFoundException("Movie not found"));
+        when(moviesModel.checkoutItem(100)).thenThrow(new NotFoundException("Movie not found"));
 
         itemController.checkoutItem(loginController);
 
@@ -91,7 +91,7 @@ public class MoviesControllerTest {
     @Test
     public void shouldBeAbleToNotifyUserIfHeTriesToCheckoutWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to checkout")).thenReturn(1);
-        when(moviesModel.checkoutItem(1, loginController)).thenThrow(UserNotLoggedInException.class);
+        when(moviesModel.checkoutItem(1)).thenThrow(UserNotLoggedInException.class);
 
         itemController.checkoutItem(loginController);
 
@@ -101,7 +101,7 @@ public class MoviesControllerTest {
     @Test
     public void shouldBeAbleToNotifyUserIfHeTriesToReturnWithoutLoggingIn() throws InvalidInputException, UserNotLoggedInException, NotFoundException, BookAlreadyPresentException {
         when(itemsView.getItemNumber("Enter the number of the item that you want to return")).thenReturn(1);
-        doThrow(UserNotLoggedInException.class).when(moviesModel).returnItem(1, loginController);
+        doThrow(UserNotLoggedInException.class).when(moviesModel).returnItem(1);
 
         itemController.returnItem(loginController);
 

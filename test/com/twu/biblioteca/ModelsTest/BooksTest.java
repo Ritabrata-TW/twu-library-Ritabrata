@@ -1,13 +1,13 @@
 package com.twu.biblioteca.ModelsTest;
 
-import com.twu.biblioteca.Controller.LoginController;
+import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Books;
-import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
 import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
+import com.twu.biblioteca.Model.Login;
 import com.twu.biblioteca.View.InputOutputHandler;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,7 +29,7 @@ public class BooksTest {
     Books booksModel;
     Book headFirstDesignPattern;
     Book headFirstJava;
-    LoginController loginController;
+    Login loginModel;
 
     List<Item> books;
 
@@ -41,9 +41,9 @@ public class BooksTest {
         books.add(headFirstDesignPattern);
         books.add(headFirstJava);
 
-        loginController = mock(LoginController.class);
+        loginModel = mock(Login.class);
         inputOutputHandler = mock(InputOutputHandler.class);
-        booksModel = new Books(books);
+        booksModel = new Books(books, loginModel);
     }
 
     @Test
@@ -53,8 +53,8 @@ public class BooksTest {
 
     @Test
     public void shouldBeAbleToCheckoutABook() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginController.checkIfLoggedIn()).thenReturn(true);
-        booksModel.checkoutItem(100, loginController);
+        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        booksModel.checkoutItem(100);
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
 
@@ -65,33 +65,33 @@ public class BooksTest {
 
     @Test
     public void shouldNotBeAbleToCheckoutSameBookTwice() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginController.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.checkIfLoggedIn()).thenReturn(true);
 
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
 
-        booksModel.checkoutItem(100, loginController);
-        booksModel.checkoutItem(100, loginController);
+        booksModel.checkoutItem(100);
+        booksModel.checkoutItem(100);
     }
 
     @Test
     public void shouldThrowExceptionIfBookNameEnteredIsNotPresentInLibrary() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginController.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.checkIfLoggedIn()).thenReturn(true);
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
 
-        booksModel.checkoutItem(109, loginController);
+        booksModel.checkoutItem(109);
     }
 
     @Test
     public void shouldBeAbleToReturnABookThatWasPreviouslyCheckedOut() throws NotFoundException, BookAlreadyPresentException, InvalidInputException, UserNotLoggedInException {
-        when(loginController.checkIfLoggedIn()).thenReturn(true);
-        when(loginController.loggedInUserId()).thenReturn("1234-567").thenReturn("1234-567");
-        booksModel.checkoutItem(100, loginController);
+        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.loggedInUserId()).thenReturn("1234-567").thenReturn("1234-567");
+        booksModel.checkoutItem(100);
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
 
-        booksModel.returnItem(100, loginController);
+        booksModel.returnItem(100);
 
         Assert.assertFalse(headFirstDesignPattern.checkoutStatus());
     }
@@ -100,23 +100,23 @@ public class BooksTest {
     public void shouldNotBeAbleToReturnABookThatWasNotPreviouslyCheckedOut() throws BookAlreadyPresentException, InvalidInputException, NotFoundException, UserNotLoggedInException {
         expectedException.expect(BookAlreadyPresentException.class);
         expectedException.expectMessage("That is not a valid book to return.");
-        when(loginController.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.checkIfLoggedIn()).thenReturn(true);
 
-        booksModel.returnItem(100, loginController);
+        booksModel.returnItem(100);
     }
 
     @Test
     public void shouldNotBeAbleToCheckoutOrReturnBookIfUserIsNotLoggedIn() throws UserNotLoggedInException {
         expectedException.expect(UserNotLoggedInException.class);
 
-        booksModel.checkIfLoggedIn(mock(LoginController.class));
+        booksModel.checkIfLoggedIn();
     }
 
     @Test
     public void shouldBeAbleToStoreLibraryNumberOfUserWhenHeChecksOutABook() throws InvalidInputException, UserNotLoggedInException, NotFoundException {
-        when(loginController.checkIfLoggedIn()).thenReturn(true);
-        when(loginController.loggedInUserId()).thenReturn("123-4567");
-        booksModel.checkoutItem(100,loginController);
+        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.loggedInUserId()).thenReturn("123-4567");
+        booksModel.checkoutItem(100);
 
         Assert.assertEquals("123-4567",headFirstDesignPattern.getCheckedOutBy());
     }
@@ -125,11 +125,11 @@ public class BooksTest {
     public void shouldNotBeAbleToReturnABookThatWasWithdrawnBySomeoneElse() throws InvalidInputException, UserNotLoggedInException, NotFoundException, BookAlreadyPresentException {
         expectedException.expect(BookAlreadyPresentException.class);
 
-        when(loginController.checkIfLoggedIn()).thenReturn(true);
-        when(loginController.loggedInUserId()).thenReturn("123-4567").thenReturn("765-4321");
-        booksModel.checkoutItem(100,loginController);
+        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.loggedInUserId()).thenReturn("123-4567").thenReturn("765-4321");
+        booksModel.checkoutItem(100);
 
-        booksModel.returnItem(100,loginController);
+        booksModel.returnItem(100);
     }
 }
 

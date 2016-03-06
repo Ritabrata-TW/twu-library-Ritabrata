@@ -23,8 +23,8 @@ public class MoviesViewTest {
     public void setup() {
         inputOutputHandler = mock(InputOutputHandler.class);
         movies = new ArrayList<Item>();
-        schindlersList = new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false, null);
-        swades = new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false, null);
+        schindlersList = new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10);
+        swades = new Movie(2, "Swades", 2000, "Rakesh Roshan", 8);
         movies.add(schindlersList);
         movies.add(swades);
         itemsView = new ItemsView(inputOutputHandler);
@@ -40,7 +40,7 @@ public class MoviesViewTest {
 
     @Test
     public void checkedOutBooksShouldNotBeDisplayedToTheUser() {
-        Movie fightClub = new Movie(3, "FightClub", 1999, "Brad Pitt", 10, true, null);
+        Movie fightClub = new Movie(3, "FightClub", 1999, "Brad Pitt", 10);
         movies.add(fightClub);
 
         itemsView.displayItems(movies);

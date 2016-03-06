@@ -10,14 +10,14 @@ public class Movie implements Item {
     Boolean checkoutStatus;
     private String checkedOutBy;
 
-    public Movie(int serialNumber, String name, int year, String director, float rating, Boolean checkoutStatus, String checkedOutBy) {
+    public Movie(int serialNumber, String name, int year, String director, float rating) {
         this.serialNumber = serialNumber;
         this.name = name;
         this.year = year;
         this.director = director;
         this.rating = rating;
-        this.checkoutStatus = checkoutStatus;
-        this.checkedOutBy = checkedOutBy;
+        this.checkoutStatus = false;
+        this.checkedOutBy = null;
     }
 
     @Override

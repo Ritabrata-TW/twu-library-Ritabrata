@@ -26,10 +26,11 @@ public class Dependencies {
     }
 
     public static Dependencies init() {
+        Login loginModel = new Login();
         List<Item> books = Arrays.<Item>asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007),
                 new Book(101, "Head First Java", "Martin Fowler", 2009),
                 new Book(102, "Imperial C", "Dennis Ritchie", 1948));
-        Books booksModel = new Books(books);
+        Books booksModel = new Books(books, loginModel);
 
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
         ItemsView itemsView = new ItemsView(inputOutputHandler);
@@ -42,10 +43,9 @@ public class Dependencies {
         DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(itemController);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
         ExitCommand exitCommand = new ExitCommand();
-        Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10, false, null), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8, false, null)));
+        Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8)), loginModel );
         ItemController moviesController = new ItemController(movies, itemsView, appView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
-        Login loginModel = new Login();
         LoginView loginView = new LoginView(inputOutputHandler);
         LoginController loginController = new LoginController(loginModel, loginView, appView);
         LoginCommand loginCommand = new LoginCommand(loginController);
