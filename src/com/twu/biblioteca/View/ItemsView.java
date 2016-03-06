@@ -12,10 +12,7 @@ public class ItemsView {
     }
 
     public void displayItems(List<Item> items) {
-        for (Item item : items) {
-            if (!item.checkoutStatus())
-                inputOutputHandler.writeMessage(item.toString());
-        }
+        items.stream().filter(item -> !item.checkoutStatus()).forEach(item -> inputOutputHandler.writeMessage(item.toString()));
     }
 
     public Integer getItemNumber(String message) {

@@ -17,6 +17,6 @@ public class CustomersView {
         inputOutputHandler.writeMessage("Please enter your password.");
         String password = inputOutputHandler.getString();
 
-        return new LoginData(username,password);
+        return new LoginData(username, password);
     }
 }

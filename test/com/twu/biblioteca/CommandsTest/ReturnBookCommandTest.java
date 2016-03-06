@@ -18,7 +18,7 @@ public class ReturnBookCommandTest {
     public void setup() {
         itemController = mock(ItemController.class);
         customersController = mock(CustomersController.class);
-        returnBookCommand = new ReturnBookCommand(itemController, customersController);
+        returnBookCommand = new ReturnBookCommand(itemController);
     }
 
     @Test

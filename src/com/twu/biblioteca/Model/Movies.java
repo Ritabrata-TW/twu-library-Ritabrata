@@ -10,11 +10,11 @@ import java.util.List;
 
 public class Movies implements Items {
     List<Item> movies;
-    private Customers loginModel;
+    private Customers customersModel;
 
-    public Movies(List<Item> movies, Customers loginModel) {
+    public Movies(List<Item> movies, Customers customersModel) {
         this.movies = movies;
-        this.loginModel = loginModel;
+        this.customersModel = customersModel;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class Movies implements Items {
 
     @Override
     public Item checkoutItem(int movieNumber) throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        loginModel.checkIfLoggedIn();
+        customersModel.checkIfLoggedIn();
 
         if (movieNumber == -1) {
             throw new InvalidInputException();
@@ -32,7 +32,7 @@ public class Movies implements Items {
 
         for (Item movie : movies) {
             if (movie.getNumber() == movieNumber && !movie.checkoutStatus()) {
-                movie.checkout(loginModel.loggedInUserId());
+                movie.checkout(customersModel.loggedInUserId());
                 return movie;
             }
 
@@ -42,7 +42,7 @@ public class Movies implements Items {
 
     @Override
     public void returnItem(Integer movieNumber) throws InvalidInputException, BookAlreadyPresentException, UserNotLoggedInException {
-        loginModel.checkIfLoggedIn();
+        customersModel.checkIfLoggedIn();
 
         if (movieNumber == -1) {
             throw new InvalidInputException();
@@ -59,7 +59,7 @@ public class Movies implements Items {
     }
 
     public void checkIfLoggedIn() throws UserNotLoggedInException {
-        if (!loginModel.checkIfLoggedIn())
+        if (!customersModel.checkIfLoggedIn())
             throw new UserNotLoggedInException();
     }
 }

@@ -18,7 +18,7 @@ public class Dependencies {
     private final HashMap<Class<?>, Object> objects;
 
     public Dependencies() {
-        objects = new HashMap<Class<?>, Object>();
+        objects = new HashMap<>();
     }
 
     public void register(Class clazz, Object dependency) {
@@ -51,8 +51,8 @@ public class Dependencies {
         LoginCommand loginCommand = new LoginCommand(customersController);
         CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(itemController);
         CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController);
-        ReturnBookCommand returnBookCommand = new ReturnBookCommand(itemController, customersController);
-        ReturnMovieCommand returnMovieCommand = new ReturnMovieCommand(moviesController, customersController);
+        ReturnBookCommand returnBookCommand = new ReturnBookCommand(itemController);
+        ReturnMovieCommand returnMovieCommand = new ReturnMovieCommand(moviesController);
         LogoutCommand logoutCommand = new LogoutCommand(customersController);
 
         Dependencies dependencies = new Dependencies();

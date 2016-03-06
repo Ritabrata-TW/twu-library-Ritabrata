@@ -7,7 +7,7 @@ public class CommandFactory {
     Map<Integer, Command> choiceCommandMap;
 
     public CommandFactory() {
-        choiceCommandMap = new HashMap<Integer, Command>();
+        choiceCommandMap = new HashMap();
     }
 
     public void register(Integer choice, Command command) {
