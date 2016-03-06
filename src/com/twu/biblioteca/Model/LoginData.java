@@ -26,4 +26,8 @@ public class LoginData {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
+
+    public String getPassword() {
+        return password;
+    }
 }

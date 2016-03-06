@@ -21,7 +21,7 @@ public class Customers {
     }
 
     public void logIn(LoginData loginData) throws LoginDetailsInvalidException {
-        if (customerRecords.containsKey(loginData.libraryNumber) && customerRecords.get(loginData.libraryNumber).getPassword().equals(loginData.password)) {
+        if (customerRecords.containsKey(loginData.libraryNumber) && customerRecords.get(loginData.libraryNumber).authenticate(loginData)) {
             loginStatus = true;
             loggedInUserId = loginData.libraryNumber;
             return;

@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.Model.LoginData;
+
 public class Customer {
     String libraryNumber;
     String password;
@@ -26,5 +28,12 @@ public class Customer {
     @Override
     public String toString() {
         return name + " " + emailId + " " + number;
+    }
+
+    public boolean authenticate(LoginData loginData) {
+        if(this.password.equals(loginData.getPassword()))
+            return true;
+
+        return false;
     }
 }
