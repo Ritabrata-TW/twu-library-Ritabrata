@@ -1,24 +1,27 @@
 package com.twu.biblioteca.Model;
 
+import com.twu.biblioteca.Customer;
 import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Customers {
     private boolean loginStatus;
-    private ArrayList<LoginData> userRecords;
+    private Map<String,Customer> customerRecords;
     String loggedInUserId;
 
 
     public Customers() {
         loginStatus = false;
-        userRecords = new ArrayList<>();
-        userRecords.add(new LoginData("123-4567", "abcd"));
+        customerRecords = new HashMap<>();
+        customerRecords.put("123-4567",new Customer("123-4567","abcd","Ritabrata Moitra","rmoitra@thoughtworks.com","8013976041"));
+        customerRecords.put("111-2222", new Customer("111-2222", "1234", "Narasimha Prasad", "nprasadd@thoughtworks.com","1234567890"));
     }
 
     public void logIn(LoginData loginData) throws LoginDetailsInvalidException {
-        if (userRecords.contains(loginData)) {
+        if (customerRecords.containsKey(loginData.libraryNumber) && customerRecords.get(loginData.libraryNumber).getPassword().equals(loginData.password)) {
             loginStatus = true;
             loggedInUserId = loginData.libraryNumber;
             return;
