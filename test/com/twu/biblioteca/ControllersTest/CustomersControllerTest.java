@@ -83,7 +83,7 @@ public class CustomersControllerTest {
     }
 
     @Test
-    public void shouldBeAbleToGetDetailsOfACustomerAndPassItToView() {
+    public void shouldBeAbleToGetDetailsOfACustomerAndPassItToView() throws UserNotLoggedInException {
         when(customersModel.details()).thenReturn("Ritabrata Moitra rmoitra@thoughtworks.com 8013976041");
 
         customersController.displayDetails();

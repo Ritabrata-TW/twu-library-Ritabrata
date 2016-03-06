@@ -63,7 +63,7 @@ public class CustomersModelTest {
     }
 
     @Test
-    public void shouldBeAbleToProvideDetailsForAParticlarCustoemr() throws LoginDetailsInvalidException {
+    public void shouldBeAbleToProvideDetailsForAParticlarCustoemr() throws LoginDetailsInvalidException, UserNotLoggedInException {
         customersModel.logIn(new LoginData("123-4567","abcd"));
         assertEquals("Ritabrata Moitra rmoitra@thoughtworks.com 8013976041", customersModel.details());
     }

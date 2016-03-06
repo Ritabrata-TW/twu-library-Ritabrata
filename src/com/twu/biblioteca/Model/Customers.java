@@ -45,8 +45,11 @@ public class Customers {
         loggedInUserId = null;
     }
 
-    public String details() {
+    public String details() throws UserNotLoggedInException {
+        if(loginStatus)
         return customerRecords.get(loggedInUserId).toString();
+
+        throw new UserNotLoggedInException();
     }
 
 

@@ -41,6 +41,11 @@ public class CustomersController {
     }
 
     public void displayDetails() {
-        customersView.displayDetails(customersModel.details());
+        try {
+            customersView.displayDetails(customersModel.details());
+        }
+        catch (UserNotLoggedInException userNotLoggedInException) {
+            appView.displayMessage("You are not currently logged in.");
+        }
     }
 }

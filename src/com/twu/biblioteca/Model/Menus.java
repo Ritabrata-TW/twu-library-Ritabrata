@@ -16,7 +16,7 @@ public class Menus {
         options.add("6. Return Movie");
         options.add("7. Login");
         options.add("8. Logout");
-        options.add("9. Customer Details");
+        options.add("9. View your details");
         options.add("0. Quit");
     }
 
