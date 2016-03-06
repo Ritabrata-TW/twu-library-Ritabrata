@@ -24,13 +24,8 @@ public class Movies implements Items {
 
     @Override
     public Item checkoutItem(int movieNumber) throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-
-        if (movieNumber == -1) {
-            throw new InvalidInputException();
-        }
-
-        if (!customersModel.checkIfLoggedIn())
-            throw new UserNotLoggedInException();
+        isInputValid(movieNumber);
+        isLoggedIn();
 
         for (Item movie : movies) {
             if (movie.getNumber() == movieNumber && !movie.checkoutStatus()) {
@@ -42,15 +37,21 @@ public class Movies implements Items {
         throw new NotFoundException("This movie doesn't exist in the records");
     }
 
-    @Override
-    public void returnItem(Integer movieNumber) throws InvalidInputException, BookAlreadyPresentException, UserNotLoggedInException {
+    public void isLoggedIn() throws UserNotLoggedInException {
+        if (!customersModel.checkIfLoggedIn())
+            throw new UserNotLoggedInException();
+    }
 
+    private void isInputValid(int movieNumber) throws InvalidInputException {
         if (movieNumber == -1) {
             throw new InvalidInputException();
         }
+    }
 
-        if (!customersModel.checkIfLoggedIn())
-            throw new UserNotLoggedInException();
+    @Override
+    public void returnItem(Integer movieNumber) throws InvalidInputException, BookAlreadyPresentException, UserNotLoggedInException {
+        isInputValid(movieNumber);
+        isLoggedIn();
 
         for (Item movie : movies) {
             if (movie.getNumber().equals(movieNumber) && movie.checkoutStatus()) {
@@ -60,10 +61,5 @@ public class Movies implements Items {
 
         }
         throw new BookAlreadyPresentException("This movie doesn't exist in the records");
-    }
-
-    public void checkIfLoggedIn() throws UserNotLoggedInException {
-        if (!customersModel.checkIfLoggedIn())
-            throw new UserNotLoggedInException();
     }
 }

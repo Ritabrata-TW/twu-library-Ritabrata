@@ -82,7 +82,7 @@ public class MoviesTest {
     public void shouldNotBeAbleToCheckoutOrReturnMoviesIfUserIsNotLoggedIn() throws UserNotLoggedInException {
         expectedException.expect(UserNotLoggedInException.class);
 
-        moviesModel.checkIfLoggedIn();
+        moviesModel.isLoggedIn();
     }
 
 }

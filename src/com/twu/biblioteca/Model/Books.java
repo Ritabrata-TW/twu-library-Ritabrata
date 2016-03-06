@@ -58,11 +58,11 @@ public class Books implements Items {
         throw new BookAlreadyPresentException("That is not a valid book to return.");
     }
 
-    private void isInputValid(Integer bookNumber) throws InvalidInputException {
-        if (bookNumber == -1) {
-            throw new InvalidInputException();
+        private void isInputValid(Integer bookNumber) throws InvalidInputException {
+            if (bookNumber == -1) {
+                throw new InvalidInputException();
+            }
         }
-    }
 
     public void checkIfLoggedIn() throws UserNotLoggedInException {
         if (!customersModel.checkIfLoggedIn())
