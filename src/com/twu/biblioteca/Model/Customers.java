@@ -31,6 +31,7 @@ public class Customers {
 
     public boolean checkIfLoggedIn() {
         return loginStatus;
+
     }
 
     public String loggedInUserId() {

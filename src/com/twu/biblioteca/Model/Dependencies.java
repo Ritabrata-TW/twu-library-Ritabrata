@@ -57,26 +57,16 @@ public class Dependencies {
         ListCustomerDetailsCommand listCustomerDetailsCommand = new ListCustomerDetailsCommand(customersController);
 
         Dependencies dependencies = new Dependencies();
-        dependencies.register(Books.class, booksModel);
-        dependencies.register(InputOutputHandler.class, inputOutputHandler);
-        dependencies.register(ItemsView.class, itemsView);
-        dependencies.register(MenuView.class, menuView);
-        dependencies.register(ItemController.class, itemController);
         dependencies.register(MenusController.class, menuController);
         dependencies.register(CommandFactory.class, commandFactory);
-        dependencies.register(Menus.class, menuModel);
         dependencies.register(DisplayBooksCommand.class, displayBooksCommand);
         dependencies.register(InvalidInputCommand.class, invalidInputCommand);
         dependencies.register(ExitCommand.class, exitCommand);
         dependencies.register(CheckoutBookCommand.class, checkoutBookCommand);
-        dependencies.register(AppView.class, appView);
         dependencies.register(ReturnBookCommand.class, returnBookCommand);
-        dependencies.register(Movies.class, movies);
-        dependencies.register(ItemController.class, moviesController);
         dependencies.register(DisplayMoviesCommand.class, displayMoviesCommand);
         dependencies.register(CheckoutMovieCommand.class, checkoutMovieCommand);
         dependencies.register(ReturnMovieCommand.class, returnMovieCommand);
-        dependencies.register(CustomersController.class, customersController);
         dependencies.register(LoginCommand.class, loginCommand);
         dependencies.register(LogoutCommand.class,logoutCommand);
         dependencies.register(ListCustomerDetailsCommand.class,listCustomerDetailsCommand);

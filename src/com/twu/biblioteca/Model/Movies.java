@@ -24,11 +24,13 @@ public class Movies implements Items {
 
     @Override
     public Item checkoutItem(int movieNumber) throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        customersModel.checkIfLoggedIn();
 
         if (movieNumber == -1) {
             throw new InvalidInputException();
         }
+
+        if(!customersModel.checkIfLoggedIn())
+            throw new UserNotLoggedInException();
 
         for (Item movie : movies) {
             if (movie.getNumber() == movieNumber && !movie.checkoutStatus()) {
@@ -42,11 +44,13 @@ public class Movies implements Items {
 
     @Override
     public void returnItem(Integer movieNumber) throws InvalidInputException, BookAlreadyPresentException, UserNotLoggedInException {
-        customersModel.checkIfLoggedIn();
 
         if (movieNumber == -1) {
             throw new InvalidInputException();
         }
+
+        if(!customersModel.checkIfLoggedIn())
+            throw new UserNotLoggedInException();
 
         for (Item movie : movies) {
             if (movie.getNumber().equals(movieNumber) && movie.checkoutStatus()) {
