@@ -19,4 +19,8 @@ public class CustomersView {
 
         return new LoginData(username, password);
     }
+
+    public void displayDetails(String details) {
+        inputOutputHandler.writeMessage(details);
+    }
 }

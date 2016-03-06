@@ -10,19 +10,21 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static org.junit.Assert.assertEquals;
+
 public class CustomersModelTest {
-    Customers loginModel;
+    Customers customersModel;
 
     @Before
     public void setup() {
-        loginModel = new Customers();
+        customersModel = new Customers();
     }
 
     @Test
     public void userShouldBeAbleToLoginWhenCorrectUserInformationIsEntered() throws LoginDetailsInvalidException {
-        loginModel.logIn(new LoginData("123-4567", "abcd"));
+        customersModel.logIn(new LoginData("123-4567", "abcd"));
 
-        Assert.assertTrue(loginModel.checkIfLoggedIn());
+        Assert.assertTrue(customersModel.checkIfLoggedIn());
     }
 
     @Rule
@@ -32,32 +34,36 @@ public class CustomersModelTest {
     public void userShouldNotBeAbleToLoginWhenIncorrectUserInformationIsEntered() throws LoginDetailsInvalidException {
         expectedException.expect(LoginDetailsInvalidException.class);
 
-        loginModel.logIn(new LoginData("someone@thoughtworks.com", "abcd"));
+        customersModel.logIn(new LoginData("someone@thoughtworks.com", "abcd"));
     }
 
     @Test
     public void shouldBeAbleToKeepRecordOfThePresentLoggedInUser() throws LoginDetailsInvalidException {
-        loginModel.logIn(new LoginData("123-4567", "abcd"));
+        customersModel.logIn(new LoginData("123-4567", "abcd"));
 
-        Assert.assertTrue(loginModel.checkIfLoggedIn());
-        Assert.assertEquals("123-4567", loginModel.loggedInUserId());
+        Assert.assertTrue(customersModel.checkIfLoggedIn());
+        assertEquals("123-4567", customersModel.loggedInUserId());
     }
 
     @Test
     public void shouldBeAbleToLogout() throws LoginDetailsInvalidException, UserNotLoggedInException {
-        loginModel.logIn(new LoginData("123-4567", "abcd"));
+        customersModel.logIn(new LoginData("123-4567", "abcd"));
 
-        loginModel.logout();
+        customersModel.logout();
 
-        Assert.assertFalse(loginModel.checkIfLoggedIn());
-        Assert.assertEquals(null,loginModel.loggedInUserId());
+        Assert.assertFalse(customersModel.checkIfLoggedIn());
+        assertEquals(null, customersModel.loggedInUserId());
     }
 
     @Test
     public void shouldNotBeAbleToLogoutIfNotPreviouslyLoggedIn() throws UserNotLoggedInException {
         expectedException.expect(UserNotLoggedInException.class);
 
-        loginModel.logout();
+        customersModel.logout();
     }
 
+    @Test
+    public void shouldBeAbleToProvideDetailsForAParticlarCustoemr() {
+        assertEquals("Ritabrata Moitra rmoitra@thoughtworks.com 8013976041", customersModel.details("123-4567"));
+    }
 }

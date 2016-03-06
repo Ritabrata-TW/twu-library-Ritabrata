@@ -39,4 +39,8 @@ public class CustomersController {
             appView.displayMessage("You are not currently logged in.");
         }
     }
+
+    public void displayDetails(String libraryNumber) {
+        customersView.displayDetails(customersModel.details(libraryNumber));
+    }
 }

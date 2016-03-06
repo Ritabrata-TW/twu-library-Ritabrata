@@ -42,5 +42,14 @@ public class CustomersViewTest {
         Assert.assertEquals(new LoginData("abcd", "bacd"), customersView.inputDetails());
     }
 
+    @Test
+    public void shouldBeAbleToDisplayCustomerDetailsForAParticularCustomer() {
+        customersView.displayDetails("Ritabrata Moitra rmoitra@thoughtworks.com 8013976041");
+
+        verify(inputOutputHandler).writeMessage("Ritabrata Moitra rmoitra@thoughtworks.com 8013976041");
+    }
+
+
+
 
 }

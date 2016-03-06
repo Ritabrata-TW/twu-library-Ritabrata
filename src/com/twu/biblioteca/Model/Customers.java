@@ -44,4 +44,13 @@ public class Customers {
         loginStatus = false;
         loggedInUserId = null;
     }
+
+    public String details(String libraryNumber) {
+        if(customerRecords.containsKey(libraryNumber))
+            return customerRecords.get(libraryNumber).toString();
+
+        return null;
+    }
+
+
 }
