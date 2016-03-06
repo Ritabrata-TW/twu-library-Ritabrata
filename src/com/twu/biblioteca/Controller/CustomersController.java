@@ -40,7 +40,7 @@ public class CustomersController {
         }
     }
 
-    public void displayDetails(String libraryNumber) {
-        customersView.displayDetails(customersModel.details(libraryNumber));
+    public void displayDetails() {
+        customersView.displayDetails(customersModel.details());
     }
 }

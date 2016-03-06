@@ -9,15 +9,15 @@ import java.util.Map;
 
 public class Customers {
     private boolean loginStatus;
-    private Map<String,Customer> customerRecords;
+    private Map<String, Customer> customerRecords;
     String loggedInUserId;
 
 
     public Customers() {
         loginStatus = false;
         customerRecords = new HashMap<>();
-        customerRecords.put("123-4567",new Customer("123-4567","abcd","Ritabrata Moitra","rmoitra@thoughtworks.com","8013976041"));
-        customerRecords.put("111-2222", new Customer("111-2222", "1234", "Narasimha Prasad", "nprasadd@thoughtworks.com","1234567890"));
+        customerRecords.put("123-4567", new Customer("123-4567", "abcd", "Ritabrata Moitra", "rmoitra@thoughtworks.com", "8013976041"));
+        customerRecords.put("111-2222", new Customer("111-2222", "1234", "Narasimha Prasad", "nprasadd@thoughtworks.com", "1234567890"));
     }
 
     public void logIn(LoginData loginData) throws LoginDetailsInvalidException {
@@ -38,18 +38,15 @@ public class Customers {
     }
 
     public void logout() throws UserNotLoggedInException {
-        if(!loginStatus)
+        if (!loginStatus)
             throw new UserNotLoggedInException();
 
         loginStatus = false;
         loggedInUserId = null;
     }
 
-    public String details(String libraryNumber) {
-        if(customerRecords.containsKey(libraryNumber))
-            return customerRecords.get(libraryNumber).toString();
-
-        return null;
+    public String details() {
+        return customerRecords.get(loggedInUserId).toString();
     }
 
 

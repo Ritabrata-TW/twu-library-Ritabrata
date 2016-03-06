@@ -7,7 +7,6 @@ import com.twu.biblioteca.Model.Customers;
 import com.twu.biblioteca.Model.LoginData;
 import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.CustomersView;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -85,9 +84,9 @@ public class CustomersControllerTest {
 
     @Test
     public void shouldBeAbleToGetDetailsOfACustomerAndPassItToView() {
-        when(customersModel.details("1234")).thenReturn("Ritabrata Moitra rmoitra@thoughtworks.com 8013976041");
+        when(customersModel.details()).thenReturn("Ritabrata Moitra rmoitra@thoughtworks.com 8013976041");
 
-        customersController.displayDetails("1234");
+        customersController.displayDetails();
 
 
         verify(customersView).displayDetails("Ritabrata Moitra rmoitra@thoughtworks.com 8013976041");

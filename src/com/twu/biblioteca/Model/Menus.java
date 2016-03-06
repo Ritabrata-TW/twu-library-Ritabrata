@@ -16,6 +16,7 @@ public class Menus {
         options.add("6. Return Movie");
         options.add("7. Login");
         options.add("8. Logout");
+        options.add("9. Customer Details");
         options.add("0. Quit");
     }
 
@@ -24,7 +25,7 @@ public class Menus {
     }
 
     public int validateChoice(int choice) {
-        if (choice >= 0 && choice <= 8) {
+        if (choice >= 0 && choice <= 9) {
             return choice;
         }
         return -1;

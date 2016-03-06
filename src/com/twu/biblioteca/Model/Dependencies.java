@@ -54,6 +54,7 @@ public class Dependencies {
         ReturnBookCommand returnBookCommand = new ReturnBookCommand(itemController);
         ReturnMovieCommand returnMovieCommand = new ReturnMovieCommand(moviesController);
         LogoutCommand logoutCommand = new LogoutCommand(customersController);
+        ListCustomerDetailsCommand listCustomerDetailsCommand = new ListCustomerDetailsCommand(customersController);
 
         Dependencies dependencies = new Dependencies();
         dependencies.register(Books.class, booksModel);
@@ -78,6 +79,7 @@ public class Dependencies {
         dependencies.register(CustomersController.class, customersController);
         dependencies.register(LoginCommand.class, loginCommand);
         dependencies.register(LogoutCommand.class,logoutCommand);
+        dependencies.register(ListCustomerDetailsCommand.class,listCustomerDetailsCommand);
         return dependencies;
     }
 
