@@ -17,21 +17,13 @@ public class Customer {
         this.number = number;
     }
 
-    public String getLibraryNumber() {
-        return libraryNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     @Override
     public String toString() {
         return name + " " + emailId + " " + number;
     }
 
     public boolean authenticate(LoginData loginData) {
-        if(this.password.equals(loginData.getPassword()))
+        if (this.password.equals(loginData.getPassword()))
             return true;
 
         return false;

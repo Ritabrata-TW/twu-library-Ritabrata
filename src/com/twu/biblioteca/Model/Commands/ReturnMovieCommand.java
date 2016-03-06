@@ -2,7 +2,7 @@ package com.twu.biblioteca.Model.Commands;
 
 import com.twu.biblioteca.Controller.ItemController;
 
-public class ReturnMovieCommand implements Command{
+public class ReturnMovieCommand implements Command {
     private ItemController itemController;
 
     public ReturnMovieCommand(ItemController itemController) {

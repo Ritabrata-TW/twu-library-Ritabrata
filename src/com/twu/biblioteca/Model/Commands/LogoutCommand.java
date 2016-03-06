@@ -5,7 +5,7 @@ import com.twu.biblioteca.Controller.CustomersController;
 public class LogoutCommand implements Command {
     private CustomersController customersController;
 
-    public LogoutCommand(CustomersController customersController){
+    public LogoutCommand(CustomersController customersController) {
         this.customersController = customersController;
     }
 

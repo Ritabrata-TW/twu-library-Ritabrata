@@ -18,7 +18,7 @@ public class MenuView {
 
 
     public int displayMenuOptions(List<String> options) {
-        for (String option : options){
+        for (String option : options) {
             inputOutputHandler.writeMessage(option);
         }
 

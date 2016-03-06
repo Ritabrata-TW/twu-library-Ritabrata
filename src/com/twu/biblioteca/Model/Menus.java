@@ -25,14 +25,14 @@ public class Menus {
     }
 
     public List<String> getOptions() {
-        if(!customersModel.checkIfLoggedIn()) {
-            return options.subList(0,8);
+        if (!customersModel.checkIfLoggedIn()) {
+            return options.subList(0, 8);
         }
         return options;
     }
 
     public int validateChoice(int choice) {
-        if(!customersModel.checkIfLoggedIn() && choice >= 0 && choice <= 7)
+        if (!customersModel.checkIfLoggedIn() && choice >= 0 && choice <= 7)
             return choice;
 
         if (customersModel.checkIfLoggedIn() && choice >= 0 && choice <= 9) {

@@ -1,8 +1,8 @@
 package com.twu.biblioteca.Model;
 
 import com.twu.biblioteca.Book;
-import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Controller.CustomersController;
+import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Controller.MenusController;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Commands.*;
@@ -43,7 +43,7 @@ public class Dependencies {
         DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(itemController);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
         ExitCommand exitCommand = new ExitCommand();
-        Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8)), customersModel );
+        Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8)), customersModel);
         ItemController moviesController = new ItemController(movies, itemsView, appView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
         CustomersView customersView = new CustomersView(inputOutputHandler);
@@ -68,8 +68,8 @@ public class Dependencies {
         dependencies.register(CheckoutMovieCommand.class, checkoutMovieCommand);
         dependencies.register(ReturnMovieCommand.class, returnMovieCommand);
         dependencies.register(LoginCommand.class, loginCommand);
-        dependencies.register(LogoutCommand.class,logoutCommand);
-        dependencies.register(ListCustomerDetailsCommand.class,listCustomerDetailsCommand);
+        dependencies.register(LogoutCommand.class, logoutCommand);
+        dependencies.register(ListCustomerDetailsCommand.class, listCustomerDetailsCommand);
         return dependencies;
     }
 

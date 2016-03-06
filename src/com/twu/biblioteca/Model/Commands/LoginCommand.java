@@ -2,11 +2,11 @@ package com.twu.biblioteca.Model.Commands;
 
 import com.twu.biblioteca.Controller.CustomersController;
 
-public class LoginCommand implements Command{
+public class LoginCommand implements Command {
 
     private CustomersController customersController;
 
-    public LoginCommand(CustomersController customersController){
+    public LoginCommand(CustomersController customersController) {
 
         this.customersController = customersController;
     }

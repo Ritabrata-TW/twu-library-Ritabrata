@@ -29,7 +29,7 @@ public class Movies implements Items {
             throw new InvalidInputException();
         }
 
-        if(!customersModel.checkIfLoggedIn())
+        if (!customersModel.checkIfLoggedIn())
             throw new UserNotLoggedInException();
 
         for (Item movie : movies) {
@@ -49,7 +49,7 @@ public class Movies implements Items {
             throw new InvalidInputException();
         }
 
-        if(!customersModel.checkIfLoggedIn())
+        if (!customersModel.checkIfLoggedIn())
             throw new UserNotLoggedInException();
 
         for (Item movie : movies) {

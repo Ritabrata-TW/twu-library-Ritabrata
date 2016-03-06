@@ -2,7 +2,7 @@ package com.twu.biblioteca.Model.Commands;
 
 import com.twu.biblioteca.Controller.CustomersController;
 
-public class ListCustomerDetailsCommand implements Command{
+public class ListCustomerDetailsCommand implements Command {
     private CustomersController customersController;
 
     public ListCustomerDetailsCommand(CustomersController customersController) {
