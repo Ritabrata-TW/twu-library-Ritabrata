@@ -26,28 +26,28 @@ public class Dependencies {
     }
 
     public static Dependencies init() {
-        Customers loginModel = new Customers();
+        Customers customersModel = new Customers();
         List<Item> books = Arrays.<Item>asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007),
                 new Book(101, "Head First Java", "Martin Fowler", 2009),
                 new Book(102, "Imperial C", "Dennis Ritchie", 1948));
-        Books booksModel = new Books(books, loginModel);
+        Books booksModel = new Books(books, customersModel);
 
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
         ItemsView itemsView = new ItemsView(inputOutputHandler);
         AppView appView = new AppView(inputOutputHandler);
         MenuView menuView = new MenuView(inputOutputHandler);
         ItemController itemController = new ItemController(booksModel, itemsView, appView);
-        Menus menuModel = new Menus();
+        Menus menuModel = new Menus(customersModel);
         MenusController menuController = new MenusController(menuModel, menuView, appView);
         CommandFactory commandFactory = new CommandFactory();
         DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(itemController);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);
         ExitCommand exitCommand = new ExitCommand();
-        Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8)), loginModel );
+        Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10), new Movie(2, "Swades", 2000, "Rakesh Roshan", 8)), customersModel );
         ItemController moviesController = new ItemController(movies, itemsView, appView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
         CustomersView customersView = new CustomersView(inputOutputHandler);
-        CustomersController customersController = new CustomersController(loginModel, customersView, appView);
+        CustomersController customersController = new CustomersController(customersModel, customersView, appView);
         LoginCommand loginCommand = new LoginCommand(customersController);
         CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(itemController);
         CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController);
