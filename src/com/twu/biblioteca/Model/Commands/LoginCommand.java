@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Model.Commands;
 
 import com.twu.biblioteca.Controller.CustomersController;
+import com.twu.biblioteca.Model.Result;
 
 public class LoginCommand implements Command {
 
@@ -12,9 +13,9 @@ public class LoginCommand implements Command {
     }
 
     @Override
-    public int execute() {
+    public Result execute() {
         customersController.logIn();
-        return 1;
+        return new Result(false);
     }
 
     @Override

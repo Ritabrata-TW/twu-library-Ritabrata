@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Model.Commands;
 
 import com.twu.biblioteca.Controller.MenusController;
+import com.twu.biblioteca.Model.Result;
 
 public class InvalidInputCommand implements Command {
     private MenusController menuController;
@@ -10,9 +11,9 @@ public class InvalidInputCommand implements Command {
     }
 
     @Override
-    public int execute() {
+    public Result execute() {
         menuController.displayMessage("Select a valid option!");
-        return 1;
+        return new Result(false);
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.twu.biblioteca.Controller.MenusController;
 import com.twu.biblioteca.Controller.Router;
 import com.twu.biblioteca.Model.Commands.*;
 import com.twu.biblioteca.Model.Dependencies;
+import com.twu.biblioteca.Model.Result;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,6 +26,11 @@ public class RouterTest {
     CheckoutMovieCommand checkoutMovieCommand;
     LoginCommand loginCommand;
     LogoutCommand logoutCommand;
+    Result continueLoop;
+    Result terminateLoop;
+    ListCustomerDetailsCommand listCustomerDetailsCommand;
+    ReturnMovieCommand returnMovieCommand;
+
 
     @Before
     public void setup() {
@@ -45,15 +51,29 @@ public class RouterTest {
         checkoutMovieCommand = mock(CheckoutMovieCommand.class);
         loginCommand = mock(LoginCommand.class);
         logoutCommand = mock(LogoutCommand.class);
+        listCustomerDetailsCommand = mock(ListCustomerDetailsCommand.class);
+        returnMovieCommand = mock(ReturnMovieCommand.class);
+
+        continueLoop = new Result(false);
+        terminateLoop = new Result(true);
 
         doNothing().when(commandFactory).register(0, invalidInputCommand);
         doNothing().when(menuController).welcome();
         router = new Router(dependencies);
 
-        when(displayBooksCommand.execute()).thenReturn(1);
-        when(invalidInputCommand.execute()).thenReturn(1);
-        when(checkoutBookCommand.execute()).thenReturn(1);
-        when(exitCommand.execute()).thenReturn(0);
+
+
+        when(checkoutBookCommand.execute()).thenReturn(continueLoop);
+        when(checkoutMovieCommand.execute()).thenReturn(continueLoop);
+        when(displayBooksCommand.execute()).thenReturn(continueLoop);
+        when(displayMoviesCommand.execute()).thenReturn(continueLoop);
+        when(exitCommand.execute()).thenReturn(terminateLoop);
+        when(invalidInputCommand.execute()).thenReturn(continueLoop);
+        when(listCustomerDetailsCommand.execute()).thenReturn(continueLoop);
+        when(loginCommand.execute()).thenReturn(continueLoop);
+        when(logoutCommand.execute()).thenReturn(continueLoop);
+        when(returnBookCommand.execute()).thenReturn(continueLoop);
+        when(returnMovieCommand.execute()).thenReturn(continueLoop);
     }
 
 
@@ -209,11 +229,11 @@ public class RouterTest {
         when(commandFactory.commandFor(3)).thenReturn(returnBookCommand);
         when(commandFactory.commandFor(4)).thenReturn(checkoutMovieCommand);
         when(commandFactory.commandFor(0)).thenReturn(exitCommand);
-        when(displayBooksCommand.execute()).thenReturn(1);
-        when(checkoutBookCommand.execute()).thenReturn(1);
-        when(returnBookCommand.execute()).thenReturn(1);
-        when(checkoutMovieCommand.execute()).thenReturn(1);
-        when(exitCommand.execute()).thenReturn(0);
+        when(displayBooksCommand.execute()).thenReturn(continueLoop);
+        when(checkoutBookCommand.execute()).thenReturn(continueLoop);
+        when(returnBookCommand.execute()).thenReturn(continueLoop);
+        when(checkoutMovieCommand.execute()).thenReturn(continueLoop);
+        when(exitCommand.execute()).thenReturn(terminateLoop);
         router.startApp();
 
         verify(displayBooksCommand).execute();
@@ -221,7 +241,6 @@ public class RouterTest {
         verify(returnBookCommand).execute();
         verify(checkoutMovieCommand).execute();
         verify(exitCommand).execute();
-
     }
 
 

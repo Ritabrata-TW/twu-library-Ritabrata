@@ -3,6 +3,7 @@ package com.twu.biblioteca.Controller;
 import com.twu.biblioteca.Model.Commands.Command;
 import com.twu.biblioteca.Model.Commands.CommandFactory;
 import com.twu.biblioteca.Model.Dependencies;
+import com.twu.biblioteca.Model.Result;
 
 public class Router {
 
@@ -20,13 +21,13 @@ public class Router {
         MenusController menuController = (MenusController) dependencies.get(MenusController.class);
         menuController.welcome();
 
-        int nextAction = 1;
+        Result nextAction;
 
-        while (nextAction != 0) {
+        do {
             int choice = menuController.mainMenu();
             Command command = commandFactory.commandFor(choice);
             nextAction = command.execute();
-        }
+        } while (!nextAction.ShouldTerminateLoop());
     }
 }
 

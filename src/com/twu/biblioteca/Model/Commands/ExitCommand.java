@@ -1,10 +1,12 @@
 package com.twu.biblioteca.Model.Commands;
 
+import com.twu.biblioteca.Model.Result;
+
 public class ExitCommand implements Command {
 
     @Override
-    public int execute() {
-        return 0;
+    public Result execute() {
+        return new Result(true);
     }
 
     @Override

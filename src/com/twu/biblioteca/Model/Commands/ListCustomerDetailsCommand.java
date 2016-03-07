@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Model.Commands;
 
 import com.twu.biblioteca.Controller.CustomersController;
+import com.twu.biblioteca.Model.Result;
 
 public class ListCustomerDetailsCommand implements Command {
     private CustomersController customersController;
@@ -10,9 +11,9 @@ public class ListCustomerDetailsCommand implements Command {
     }
 
     @Override
-    public int execute() {
+    public Result execute() {
         customersController.displayDetails();
-        return 1;
+        return new Result(false);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Model.Commands;
 
 import com.twu.biblioteca.Controller.ItemController;
+import com.twu.biblioteca.Model.Result;
 
 public class DisplayMoviesCommand implements Command {
     ItemController itemController;
@@ -10,9 +11,9 @@ public class DisplayMoviesCommand implements Command {
     }
 
     @Override
-    public int execute() {
+    public Result execute() {
         itemController.displayItems();
-        return 1;
+        return new Result(false);
     }
 
     @Override

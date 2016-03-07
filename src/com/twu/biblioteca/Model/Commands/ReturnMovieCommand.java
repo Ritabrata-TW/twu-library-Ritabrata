@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Model.Commands;
 
 import com.twu.biblioteca.Controller.ItemController;
+import com.twu.biblioteca.Model.Result;
 
 public class ReturnMovieCommand implements Command {
     private ItemController itemController;
@@ -10,9 +11,9 @@ public class ReturnMovieCommand implements Command {
     }
 
     @Override
-    public int execute() {
+    public Result execute() {
         itemController.returnItem("movie");
-        return 1;
+        return new Result(false);
     }
 
     @Override
