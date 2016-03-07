@@ -47,8 +47,8 @@ public class Dependencies {
                 new Movie(2, "Swades", 2000, "Rakesh Roshan", 8)), customersModel);
         ItemController moviesController = new ItemController(movies, itemsView, appView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
-        CustomersView customersView = new CustomersView(inputOutputHandler);
-        CustomersController customersController = new CustomersController(customersModel, customersView, appView);
+        CustomersView customersView = new CustomersView(inputOutputHandler, appView);
+        CustomersController customersController = new CustomersController(customersModel, customersView);
         LoginCommand loginCommand = new LoginCommand(customersController);
         CheckoutBookCommand checkoutBookCommand = new CheckoutBookCommand(itemController);
         CheckoutMovieCommand checkoutMovieCommand = new CheckoutMovieCommand(moviesController);

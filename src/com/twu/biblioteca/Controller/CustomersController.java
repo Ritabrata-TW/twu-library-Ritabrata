@@ -10,13 +10,11 @@ import com.twu.biblioteca.View.CustomersView;
 public class CustomersController {
     private Customers customersModel;
     private CustomersView customersView;
-    private AppView appView;
 
 
-    public CustomersController(Customers customersModel, CustomersView customersView, AppView appView) {
+    public CustomersController(Customers customersModel, CustomersView customersView) {
         this.customersModel = customersModel;
         this.customersView = customersView;
-        this.appView = appView;
     }
 
 
@@ -25,18 +23,18 @@ public class CustomersController {
 
         try {
             customersModel.logIn(loginData);
-            appView.displayMessage("Login Successful!");
+            customersView.displayMessage("Login Successful!");
         } catch (LoginDetailsInvalidException loginDetailsInvalidException) {
-            appView.displayMessage("Invalid Login details. Please try again.");
+            customersView.displayMessage("Invalid Login details. Please try again.");
         }
     }
 
     public void logout() {
         try{
             customersModel.logout();
-            appView.displayMessage("You have been logged out! ");
+            customersView.displayMessage("You have been logged out! ");
         }catch(UserNotLoggedInException userNotLoggedInException) {
-            appView.displayMessage("You are not currently logged in.");
+            customersView.displayMessage("You are not currently logged in.");
         }
     }
 
@@ -45,7 +43,7 @@ public class CustomersController {
             customersView.displayDetails(customersModel.details());
         }
         catch (UserNotLoggedInException userNotLoggedInException) {
-            appView.displayMessage("You are not currently logged in.");
+            customersView.displayMessage("You are not currently logged in.");
         }
     }
 }

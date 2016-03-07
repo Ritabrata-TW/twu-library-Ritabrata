@@ -5,10 +5,12 @@ import com.twu.biblioteca.Model.LoginData;
 public class CustomersView {
 
     private InputOutputHandler inputOutputHandler;
+    private AppView appView;
 
-    public CustomersView(InputOutputHandler inputOutputHandler) {
+    public CustomersView(InputOutputHandler inputOutputHandler, AppView appView) {
 
         this.inputOutputHandler = inputOutputHandler;
+        this.appView = appView;
     }
 
     public LoginData inputDetails() {
@@ -22,5 +24,9 @@ public class CustomersView {
 
     public void displayDetails(String details) {
         inputOutputHandler.writeMessage(details);
+    }
+
+    public void displayMessage(String message) {
+        appView.displayMessage(message);
     }
 }

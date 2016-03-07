@@ -16,14 +16,12 @@ public class CustomersControllerTest {
     Customers customersModel;
     CustomersView customersView;
     CustomersController customersController;
-    AppView appView;
 
     @Before
     public void setup() {
         customersModel = mock(Customers.class);
         customersView = mock(CustomersView.class);
-        appView = mock(AppView.class);
-        customersController = new CustomersController(customersModel, customersView, appView);
+        customersController = new CustomersController(customersModel, customersView);
     }
 
     @Test
@@ -50,7 +48,7 @@ public class CustomersControllerTest {
 
         customersController.logIn();
 
-        verify(appView).displayMessage("Login Successful!");
+        verify(customersView).displayMessage("Login Successful!");
 
     }
 
@@ -61,7 +59,7 @@ public class CustomersControllerTest {
 
         customersController.logIn();
 
-        verify(appView).displayMessage("Invalid Login details. Please try again.");
+        verify(customersView).displayMessage("Invalid Login details. Please try again.");
     }
 
 
@@ -70,7 +68,7 @@ public class CustomersControllerTest {
         customersController.logout();
 
         verify(customersModel).logout();
-        verify(appView).displayMessage("You have been logged out! ");
+        verify(customersView).displayMessage("You have been logged out! ");
     }
 
     @Test
@@ -79,7 +77,7 @@ public class CustomersControllerTest {
 
         customersController.logout();
 
-        verify(appView).displayMessage("You are not currently logged in.");
+        verify(customersView).displayMessage("You are not currently logged in.");
     }
 
     @Test

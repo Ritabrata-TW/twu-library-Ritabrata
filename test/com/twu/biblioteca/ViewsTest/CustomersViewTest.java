@@ -16,7 +16,7 @@ public class CustomersViewTest {
     @Before
     public void setup() {
         inputOutputHandler = mock(InputOutputHandler.class);
-        customersView = new CustomersView(inputOutputHandler);
+        customersView = new CustomersView(inputOutputHandler, null);
     }
 
     @Test
