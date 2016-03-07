@@ -1,5 +1,6 @@
 package com.twu.biblioteca.ModelsTest;
 
+import com.twu.biblioteca.Customer;
 import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Model.Customers;
@@ -10,6 +11,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 
 public class CustomersModelTest {
@@ -17,7 +21,12 @@ public class CustomersModelTest {
 
     @Before
     public void setup() {
-        customersModel = new Customers();
+        Map<String,Customer> customerRecords = new HashMap<>();
+        customerRecords.put("123-4567", new Customer("123-4567", "abcd", "Ritabrata Moitra", "rmoitra@thoughtworks.com", "8013976041"));
+        customerRecords.put("111-2222", new Customer("111-2222", "1234", "Narasimha Prasad", "nprasadd@thoughtworks.com", "1234567890"));
+
+
+        customersModel = new Customers(customerRecords);
     }
 
     @Test

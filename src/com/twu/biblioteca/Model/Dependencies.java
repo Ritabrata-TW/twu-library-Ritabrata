@@ -4,6 +4,7 @@ import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Controller.CustomersController;
 import com.twu.biblioteca.Controller.ItemController;
 import com.twu.biblioteca.Controller.MenusController;
+import com.twu.biblioteca.Customer;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Commands.*;
 import com.twu.biblioteca.Movie;
@@ -12,6 +13,7 @@ import com.twu.biblioteca.View.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Dependencies {
 
@@ -26,7 +28,11 @@ public class Dependencies {
     }
 
     public static Dependencies init() {
-        Customers customersModel = new Customers();
+        Map<String,Customer> customerRecords = new HashMap<>();
+
+        customerRecords.put("123-4567", new Customer("123-4567", "abcd", "Ritabrata Moitra", "rmoitra@thoughtworks.com", "8013976041"));
+        customerRecords.put("111-2222", new Customer("111-2222", "1234", "Narasimha Prasad", "nprasadd@thoughtworks.com", "1234567890"));
+        Customers customersModel = new Customers(customerRecords);
         List<Item> books = Arrays.<Item>asList(new Book(100, "Head First Design Pattern", "Martin Fowler", 2007),
                 new Book(101, "Head First Java", "Martin Fowler", 2009),
                 new Book(102, "Imperial C", "Dennis Ritchie", 1948));

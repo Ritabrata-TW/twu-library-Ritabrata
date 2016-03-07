@@ -13,11 +13,9 @@ public class Customers {
     String loggedInUserId;
 
 
-    public Customers() {
+    public Customers(Map<String,Customer> customerRecords) {
         loginStatus = false;
-        customerRecords = new HashMap<>();
-        customerRecords.put("123-4567", new Customer("123-4567", "abcd", "Ritabrata Moitra", "rmoitra@thoughtworks.com", "8013976041"));
-        customerRecords.put("111-2222", new Customer("111-2222", "1234", "Narasimha Prasad", "nprasadd@thoughtworks.com", "1234567890"));
+        this.customerRecords = customerRecords;
     }
 
     public void logIn(LoginData loginData) throws LoginDetailsInvalidException {
