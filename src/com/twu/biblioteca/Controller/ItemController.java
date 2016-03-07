@@ -5,7 +5,6 @@ import com.twu.biblioteca.Model.Exceptions.InvalidInputException;
 import com.twu.biblioteca.Model.Exceptions.NotFoundException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 import com.twu.biblioteca.Model.Items;
-import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.ItemsView;
 
 public class ItemController {
@@ -47,7 +46,7 @@ public class ItemController {
             itemsModel.returnItem(itemNumber);
             itemsView.displayMessage("Thank you for returning the " + itemtype);
         } catch (BookAlreadyPresentException bookAlreadyPresentException) {
-            itemsView.displayMessage("That is not a valid " + itemtype +" to return.");
+            itemsView.displayMessage("That is not a valid " + itemtype + " to return.");
         } catch (InvalidInputException invalidInputException) {
             itemsView.displayMessage("Please select a valid option! ");
         } catch (UserNotLoggedInException userNotLoggedInException) {

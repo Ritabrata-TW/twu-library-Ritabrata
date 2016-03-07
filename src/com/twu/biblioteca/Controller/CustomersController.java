@@ -1,11 +1,11 @@
 package com.twu.biblioteca.Controller;
 
+import com.twu.biblioteca.Model.Customers;
 import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
-import com.twu.biblioteca.Model.Customers;
 import com.twu.biblioteca.Model.LoginData;
-import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.CustomersView;
+
 
 public class CustomersController {
     private Customers customersModel;
@@ -30,10 +30,10 @@ public class CustomersController {
     }
 
     public void logout() {
-        try{
+        try {
             customersModel.logout();
             customersView.displayMessage("You have been logged out! ");
-        }catch(UserNotLoggedInException userNotLoggedInException) {
+        } catch (UserNotLoggedInException userNotLoggedInException) {
             customersView.displayMessage("You are not currently logged in.");
         }
     }
@@ -41,8 +41,7 @@ public class CustomersController {
     public void displayDetails() {
         try {
             customersView.displayDetails(customersModel.details());
-        }
-        catch (UserNotLoggedInException userNotLoggedInException) {
+        } catch (UserNotLoggedInException userNotLoggedInException) {
             customersView.displayMessage("You are not currently logged in.");
         }
     }

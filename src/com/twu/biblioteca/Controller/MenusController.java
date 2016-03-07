@@ -1,7 +1,6 @@
 package com.twu.biblioteca.Controller;
 
 import com.twu.biblioteca.Model.Menus;
-import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.MenuView;
 
 public class MenusController {

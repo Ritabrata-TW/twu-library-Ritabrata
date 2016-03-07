@@ -12,7 +12,7 @@ public class Customers {
     String loggedInUserId;
 
 
-    public Customers(Map<String,Customer> customerRecords) {
+    public Customers(Map<String, Customer> customerRecords) {
         loginStatus = false;
         this.customerRecords = customerRecords;
     }
