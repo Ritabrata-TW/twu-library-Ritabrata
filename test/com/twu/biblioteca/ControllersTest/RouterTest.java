@@ -195,5 +195,34 @@ public class RouterTest {
 
     }
 
+    @Test
+    public void shouldBeAbleToExecuteMultipleOperationsBeforeQuittingTheApplication() {
+        when(menuController.mainMenu())
+                .thenReturn(1)
+                .thenReturn(2)
+                .thenReturn(3)
+                .thenReturn(4)
+                .thenReturn(0);
+
+        when(commandFactory.commandFor(1)).thenReturn(displayBooksCommand);
+        when(commandFactory.commandFor(2)).thenReturn(checkoutBookCommand);
+        when(commandFactory.commandFor(3)).thenReturn(returnBookCommand);
+        when(commandFactory.commandFor(4)).thenReturn(checkoutMovieCommand);
+        when(commandFactory.commandFor(0)).thenReturn(exitCommand);
+        when(displayBooksCommand.execute()).thenReturn(1);
+        when(checkoutBookCommand.execute()).thenReturn(1);
+        when(returnBookCommand.execute()).thenReturn(1);
+        when(checkoutMovieCommand.execute()).thenReturn(1);
+        when(exitCommand.execute()).thenReturn(0);
+        router.startApp();
+
+        verify(displayBooksCommand).execute();
+        verify(checkoutBookCommand).execute();
+        verify(returnBookCommand).execute();
+        verify(checkoutMovieCommand).execute();
+        verify(exitCommand).execute();
+
+    }
+
 
 }
