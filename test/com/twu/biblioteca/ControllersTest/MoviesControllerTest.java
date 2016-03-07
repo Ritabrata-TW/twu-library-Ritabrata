@@ -25,7 +25,6 @@ public class MoviesControllerTest {
     ItemsView itemsView;
     ItemController itemController;
     Movie movie;
-    AppView appView;
     CustomersController customersController;
 
 
@@ -38,8 +37,7 @@ public class MoviesControllerTest {
         itemsView = mock(ItemsView.class);
         customersController = mock(CustomersController.class);
 
-        appView = mock(AppView.class);
-        itemController = new ItemController(moviesModel, itemsView, appView);
+        itemController = new ItemController(moviesModel, itemsView);
         when(moviesModel.getItems()).thenReturn(movies);
     }
 
@@ -56,7 +54,7 @@ public class MoviesControllerTest {
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckoutOfAMovie() {
         itemController.checkoutItem("movie");
 
-        verify(appView).displayMessage("Thank you! Enjoy the movie! ");
+        verify(itemsView).displayMessage("Thank you! Enjoy the movie! ");
     }
 
     @Test
@@ -66,7 +64,7 @@ public class MoviesControllerTest {
 
         itemController.checkoutItem("movie");
 
-        verify(appView).displayMessage("Please select a valid option! ");
+        verify(itemsView).displayMessage("Please select a valid option! ");
     }
 
     @Test
@@ -76,7 +74,7 @@ public class MoviesControllerTest {
 
         itemController.checkoutItem("movie");
 
-        verify(appView).displayMessage("That movie is not available.");
+        verify(itemsView).displayMessage("That movie is not available.");
     }
 
     @Test
@@ -95,7 +93,7 @@ public class MoviesControllerTest {
 
         itemController.checkoutItem("movie");
 
-        verify(appView).displayMessage("You need to be logged in to checkout a movie");
+        verify(itemsView).displayMessage("You need to be logged in to checkout a movie");
     }
 
     @Test
@@ -105,7 +103,7 @@ public class MoviesControllerTest {
 
         itemController.returnItem("movie");
 
-        verify(appView).displayMessage("You need to be logged in to return a movie");
+        verify(itemsView).displayMessage("You need to be logged in to return a movie");
     }
 
 }

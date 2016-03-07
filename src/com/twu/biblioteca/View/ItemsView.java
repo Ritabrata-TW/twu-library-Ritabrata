@@ -6,9 +6,11 @@ import java.util.List;
 
 public class ItemsView {
     InputOutputHandler inputOutputHandler;
+    private AppView appView;
 
-    public ItemsView(InputOutputHandler inputOutputHandler) {
+    public ItemsView(InputOutputHandler inputOutputHandler, AppView appView) {
         this.inputOutputHandler = inputOutputHandler;
+        this.appView = appView;
     }
 
     public void displayItems(List<Item> items) {
@@ -21,5 +23,9 @@ public class ItemsView {
         } catch (Exception exception) {
             return -1;
         }
+    }
+
+    public void displayMessage(String message) {
+        appView.displayMessage(message);
     }
 }

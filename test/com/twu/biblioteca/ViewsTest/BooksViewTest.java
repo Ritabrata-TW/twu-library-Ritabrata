@@ -29,7 +29,7 @@ public class BooksViewTest {
         books.add(headFirstDesignPattern);
         books.add(headFirstJava);
         inputOutputHandler = mock(InputOutputHandler.class);
-        itemsView = new ItemsView(inputOutputHandler);
+        itemsView = new ItemsView(inputOutputHandler, null);
     }
 
     @Test

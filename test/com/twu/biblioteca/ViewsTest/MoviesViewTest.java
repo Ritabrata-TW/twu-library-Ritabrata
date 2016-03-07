@@ -27,7 +27,7 @@ public class MoviesViewTest {
         swades = new Movie(2, "Swades", 2000, "Rakesh Roshan", 8);
         movies.add(schindlersList);
         movies.add(swades);
-        itemsView = new ItemsView(inputOutputHandler);
+        itemsView = new ItemsView(inputOutputHandler, null);
     }
 
     @Test

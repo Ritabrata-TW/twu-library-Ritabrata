@@ -25,7 +25,6 @@ public class BooksControllerTest {
     ItemsView itemsView;
     ItemController itemController;
     Book book;
-    AppView appView;
     CustomersController customersController;
 
 
@@ -38,8 +37,7 @@ public class BooksControllerTest {
         customersController = mock(CustomersController.class);
 
         itemsView = mock(ItemsView.class);
-        appView = mock(AppView.class);
-        itemController = new ItemController(booksModel, itemsView, appView);
+        itemController = new ItemController(booksModel, itemsView);
     }
 
     @Test
@@ -56,7 +54,7 @@ public class BooksControllerTest {
     public void shouldBeAbleToDisplaySuccesMessageToUserOnSuccessfulCheckout() {
         itemController.checkoutItem("book");
 
-        verify(appView).displayMessage("Thank you! Enjoy the book! ");
+        verify(itemsView).displayMessage("Thank you! Enjoy the book! ");
     }
 
     @Test
@@ -64,7 +62,7 @@ public class BooksControllerTest {
         itemController.checkoutItem("book");
         itemController.returnItem("book");
 
-        verify(appView).displayMessage("Thank you! Enjoy the book! ");
+        verify(itemsView).displayMessage("Thank you! Enjoy the book! ");
     }
 
     @Test
@@ -74,7 +72,7 @@ public class BooksControllerTest {
 
         itemController.checkoutItem("book");
 
-        verify(appView).displayMessage("Please select a valid option! ");
+        verify(itemsView).displayMessage("Please select a valid option! ");
     }
 
     @Test
@@ -84,7 +82,7 @@ public class BooksControllerTest {
 
         itemController.checkoutItem("book");
 
-        verify(appView).displayMessage("That book is not available.");
+        verify(itemsView).displayMessage("That book is not available.");
 
     }
 
@@ -102,7 +100,7 @@ public class BooksControllerTest {
 
         itemController.checkoutItem("book");
 
-        verify(appView).displayMessage("You need to be logged in to checkout a book");
+        verify(itemsView).displayMessage("You need to be logged in to checkout a book");
     }
 
     @Test
@@ -113,7 +111,7 @@ public class BooksControllerTest {
 
         itemController.returnItem("book");
 
-        verify(appView).displayMessage("Please select a valid option! ");
+        verify(itemsView).displayMessage("Please select a valid option! ");
     }
 
     @Test
@@ -123,7 +121,7 @@ public class BooksControllerTest {
 
         itemController.returnItem("book");
 
-        verify(appView).displayMessage("That is not a valid book to return.");
+        verify(itemsView).displayMessage("That is not a valid book to return.");
 
     }
 
@@ -134,7 +132,7 @@ public class BooksControllerTest {
 
         itemController.returnItem("book");
 
-        verify(appView).displayMessage("You need to be logged in to return a book");
+        verify(itemsView).displayMessage("You need to be logged in to return a book");
     }
 
 

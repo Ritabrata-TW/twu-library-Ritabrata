@@ -33,10 +33,10 @@ public class Dependencies {
         Books booksModel = new Books(books, customersModel);
 
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
-        ItemsView itemsView = new ItemsView(inputOutputHandler);
         AppView appView = new AppView(inputOutputHandler);
         MenuView menuView = new MenuView(inputOutputHandler);
-        ItemController itemController = new ItemController(booksModel, itemsView, appView);
+        ItemsView itemsView = new ItemsView(inputOutputHandler, appView);
+        ItemController itemController = new ItemController(booksModel, itemsView);
         Menus menuModel = new Menus(customersModel);
         MenusController menuController = new MenusController(menuModel, menuView, appView);
         CommandFactory commandFactory = new CommandFactory();
@@ -45,7 +45,7 @@ public class Dependencies {
         ExitCommand exitCommand = new ExitCommand();
         Movies movies = new Movies(Arrays.<Item>asList(new Movie(1, "The Schindler's List", 1994, "Steven Spielberg", 10),
                 new Movie(2, "Swades", 2000, "Rakesh Roshan", 8)), customersModel);
-        ItemController moviesController = new ItemController(movies, itemsView, appView);
+        ItemController moviesController = new ItemController(movies, itemsView);
         DisplayMoviesCommand displayMoviesCommand = new DisplayMoviesCommand(moviesController);
         CustomersView customersView = new CustomersView(inputOutputHandler, appView);
         CustomersController customersController = new CustomersController(customersModel, customersView);

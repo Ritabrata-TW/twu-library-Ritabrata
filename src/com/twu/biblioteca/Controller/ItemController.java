@@ -11,12 +11,10 @@ import com.twu.biblioteca.View.ItemsView;
 public class ItemController {
     Items itemsModel;
     ItemsView itemsView;
-    private AppView appView;
 
-    public ItemController(Items itemsModel, ItemsView itemsView, AppView appView) {
+    public ItemController(Items itemsModel, ItemsView itemsView) {
         this.itemsModel = itemsModel;
         this.itemsView = itemsView;
-        this.appView = appView;
     }
 
     public void displayItems() {
@@ -28,13 +26,13 @@ public class ItemController {
 
         try {
             itemsModel.checkoutItem(itemNumber);
-            appView.displayMessage("Thank you! Enjoy the " + itemtype + "! ");
+            itemsView.displayMessage("Thank you! Enjoy the " + itemtype + "! ");
         } catch (NotFoundException bookNotfoundException) {
-            appView.displayMessage("That " + itemtype + " is not available.");
+            itemsView.displayMessage("That " + itemtype + " is not available.");
         } catch (InvalidInputException invalidInputException) {
-            appView.displayMessage("Please select a valid option! ");
+            itemsView.displayMessage("Please select a valid option! ");
         } catch (UserNotLoggedInException userNotLoggedInException) {
-            appView.displayMessage("You need to be logged in to checkout a " + itemtype);
+            itemsView.displayMessage("You need to be logged in to checkout a " + itemtype);
         }
     }
 
@@ -47,13 +45,13 @@ public class ItemController {
 
         try {
             itemsModel.returnItem(itemNumber);
-            appView.displayMessage("Thank you for returning the " + itemtype);
+            itemsView.displayMessage("Thank you for returning the " + itemtype);
         } catch (BookAlreadyPresentException bookAlreadyPresentException) {
-            appView.displayMessage("That is not a valid " + itemtype +" to return.");
+            itemsView.displayMessage("That is not a valid " + itemtype +" to return.");
         } catch (InvalidInputException invalidInputException) {
-            appView.displayMessage("Please select a valid option! ");
+            itemsView.displayMessage("Please select a valid option! ");
         } catch (UserNotLoggedInException userNotLoggedInException) {
-            appView.displayMessage("You need to be logged in to return a " + itemtype);
+            itemsView.displayMessage("You need to be logged in to return a " + itemtype);
         }
     }
 
