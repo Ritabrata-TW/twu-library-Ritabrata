@@ -28,8 +28,7 @@ public class Books implements Items {
     @Override
     public Item checkoutItem(int number) throws NotFoundException, InvalidInputException, UserNotLoggedInException {
         isInputValid(number);
-        if (!customersModel.checkIfLoggedIn())
-            throw new UserNotLoggedInException();
+        checkIfLoggedIn();
 
         for (Item book : books) {
             if (book.getNumber().equals(number) && !book.checkoutStatus()) {
@@ -45,8 +44,7 @@ public class Books implements Items {
     @Override
     public void returnItem(Integer bookNumber) throws InvalidInputException, BookAlreadyPresentException, UserNotLoggedInException {
         isInputValid(bookNumber);
-        if (!customersModel.checkIfLoggedIn())
-            throw new UserNotLoggedInException();
+        checkIfLoggedIn();
 
         for (Item book : books) {
             if (book.getNumber().equals(bookNumber) && book.checkoutStatus() && book.getCheckedOutBy().equals(customersModel.loggedInUserId())) {
@@ -65,7 +63,7 @@ public class Books implements Items {
         }
 
     public void checkIfLoggedIn() throws UserNotLoggedInException {
-        if (!customersModel.checkIfLoggedIn())
+        if (customersModel.loggedInUserId() == null)
             throw new UserNotLoggedInException();
     }
 }

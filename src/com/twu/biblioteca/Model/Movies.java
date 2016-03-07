@@ -38,7 +38,7 @@ public class Movies implements Items {
     }
 
     public void isLoggedIn() throws UserNotLoggedInException {
-        if (!customersModel.checkIfLoggedIn())
+        if (customersModel.loggedInUserId() == null )
             throw new UserNotLoggedInException();
     }
 

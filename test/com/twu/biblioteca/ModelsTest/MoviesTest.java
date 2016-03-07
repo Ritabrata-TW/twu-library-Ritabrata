@@ -48,7 +48,7 @@ public class MoviesTest {
 
     @Test
     public void shouldBeAbleToCheckoutAMovie() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.loggedInUserId()).thenReturn("1234");
         moviesModel.checkoutItem(1);
 
         Assert.assertTrue(schindlersList.checkoutStatus());
@@ -59,7 +59,7 @@ public class MoviesTest {
 
     @Test
     public void shouldNotBeAbleToCheckoutSameMovieTwice() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.loggedInUserId()).thenReturn("1234");
 
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This movie doesn't exist in the records");
@@ -70,7 +70,7 @@ public class MoviesTest {
 
     @Test
     public void shouldThrowExceptionIfMovieNumberEnteredIsNotPresentInLibrary() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.loggedInUserId()).thenReturn("1234");
 
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This movie doesn't exist in the records");

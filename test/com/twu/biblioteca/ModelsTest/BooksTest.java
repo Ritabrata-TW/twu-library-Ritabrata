@@ -1,6 +1,7 @@
 package com.twu.biblioteca.ModelsTest;
 
 import com.twu.biblioteca.Book;
+import com.twu.biblioteca.Customer;
 import com.twu.biblioteca.Item;
 import com.twu.biblioteca.Model.Books;
 import com.twu.biblioteca.Model.Exceptions.BookAlreadyPresentException;
@@ -53,7 +54,7 @@ public class BooksTest {
 
     @Test
     public void shouldBeAbleToCheckoutABook() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.loggedInUserId()).thenReturn("abcd");
         booksModel.checkoutItem(100);
 
         Assert.assertTrue(headFirstDesignPattern.checkoutStatus());
@@ -65,7 +66,7 @@ public class BooksTest {
 
     @Test
     public void shouldNotBeAbleToCheckoutSameBookTwice() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.loggedInUserId()).thenReturn("1234");
 
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
@@ -76,7 +77,7 @@ public class BooksTest {
 
     @Test
     public void shouldThrowExceptionIfBookNameEnteredIsNotPresentInLibrary() throws NotFoundException, InvalidInputException, UserNotLoggedInException {
-        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.loggedInUserId()).thenReturn("1234");
         expectedException.expect(NotFoundException.class);
         expectedException.expectMessage("This book doesn't exist in the records");
 
@@ -85,7 +86,6 @@ public class BooksTest {
 
     @Test
     public void shouldBeAbleToReturnABookThatWasPreviouslyCheckedOut() throws NotFoundException, BookAlreadyPresentException, InvalidInputException, UserNotLoggedInException {
-        when(loginModel.checkIfLoggedIn()).thenReturn(true);
         when(loginModel.loggedInUserId()).thenReturn("1234-567").thenReturn("1234-567");
         booksModel.checkoutItem(100);
 
@@ -100,7 +100,7 @@ public class BooksTest {
     public void shouldNotBeAbleToReturnABookThatWasNotPreviouslyCheckedOut() throws BookAlreadyPresentException, InvalidInputException, NotFoundException, UserNotLoggedInException {
         expectedException.expect(BookAlreadyPresentException.class);
         expectedException.expectMessage("That is not a valid book to return.");
-        when(loginModel.checkIfLoggedIn()).thenReturn(true);
+        when(loginModel.loggedInUserId()).thenReturn("1234");
 
         booksModel.returnItem(100);
     }
@@ -114,8 +114,7 @@ public class BooksTest {
 
     @Test
     public void shouldBeAbleToStoreLibraryNumberOfUserWhenHeChecksOutABook() throws InvalidInputException, UserNotLoggedInException, NotFoundException {
-        when(loginModel.checkIfLoggedIn()).thenReturn(true);
-        when(loginModel.loggedInUserId()).thenReturn("123-4567");
+        when(loginModel.loggedInUserId()).thenReturn("123-4567").thenReturn("123-4567");
         booksModel.checkoutItem(100);
 
         Assert.assertEquals("123-4567",headFirstDesignPattern.getCheckedOutBy());
@@ -125,8 +124,7 @@ public class BooksTest {
     public void shouldNotBeAbleToReturnABookThatWasWithdrawnBySomeoneElse() throws InvalidInputException, UserNotLoggedInException, NotFoundException, BookAlreadyPresentException {
         expectedException.expect(BookAlreadyPresentException.class);
 
-        when(loginModel.checkIfLoggedIn()).thenReturn(true);
-        when(loginModel.loggedInUserId()).thenReturn("123-4567").thenReturn("765-4321");
+        when(loginModel.loggedInUserId()).thenReturn("123-4567").thenReturn("123-4567").thenReturn("765-4321").thenReturn("765-4321");
         booksModel.checkoutItem(100);
 
         booksModel.returnItem(100);

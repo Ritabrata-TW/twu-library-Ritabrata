@@ -4,7 +4,6 @@ import com.twu.biblioteca.Customer;
 import com.twu.biblioteca.Model.Exceptions.LoginDetailsInvalidException;
 import com.twu.biblioteca.Model.Exceptions.UserNotLoggedInException;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Customers {
@@ -25,11 +24,6 @@ public class Customers {
             return;
         }
         throw new LoginDetailsInvalidException();
-    }
-
-    public boolean checkIfLoggedIn() {
-        return loginStatus;
-
     }
 
     public String loggedInUserId() {

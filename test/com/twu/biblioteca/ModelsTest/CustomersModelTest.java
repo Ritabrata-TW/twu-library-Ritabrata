@@ -33,7 +33,7 @@ public class CustomersModelTest {
     public void userShouldBeAbleToLoginWhenCorrectUserInformationIsEntered() throws LoginDetailsInvalidException {
         customersModel.logIn(new LoginData("123-4567", "abcd"));
 
-        Assert.assertTrue(customersModel.checkIfLoggedIn());
+        Assert.assertEquals("123-4567",customersModel.loggedInUserId());
     }
 
     @Rule
@@ -50,7 +50,6 @@ public class CustomersModelTest {
     public void shouldBeAbleToKeepRecordOfThePresentLoggedInUser() throws LoginDetailsInvalidException {
         customersModel.logIn(new LoginData("123-4567", "abcd"));
 
-        Assert.assertTrue(customersModel.checkIfLoggedIn());
         assertEquals("123-4567", customersModel.loggedInUserId());
     }
 
@@ -60,7 +59,6 @@ public class CustomersModelTest {
 
         customersModel.logout();
 
-        Assert.assertFalse(customersModel.checkIfLoggedIn());
         assertEquals(null, customersModel.loggedInUserId());
     }
 
