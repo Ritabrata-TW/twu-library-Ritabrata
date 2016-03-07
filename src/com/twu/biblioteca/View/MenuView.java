@@ -7,9 +7,11 @@ public class MenuView {
     String message = "**** Welcome Customer! We are glad to have you at Books! ****";
 
     InputOutputHandler inputOutputHandler;
+    private AppView appView;
 
-    public MenuView(InputOutputHandler inputOutputHandler) {
+    public MenuView(InputOutputHandler inputOutputHandler, AppView appView) {
         this.inputOutputHandler = inputOutputHandler;
+        this.appView = appView;
     }
 
     public void welcome() {
@@ -31,5 +33,9 @@ public class MenuView {
         } catch (Exception e) {
             return -1;
         }
+    }
+
+    public void displayMessage(String message) {
+        appView.displayMessage(message);
     }
 }

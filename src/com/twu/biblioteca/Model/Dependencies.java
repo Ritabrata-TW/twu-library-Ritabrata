@@ -34,11 +34,11 @@ public class Dependencies {
 
         InputOutputHandler inputOutputHandler = new InputOutputHandler(System.out, System.in);
         AppView appView = new AppView(inputOutputHandler);
-        MenuView menuView = new MenuView(inputOutputHandler);
+        MenuView menuView = new MenuView(inputOutputHandler, appView);
         ItemsView itemsView = new ItemsView(inputOutputHandler, appView);
         ItemController itemController = new ItemController(booksModel, itemsView);
         Menus menuModel = new Menus(customersModel);
-        MenusController menuController = new MenusController(menuModel, menuView, appView);
+        MenusController menuController = new MenusController(menuModel, menuView);
         CommandFactory commandFactory = new CommandFactory();
         DisplayBooksCommand displayBooksCommand = new DisplayBooksCommand(itemController);
         InvalidInputCommand invalidInputCommand = new InvalidInputCommand(menuController);

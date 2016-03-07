@@ -7,12 +7,10 @@ import com.twu.biblioteca.View.MenuView;
 public class MenusController {
     private Menus menuModel;
     private MenuView menuView;
-    private AppView appView;
 
-    public MenusController(Menus menuModel, MenuView menuView, AppView appView) {
+    public MenusController(Menus menuModel, MenuView menuView) {
         this.menuModel = menuModel;
         this.menuView = menuView;
-        this.appView = appView;
     }
 
     public int mainMenu() {
@@ -21,7 +19,7 @@ public class MenusController {
     }
 
     public void displayMessage(String message) {
-        appView.displayMessage(message);
+        menuView.displayMessage(message);
     }
 
     public void welcome() {

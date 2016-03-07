@@ -36,7 +36,7 @@ public class MenusControllerTest {
         books.add(new Book(101, "Head First Design Pattern!", "Martin Fowler", 2007));
 
         appView = mock(AppView.class);
-        menuController = new MenusController(menuModel, menuView, appView);
+        menuController = new MenusController(menuModel, menuView);
         options = new ArrayList<String>();
         options.add("1. List Books");
     }
@@ -55,7 +55,7 @@ public class MenusControllerTest {
     public void shouldBeAbleToDisplayGenericMessageThroughAppView() {
         menuController.displayMessage("Hi there");
 
-        verify(appView).displayMessage("Hi there");
+        verify(menuView).displayMessage("Hi there");
     }
 
     @Test
