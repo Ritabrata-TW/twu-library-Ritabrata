@@ -14,4 +14,9 @@ public class LogoutCommand implements Command {
         customersController.logout();
         return 1;
     }
+
+    @Override
+    public Integer code() {
+        return 8;
+    }
 }

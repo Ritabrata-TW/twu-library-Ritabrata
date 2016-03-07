@@ -14,4 +14,9 @@ public class DisplayMoviesCommand implements Command {
         itemController.displayItems();
         return 1;
     }
+
+    @Override
+    public Integer code() {
+        return 4;
+    }
 }

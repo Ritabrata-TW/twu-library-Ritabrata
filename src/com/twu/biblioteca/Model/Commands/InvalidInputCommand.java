@@ -14,4 +14,9 @@ public class InvalidInputCommand implements Command {
         menuController.displayMessage("Select a valid option!");
         return 1;
     }
+
+    @Override
+    public Integer code() {
+        return -1;
+    }
 }

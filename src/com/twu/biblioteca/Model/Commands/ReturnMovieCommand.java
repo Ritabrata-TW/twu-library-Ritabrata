@@ -14,4 +14,9 @@ public class ReturnMovieCommand implements Command {
         itemController.returnItem("movie");
         return 1;
     }
+
+    @Override
+    public Integer code() {
+        return 6;
+    }
 }

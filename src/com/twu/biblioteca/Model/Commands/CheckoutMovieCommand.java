@@ -14,4 +14,9 @@ public class CheckoutMovieCommand implements Command {
         itemController.checkoutItem("movie");
         return 1;
     }
+
+    @Override
+    public Integer code() {
+        return 5;
+    }
 }

@@ -16,4 +16,9 @@ public class LoginCommand implements Command {
         customersController.logIn();
         return 1;
     }
+
+    @Override
+    public Integer code() {
+        return 7;
+    }
 }

@@ -14,4 +14,9 @@ public class ListCustomerDetailsCommand implements Command {
         customersController.displayDetails();
         return 1;
     }
+
+    @Override
+    public Integer code() {
+        return 9;
+    }
 }

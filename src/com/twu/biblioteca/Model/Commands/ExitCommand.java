@@ -6,4 +6,9 @@ public class ExitCommand implements Command {
     public int execute() {
         return 0;
     }
+
+    @Override
+    public Integer code() {
+        return 0;
+    }
 }

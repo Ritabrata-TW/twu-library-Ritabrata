@@ -15,4 +15,9 @@ public class CheckoutBookCommand implements Command {
         itemController.checkoutItem("book");
         return 1;
     }
+
+    @Override
+    public Integer code() {
+        return 2;
+    }
 }

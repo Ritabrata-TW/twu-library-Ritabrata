@@ -15,4 +15,9 @@ public class ReturnBookCommand implements Command {
         itemController.returnItem("book");
         return 1;
     }
+
+    @Override
+    public Integer code() {
+        return 3;
+    }
 }
