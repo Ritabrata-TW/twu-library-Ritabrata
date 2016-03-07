@@ -1,6 +1,7 @@
 package com.twu.biblioteca.ViewsTest;
 
 import com.twu.biblioteca.Model.LoginData;
+import com.twu.biblioteca.View.AppView;
 import com.twu.biblioteca.View.InputOutputHandler;
 import com.twu.biblioteca.View.CustomersView;
 import org.junit.Assert;
@@ -11,12 +12,14 @@ import static org.mockito.Mockito.*;
 
 public class CustomersViewTest {
     InputOutputHandler inputOutputHandler;
+    AppView appView;
     CustomersView customersView;
 
     @Before
     public void setup() {
         inputOutputHandler = mock(InputOutputHandler.class);
-        customersView = new CustomersView(inputOutputHandler, null);
+        appView = mock(AppView.class);
+        customersView = new CustomersView(inputOutputHandler, appView);
     }
 
     @Test
@@ -47,6 +50,13 @@ public class CustomersViewTest {
         customersView.displayDetails("Ritabrata Moitra rmoitra@thoughtworks.com 8013976041");
 
         verify(inputOutputHandler).writeMessage("Ritabrata Moitra rmoitra@thoughtworks.com 8013976041");
+    }
+
+    @Test
+    public void shouldBeAbleToDisplayMessageViaAppview() {
+        customersView.displayMessage("This is a test message.");
+
+        verify(appView).displayMessage("This is a test message.");
     }
 
 
